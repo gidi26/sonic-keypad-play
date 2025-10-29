@@ -77,7 +77,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
           </h3>
         )}
         {description && (
-          <p className="text-[0.42rem] md:text-sm lg:text-base text-muted-foreground">
+          <p className="text-[0.55rem] md:text-sm lg:text-base text-muted-foreground">
             {description}
           </p>
         )}
