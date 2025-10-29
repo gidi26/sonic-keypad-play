@@ -56,7 +56,7 @@ const Index = () => {
               <button
                 onClick={() => setSelectedTimbre('acoustic')}
                 className={cn(
-                  "px-6 py-3 rounded-[20px] font-semibold text-white transition-all",
+                  "px-[1.2rem] py-[0.6rem] rounded-[20px] font-semibold text-white transition-all",
                   selectedTimbre === 'acoustic' ? "bg-red-600" : "bg-black"
                 )}
               >
@@ -65,7 +65,7 @@ const Index = () => {
               <button
                 onClick={() => setSelectedTimbre('digital')}
                 className={cn(
-                  "px-6 py-3 rounded-[20px] font-semibold text-white transition-all",
+                  "px-[1.2rem] py-[0.6rem] rounded-[20px] font-semibold text-white transition-all",
                   selectedTimbre === 'digital' ? "bg-red-600" : "bg-black"
                 )}
               >
@@ -74,7 +74,7 @@ const Index = () => {
               <button
                 onClick={() => setSelectedTimbre('electric')}
                 className={cn(
-                  "px-6 py-3 rounded-[20px] font-semibold text-white transition-all",
+                  "px-[1.2rem] py-[0.6rem] rounded-[20px] font-semibold text-white transition-all",
                   selectedTimbre === 'electric' ? "bg-red-600" : "bg-black"
                 )}
               >
