@@ -135,7 +135,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
           <main className="container mx-auto px-2 py-4">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="text-center mb-12">
-            <p className="text-xl md:text-4xl font-bold text-[#737373] dark:text-white font-montserrat">
+            <p className="text-xl md:text-4xl font-normal text-[#737373] dark:text-white font-montserrat">
               {tonalityName}
             </p>
             
