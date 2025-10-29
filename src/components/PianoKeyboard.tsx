@@ -2,16 +2,32 @@ import { useState } from "react";
 import keyboardImage from "@/assets/keyboard.png";
 import { cn } from "@/lib/utils";
 
+export type TimbreType = 'acoustic' | 'digital' | 'electric';
+
 interface PianoKeyboardProps {
   note: string;
   frequency: number;
   label?: string;
   description?: string;
   reversed?: boolean;
+  timbre?: TimbreType;
 }
 
-export const PianoKeyboard = ({ note, frequency, label, description, reversed = false }: PianoKeyboardProps) => {
+export const PianoKeyboard = ({ note, frequency, label, description, reversed = false, timbre = 'acoustic' }: PianoKeyboardProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
+
+  const getOscillatorType = (timbre: TimbreType): OscillatorType => {
+    switch (timbre) {
+      case 'acoustic':
+        return 'sine';
+      case 'digital':
+        return 'square';
+      case 'electric':
+        return 'sawtooth';
+      default:
+        return 'sine';
+    }
+  };
 
   const playSound = () => {
     setIsPlaying(true);
@@ -26,7 +42,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
     
     // Set frequency and type
     oscillator.frequency.value = frequency;
-    oscillator.type = "sine";
+    oscillator.type = getOscillatorType(timbre);
     
     // Envelope for more natural sound
     gainNode.gain.setValueAtTime(0, audioContext.currentTime);

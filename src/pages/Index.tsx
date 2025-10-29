@@ -1,7 +1,9 @@
-import { PianoKeyboard } from "@/components/PianoKeyboard";
+import { useState } from "react";
+import { PianoKeyboard, TimbreType } from "@/components/PianoKeyboard";
 import { cn } from "@/lib/utils";
 
 const Index = () => {
+  const [selectedTimbre, setSelectedTimbre] = useState<TimbreType>('acoustic');
   // 15 Piano notes with their frequencies
   const keyboards = [
     { note: "C4", frequency: 261.63, label: "C4", description: "Middle C - The foundation of all music" },
@@ -48,6 +50,37 @@ const Index = () => {
             <p className="text-lg text-muted-foreground">
               Clique em cada teclado para ouvir uma nota musical diferente
             </p>
+            
+            {/* Timbre Selection Buttons */}
+            <div className="flex justify-center gap-4 mt-[30px]">
+              <button
+                onClick={() => setSelectedTimbre('acoustic')}
+                className={cn(
+                  "px-6 py-3 rounded-[20px] font-semibold text-white transition-all",
+                  selectedTimbre === 'acoustic' ? "bg-red-600" : "bg-black"
+                )}
+              >
+                Acústico
+              </button>
+              <button
+                onClick={() => setSelectedTimbre('digital')}
+                className={cn(
+                  "px-6 py-3 rounded-[20px] font-semibold text-white transition-all",
+                  selectedTimbre === 'digital' ? "bg-red-600" : "bg-black"
+                )}
+              >
+                Digital
+              </button>
+              <button
+                onClick={() => setSelectedTimbre('electric')}
+                className={cn(
+                  "px-6 py-3 rounded-[20px] font-semibold text-white transition-all",
+                  selectedTimbre === 'electric' ? "bg-red-600" : "bg-black"
+                )}
+              >
+                Elétrico
+              </button>
+            </div>
           </div>
 
           {/* 15 Keyboards in alternating layout */}
@@ -67,6 +100,7 @@ const Index = () => {
                   label={keyboard.label}
                   description={keyboard.description}
                   reversed={index % 2 !== 0}
+                  timbre={selectedTimbre}
                 />
               </div>
             ))}
