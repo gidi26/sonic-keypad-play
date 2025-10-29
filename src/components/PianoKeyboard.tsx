@@ -84,9 +84,9 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
           onClick={playSound}
           className={cn(
             "relative overflow-hidden transition-all duration-300 w-full",
-            "hover:scale-105 active:scale-95",
+            "hover:scale-105 active:scale-97",
             "focus:outline-none",
-            isPlaying && "scale-95 animate-pulse"
+            isPlaying && "scale-97"
           )}
         >
           <img
@@ -95,7 +95,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
             className="w-full h-auto"
           />
           {isPlaying && (
-            <div className="absolute inset-0 bg-primary/14 animate-pulse" />
+            <div className="absolute inset-0 bg-primary/8" />
           )}
         </button>
       </div>
