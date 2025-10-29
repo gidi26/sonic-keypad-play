@@ -70,17 +70,25 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
       </div>
       
       {/* Text */}
-      <div className="flex-1 space-y-2 text-left">
+      <div className="flex-1 space-y-2 text-left mt-5">
         {label && (
           <h3 className="text-3xl md:text-4xl font-bold text-primary">
             {label}
           </h3>
         )}
         {description && (
-          <p className="text-sm md:text-base text-muted-foreground">
+          <p className="text-sm md:text-base text-muted-foreground mb-4">
             {description}
           </p>
         )}
+        {/* Red rectangle aligned right */}
+        <div className="flex justify-end">
+          <div className="bg-primary px-6 py-3 rounded-[10px] inline-block">
+            <p className="text-primary-foreground text-sm">
+              texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
