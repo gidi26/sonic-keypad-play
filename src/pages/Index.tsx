@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { PianoKeyboard, TimbreType } from "@/components/PianoKeyboard";
 import { cn } from "@/lib/utils";
 import { Moon, Sun } from "lucide-react";
@@ -6,6 +6,7 @@ import { Moon, Sun } from "lucide-react";
 const Index = () => {
   const [selectedTimbre, setSelectedTimbre] = useState<TimbreType>('acoustic');
   const [isDark, setIsDark] = useState(false);
+  const currentAudioContextRef = useRef<AudioContext | null>(null);
 
   useEffect(() => {
     if (isDark) {
@@ -14,6 +15,13 @@ const Index = () => {
       document.documentElement.classList.remove('dark');
     }
   }, [isDark]);
+
+  const stopCurrentAudio = () => {
+    if (currentAudioContextRef.current) {
+      currentAudioContextRef.current.close();
+      currentAudioContextRef.current = null;
+    }
+  };
   // 15 Piano notes with their frequencies
   const keyboards = [
     { note: "C4", frequency: 261.63, label: "C4", description: "Middle C - The foundation of all music" },
@@ -122,6 +130,8 @@ const Index = () => {
                   description={keyboard.description}
                   reversed={index % 2 !== 0}
                   timbre={selectedTimbre}
+                  onPlay={stopCurrentAudio}
+                  audioContextRef={currentAudioContextRef}
                 />
               </div>
             ))}

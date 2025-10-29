@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, MutableRefObject } from "react";
 import keyboardImage from "@/assets/keyboard.png";
 import { cn } from "@/lib/utils";
 
@@ -11,9 +11,11 @@ interface PianoKeyboardProps {
   description?: string;
   reversed?: boolean;
   timbre?: TimbreType;
+  onPlay?: () => void;
+  audioContextRef?: MutableRefObject<AudioContext | null>;
 }
 
-export const PianoKeyboard = ({ note, frequency, label, description, reversed = false, timbre = 'acoustic' }: PianoKeyboardProps) => {
+export const PianoKeyboard = ({ note, frequency, label, description, reversed = false, timbre = 'acoustic', onPlay, audioContextRef }: PianoKeyboardProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const getOscillatorType = (timbre: TimbreType): OscillatorType => {
@@ -30,12 +32,22 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
   };
 
   const playSound = () => {
+    // Stop any currently playing audio
+    if (onPlay) {
+      onPlay();
+    }
+    
     setIsPlaying(true);
     
     // Create audio context and oscillator
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
+    
+    // Store the current audio context
+    if (audioContextRef) {
+      audioContextRef.current = audioContext;
+    }
     
     oscillator.connect(gainNode);
     gainNode.connect(audioContext.destination);
@@ -55,6 +67,9 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
     setTimeout(() => {
       setIsPlaying(false);
       audioContext.close();
+      if (audioContextRef && audioContextRef.current === audioContext) {
+        audioContextRef.current = null;
+      }
     }, 1500);
   };
 
