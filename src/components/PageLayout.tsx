@@ -113,7 +113,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                   <h1 className="text-4xl md:text-7xl font-black tracking-tight font-poppins">
                     mov {movementId}
                   </h1>
-                  <p className="text-2xl md:text-4xl font-bold text-primary mt-2 font-anton tracking-wide">
+                  <p className="text-2xl md:text-4xl font-bold text-primary mt-2 font-anton tracking-widest">
                     CLUSTER
                   </p>
                 </div>
