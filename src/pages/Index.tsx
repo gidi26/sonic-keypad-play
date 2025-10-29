@@ -39,7 +39,7 @@ const Index = () => {
       <header className="border-b border-border bg-card relative">
         <div className="container mx-auto px-2 py-4">
           <div className="flex items-center justify-center gap-8">
-            <div className="h-px w-24 bg-border" />
+            <div className="h-[1.3px] w-[125px] bg-foreground/60" />
             <div className="text-center">
               <h1 className="text-5xl md:text-7xl font-black tracking-tight">
                 mov 1
@@ -48,7 +48,7 @@ const Index = () => {
                 CLUSTER
               </p>
             </div>
-            <div className="h-px w-24 bg-border" />
+            <div className="h-[1.3px] w-[125px] bg-foreground/60" />
           </div>
           
           {/* Theme Toggle Button */}
