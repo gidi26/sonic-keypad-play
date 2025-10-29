@@ -1,14 +1,23 @@
 import { PianoKeyboard } from "@/components/PianoKeyboard";
 
 const Index = () => {
-  // Piano notes with their frequencies (C major scale and some variations)
+  // 15 Piano notes with their frequencies
   const keyboards = [
-    { note: "C4", frequency: 261.63, label: "C4", description: "Middle C - The foundation" },
-    { note: "D4", frequency: 293.66, label: "D4", description: "Second note - Rising" },
-    { note: "E4", frequency: 329.63, label: "E4", description: "Third note - Harmony" },
-    { note: "F4", frequency: 349.23, label: "F4", description: "Fourth note - Transition" },
-    { note: "G4", frequency: 392.00, label: "G4", description: "Fifth note - Dominant" },
+    { note: "C4", frequency: 261.63, label: "C4", description: "Middle C - The foundation of all music" },
+    { note: "D4", frequency: 293.66, label: "D4", description: "Second note - Rising melody" },
+    { note: "E4", frequency: 329.63, label: "E4", description: "Third note - Creating harmony" },
+    { note: "F4", frequency: 349.23, label: "F4", description: "Fourth note - Smooth transition" },
+    { note: "G4", frequency: 392.00, label: "G4", description: "Fifth note - The dominant" },
     { note: "A4", frequency: 440.00, label: "A4 ⭐", description: "Concert pitch - Reference tone" },
+    { note: "B4", frequency: 493.88, label: "B4", description: "Seventh note - Leading tone" },
+    { note: "C5", frequency: 523.25, label: "C5", description: "Octave higher - Bright sound" },
+    { note: "D5", frequency: 587.33, label: "D5", description: "High melody - Soaring" },
+    { note: "E5", frequency: 659.25, label: "E5", description: "Upper register - Crystal clear" },
+    { note: "F5", frequency: 698.46, label: "F5", description: "Treble range - Delicate" },
+    { note: "G5", frequency: 783.99, label: "G5", description: "High dominant - Powerful" },
+    { note: "A5", frequency: 880.00, label: "A5", description: "Upper A - Brilliant tone" },
+    { note: "B5", frequency: 987.77, label: "B5", description: "Top register - Ethereal" },
+    { note: "C6", frequency: 1046.50, label: "C6", description: "Two octaves up - Sparkling" },
   ];
 
   return (
@@ -33,24 +42,27 @@ const Index = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-12">
-        <div className="max-w-6xl mx-auto space-y-8">
+        <div className="max-w-7xl mx-auto space-y-8">
           <div className="text-center mb-12">
             <p className="text-lg text-muted-foreground">
               Clique em cada teclado para ouvir uma nota musical diferente
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          {/* 15 Keyboards in alternating layout */}
+          <div className="space-y-8">
             {keyboards.map((keyboard, index) => (
               <div
                 key={keyboard.note}
-                className="bg-card rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-card rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in"
+                style={{ animationDelay: `${index * 50}ms` }}
               >
                 <PianoKeyboard
                   note={keyboard.note}
                   frequency={keyboard.frequency}
                   label={keyboard.label}
                   description={keyboard.description}
+                  reversed={index % 2 !== 0}
                 />
               </div>
             ))}
@@ -62,7 +74,7 @@ const Index = () => {
               The Nord Piano 6 - Professional Stage Piano
             </p>
             <div className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold text-lg">
-              Interactive Sound Experience
+              15 Interactive Piano Keys
             </div>
           </div>
         </div>

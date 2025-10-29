@@ -7,9 +7,10 @@ interface PianoKeyboardProps {
   frequency: number;
   label?: string;
   description?: string;
+  reversed?: boolean;
 }
 
-export const PianoKeyboard = ({ note, frequency, label, description }: PianoKeyboardProps) => {
+export const PianoKeyboard = ({ note, frequency, label, description, reversed = false }: PianoKeyboardProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const playSound = () => {
@@ -42,40 +43,48 @@ export const PianoKeyboard = ({ note, frequency, label, description }: PianoKeyb
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <button
-        onClick={playSound}
-        className={cn(
-          "relative overflow-hidden rounded-2xl transition-all duration-300",
-          "hover:scale-105 active:scale-95",
-          "focus:outline-none focus:ring-4 focus:ring-primary/50",
-          isPlaying && "scale-95 animate-pulse"
-        )}
-      >
-        <img
-          src={keyboardImage}
-          alt={`Piano keyboard - ${note}`}
-          className="w-full h-auto"
-        />
-        {isPlaying && (
-          <div className="absolute inset-0 bg-primary/20 animate-pulse" />
-        )}
-      </button>
+    <div className={cn(
+      "flex items-center gap-6 md:gap-12",
+      reversed ? "flex-row-reverse" : "flex-row"
+    )}>
+      {/* Keyboard */}
+      <div className="flex-1">
+        <button
+          onClick={playSound}
+          className={cn(
+            "relative overflow-hidden rounded-2xl transition-all duration-300 w-full",
+            "hover:scale-105 active:scale-95",
+            "focus:outline-none focus:ring-4 focus:ring-primary/50",
+            isPlaying && "scale-95 animate-pulse"
+          )}
+        >
+          <img
+            src={keyboardImage}
+            alt={`Piano keyboard - ${note}`}
+            className="w-full h-auto"
+          />
+          {isPlaying && (
+            <div className="absolute inset-0 bg-primary/20 animate-pulse" />
+          )}
+        </button>
+      </div>
       
-      {(label || description) && (
-        <div className="text-center space-y-2">
-          {label && (
-            <h3 className="text-2xl font-bold text-primary">
-              {label}
-            </h3>
-          )}
-          {description && (
-            <p className="text-sm text-muted-foreground">
-              {description}
-            </p>
-          )}
-        </div>
-      )}
+      {/* Text */}
+      <div className={cn(
+        "flex-1 space-y-2",
+        reversed ? "text-right" : "text-left"
+      )}>
+        {label && (
+          <h3 className="text-3xl md:text-4xl font-bold text-primary">
+            {label}
+          </h3>
+        )}
+        {description && (
+          <p className="text-sm md:text-base text-muted-foreground">
+            {description}
+          </p>
+        )}
+      </div>
     </div>
   );
 };
