@@ -6,11 +6,17 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 
 interface PageLayoutProps {
-  pageNumber: number;
+  movementId: number;
+  tonalityId: number;
   children?: ReactNode;
 }
 
-const PageLayout = ({ pageNumber }: PageLayoutProps) => {
+const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
+  const tonalityNames = [
+    "C ou Am", "C# ou A#m", "D ou Bm", "D# ou Cm", "E ou C#m", "F ou Dm",
+    "F# ou D#m", "G ou Em", "G# ou Fm", "A ou F#m", "A# ou Gm", "B ou G#m"
+  ];
+  const tonalityName = tonalityNames[tonalityId - 1] || "Unknown";
   const [selectedTimbre, setSelectedTimbre] = useState<TimbreType>('acoustic');
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem('theme');
@@ -105,10 +111,10 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
                 <div className="h-px w-24 bg-border" />
                 <div className="text-center">
                   <h1 className="text-4xl md:text-7xl font-black tracking-tight font-poppins">
-                    mov 1
+                    mov {movementId}
                   </h1>
                   <p className="text-2xl md:text-4xl font-bold text-primary mt-2 font-anton tracking-wide">
-                    CLUSTER
+                    {tonalityName}
                   </p>
                 </div>
                 <div className="h-px w-24 bg-border" />
@@ -130,7 +136,7 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="text-center mb-12">
             <p className="text-xl md:text-4xl font-bold text-[#737373] dark:text-white">
-              Página {pageNumber}
+              Movimento {movementId} - Tonalidade {tonalityId}
             </p>
             
             {/* Timbre Selection Buttons */}

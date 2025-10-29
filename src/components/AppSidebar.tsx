@@ -1,4 +1,6 @@
 import { NavLink, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -7,54 +9,106 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 export function AppSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
   const collapsed = state === "collapsed";
+  const [openMovements, setOpenMovements] = useState<number[]>([1]);
 
-  const pages = [
-    { number: 1, name: "C ou Am", url: "/" },
-    { number: 2, name: "C# ou A#m", url: "/page2" },
-    { number: 3, name: "D ou Bm", url: "/page3" },
-    { number: 4, name: "D# ou Cm", url: "/page4" },
-    { number: 5, name: "E ou C#m", url: "/page5" },
-    { number: 6, name: "F ou Dm", url: "/page6" },
-    { number: 7, name: "F# ou D#m", url: "/page7" },
-    { number: 8, name: "G ou Em", url: "/page8" },
-    { number: 9, name: "G# ou Fm", url: "/page9" },
-    { number: 10, name: "A ou F#m", url: "/page10" },
-    { number: 11, name: "A# ou Gm", url: "/page11" },
-    { number: 12, name: "B ou G#m", url: "/page12" },
+  const tonalities = [
+    { number: 1, name: "C ou Am" },
+    { number: 2, name: "C# ou A#m" },
+    { number: 3, name: "D ou Bm" },
+    { number: 4, name: "D# ou Cm" },
+    { number: 5, name: "E ou C#m" },
+    { number: 6, name: "F ou Dm" },
+    { number: 7, name: "F# ou D#m" },
+    { number: 8, name: "G ou Em" },
+    { number: 9, name: "G# ou Fm" },
+    { number: 10, name: "A ou F#m" },
+    { number: 11, name: "A# ou Gm" },
+    { number: 12, name: "B ou G#m" },
   ];
 
-  const isActive = (url: string) => location.pathname === url;
+  const movements = Array.from({ length: 20 }, (_, i) => ({
+    id: i + 1,
+    name: `Movimento ${i + 1}`,
+  }));
+
+  const toggleMovement = (movementId: number) => {
+    setOpenMovements(prev => 
+      prev.includes(movementId) 
+        ? prev.filter(id => id !== movementId)
+        : [...prev, movementId]
+    );
+  };
+
+  const isActive = (movementId: number, tonalityId: number) => {
+    return location.pathname === `/movimento/${movementId}/tonalidade/${tonalityId}`;
+  };
+
+  const isMovementActive = (movementId: number) => {
+    return tonalities.some(t => isActive(movementId, t.number));
+  };
 
   return (
-    <Sidebar collapsible="icon" className={collapsed ? "w-16" : "w-48"}>
+    <Sidebar collapsible="icon" className={collapsed ? "w-16" : "w-64"}>
       <SidebarContent className="mt-[50px]">
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu className="space-y-8">
-              {pages.map((page) => (
-                <SidebarMenuItem key={page.number}>
-                  <SidebarMenuButton 
-                    asChild 
-                    isActive={isActive(page.url)}
-                    className="data-[active=true]:bg-red-600 data-[active=true]:text-white hover:bg-red-500 hover:text-white"
-                  >
-                    <NavLink
-                      to={page.url}
-                      className="flex items-center justify-center font-bold"
-                    >
-                      <span className="text-sm whitespace-nowrap">
-                        {page.name}
-                      </span>
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+            <SidebarMenu className="space-y-1">
+              {movements.map((movement) => (
+                <Collapsible
+                  key={movement.id}
+                  open={openMovements.includes(movement.id)}
+                  onOpenChange={() => toggleMovement(movement.id)}
+                >
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton
+                        className={`w-full justify-between hover:bg-red-500 hover:text-white ${
+                          isMovementActive(movement.id) ? 'bg-red-600 text-white' : ''
+                        }`}
+                      >
+                        <span className="font-bold text-sm">{collapsed ? `M${movement.id}` : movement.name}</span>
+                        {!collapsed && (
+                          <ChevronDown
+                            className={`transition-transform ${
+                              openMovements.includes(movement.id) ? 'rotate-180' : ''
+                            }`}
+                          />
+                        )}
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        {tonalities.map((tonality) => (
+                          <SidebarMenuSubItem key={tonality.number}>
+                            <SidebarMenuSubButton
+                              asChild
+                              isActive={isActive(movement.id, tonality.number)}
+                              className="data-[active=true]:bg-red-600 data-[active=true]:text-white hover:bg-red-500 hover:text-white"
+                            >
+                              <NavLink
+                                to={`/movimento/${movement.id}/tonalidade/${tonality.number}`}
+                                className="w-full"
+                              >
+                                <span className="text-xs">{tonality.name}</span>
+                              </NavLink>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        ))}
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </SidebarMenuItem>
+                </Collapsible>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
