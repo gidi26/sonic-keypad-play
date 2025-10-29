@@ -25,7 +25,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border bg-card">
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-2 py-4">
           <div className="flex items-center justify-center gap-8">
             <div className="h-px w-24 bg-border" />
             <div className="text-center">
@@ -42,7 +42,7 @@ const Index = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-2 py-6">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="text-center mb-12">
             <p className="text-lg text-muted-foreground">
@@ -56,7 +56,7 @@ const Index = () => {
               <div
                 key={keyboard.note}
                 className={cn(
-                  "rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in",
+                  "rounded-3xl p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in",
                   index % 2 === 0 ? "bg-[#c6c3c3]" : "bg-card"
                 )}
                 style={{ animationDelay: `${index * 50}ms` }}
