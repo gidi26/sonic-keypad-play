@@ -40,16 +40,14 @@ export function AppSidebar() {
             <SidebarMenu className="space-y-8">
               {pages.map((page) => (
                 <SidebarMenuItem key={page.number}>
-                  <SidebarMenuButton asChild isActive={isActive(page.url)}>
+                  <SidebarMenuButton 
+                    asChild 
+                    isActive={isActive(page.url)}
+                    className="data-[active=true]:bg-red-600 data-[active=true]:text-white hover:bg-red-500 hover:text-white"
+                  >
                     <NavLink
                       to={page.url}
-                      className={({ isActive }) =>
-                        `flex items-center justify-center ${
-                          isActive
-                            ? "text-red-600 font-extrabold"
-                            : "font-bold"
-                        }`
-                      }
+                      className="flex items-center justify-center font-bold"
                     >
                       <span className="text-sm whitespace-nowrap">
                         {page.name}
