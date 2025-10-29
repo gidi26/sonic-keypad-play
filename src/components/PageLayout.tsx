@@ -142,7 +142,7 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-2 py-6">
+      <main className="container mx-auto px-2 py-4">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="text-center mb-12">
             <p className="text-3xl md:text-4xl font-bold text-[#737373]">
