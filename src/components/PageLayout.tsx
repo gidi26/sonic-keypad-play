@@ -82,7 +82,7 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
             <div className="container mx-auto px-2 py-4">
               <div className="flex items-center justify-center gap-8">
                 {/* Sidebar Toggle */}
-                <SidebarTrigger className="absolute left-4 top-1/2 -translate-y-1/2" />
+                <SidebarTrigger className="absolute left-4 top-1/2 -translate-y-1/2 scale-150" />
 
                 <div className="h-px w-24 bg-border" />
                 <div className="text-center">
