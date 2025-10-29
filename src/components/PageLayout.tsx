@@ -79,7 +79,7 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border bg-card relative">
-        <div className="container mx-auto px-2">
+        <div className="container mx-auto px-2 py-4">
           <div className="flex items-center justify-center gap-8">
             {/* Menu Hamburger */}
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
