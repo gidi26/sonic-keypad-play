@@ -86,7 +86,7 @@ const Index = () => {
           {/* Theme Toggle Button */}
           <button
             onClick={() => setIsDark(!isDark)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-gray-500 text-white border-2 border-white hover:bg-gray-600 transition-all"
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
             aria-label="Alternar tema"
           >
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
