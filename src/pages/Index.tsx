@@ -1,9 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PianoKeyboard, TimbreType } from "@/components/PianoKeyboard";
 import { cn } from "@/lib/utils";
+import { Moon, Sun } from "lucide-react";
 
 const Index = () => {
   const [selectedTimbre, setSelectedTimbre] = useState<TimbreType>('acoustic');
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDark]);
   // 15 Piano notes with their frequencies
   const keyboards = [
     { note: "C4", frequency: 261.63, label: "C4", description: "Middle C - The foundation of all music" },
@@ -26,7 +36,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border bg-card">
+      <header className="border-b border-border bg-card relative">
         <div className="container mx-auto px-2 py-4">
           <div className="flex items-center justify-center gap-8">
             <div className="h-px w-24 bg-border" />
@@ -40,6 +50,15 @@ const Index = () => {
             </div>
             <div className="h-px w-24 bg-border" />
           </div>
+          
+          {/* Theme Toggle Button */}
+          <button
+            onClick={() => setIsDark(!isDark)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
+            aria-label="Alternar tema"
+          >
+            {isDark ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
         </div>
       </header>
 
@@ -90,7 +109,9 @@ const Index = () => {
                 key={keyboard.note}
                 className={cn(
                   "rounded-3xl p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in",
-                  index % 2 === 0 ? "bg-[#c6c3c3]" : "bg-card"
+                  index % 2 === 0 
+                    ? (isDark ? "bg-[hsl(var(--gray-container))]" : "bg-[#c6c3c3]")
+                    : "bg-card"
                 )}
                 style={{ animationDelay: `${index * 50}ms` }}
               >
