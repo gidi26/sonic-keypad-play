@@ -94,7 +94,7 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
                   <h1 className="text-5xl md:text-7xl font-black tracking-tight font-poppins">
                     mov 1
                   </h1>
-                  <p className="text-3xl md:text-4xl font-bold text-primary mt-2 font-anton">
+                  <p className="text-3xl md:text-4xl font-bold text-primary mt-2 font-anton tracking-wide">
                     CLUSTER
                   </p>
                 </div>
