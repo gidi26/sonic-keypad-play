@@ -97,9 +97,6 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
                   <p className="text-3xl md:text-4xl font-bold text-primary mt-2">
                     CLUSTER
                   </p>
-                  <p className="text-[2.5rem] md:text-[3.5rem] font-black tracking-tight text-[#737373] dark:text-white mt-1">
-                    {pageNumber}
-                  </p>
                 </div>
                 <div className="h-px w-24 bg-border" />
               </div>
