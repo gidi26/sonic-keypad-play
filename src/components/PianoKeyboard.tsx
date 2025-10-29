@@ -48,7 +48,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
       reversed ? "flex-row-reverse" : "flex-row"
     )}>
       {/* Keyboard */}
-      <div className="flex-1">
+      <div className="w-[70%]">
         <button
           onClick={playSound}
           className={cn(
@@ -70,7 +70,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
       </div>
       
       {/* Text */}
-      <div className="flex-1 space-y-2 text-left">
+      <div className="w-[30%] space-y-2 text-left">
         {label && (
           <h3 className="text-3xl md:text-4xl font-bold text-primary">
             {label}
