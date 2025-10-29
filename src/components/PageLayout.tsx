@@ -145,7 +145,7 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
               </button>
               
               {/* Timbre Buttons */}
-              <div className="flex justify-end gap-4">
+              <div className="flex flex-col md:flex-row justify-end gap-4">
                 <button
                   onClick={() => setSelectedTimbre('acoustic')}
                   className={cn(
