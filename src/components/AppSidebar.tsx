@@ -94,7 +94,7 @@ export function AppSidebar() {
                             <SidebarMenuSubButton
                               asChild
                               isActive={isActive(movement.id, tonality.number)}
-                              className="data-[active=true]:bg-black data-[active=true]:text-white hover:bg-red-500 hover:text-white"
+                              className="data-[active=true]:bg-black data-[active=true]:text-white dark:data-[active=true]:bg-white dark:data-[active=true]:text-black hover:bg-red-500 hover:text-white"
                             >
                               <NavLink
                                  to={`/movimento/${movement.id}/tonalidade/${tonality.number}`}
