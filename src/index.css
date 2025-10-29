@@ -110,4 +110,45 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(0 0% 90%);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 70%);
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(0 0% 60%);
+  }
+
+  /* Dark mode scrollbar */
+  .dark ::-webkit-scrollbar-track {
+    background: hsl(0 0% 35%);
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 50%);
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: hsl(0 0% 60%);
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(0 0% 70%) hsl(0 0% 90%);
+  }
+
+  .dark * {
+    scrollbar-color: hsl(0 0% 50%) hsl(0 0% 35%);
+  }
 }
