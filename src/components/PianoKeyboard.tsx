@@ -95,7 +95,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
             className="w-full h-auto"
           />
           {isPlaying && (
-            <div className="absolute inset-0 bg-red-500/10" />
+            <div className="absolute inset-0 bg-red-500/10 animate-pulse" />
           )}
         </button>
       </div>
