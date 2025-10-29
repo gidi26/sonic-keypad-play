@@ -77,7 +77,7 @@ export function AppSidebar() {
                           isMovementActive(movement.id) ? 'bg-red-600 text-white' : ''
                         }`}
                       >
-                        <span className="font-bold text-sm">{collapsed ? `M${movement.id}` : movement.name}</span>
+                        <span className="font-bold text-sm">{collapsed ? `MOV ${movement.id}` : movement.name}</span>
                         {!collapsed && (
                           <ChevronDown
                             className={`transition-transform ${
