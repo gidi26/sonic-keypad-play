@@ -43,9 +43,15 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild isActive={isActive(page.url)}>
                     <NavLink
                       to={page.url}
-                      className="flex items-center justify-center"
+                      className={({ isActive }) =>
+                        `flex items-center justify-center ${
+                          isActive
+                            ? "text-red-600 font-extrabold"
+                            : "font-bold"
+                        }`
+                      }
                     >
-                      <span className="font-bold text-sm whitespace-nowrap">
+                      <span className="text-sm whitespace-nowrap">
                         {page.name}
                       </span>
                     </NavLink>
