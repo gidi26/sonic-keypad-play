@@ -10,22 +10,8 @@ interface PianoKeyboardProps {
   reversed?: boolean;
 }
 
-type TimbreType = 'acoustic' | 'digital' | 'electric';
-
 export const PianoKeyboard = ({ note, frequency, label, description, reversed = false }: PianoKeyboardProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [selectedTimbre, setSelectedTimbre] = useState<TimbreType>('acoustic');
-
-  const getOscillatorType = (timbre: TimbreType): OscillatorType => {
-    switch (timbre) {
-      case 'acoustic':
-        return 'sine'; // Suave, natural
-      case 'digital':
-        return 'square'; // Sintético, brilhante
-      case 'electric':
-        return 'sawtooth'; // Rico em harmônicos
-    }
-  };
 
   const playSound = () => {
     setIsPlaying(true);
@@ -38,9 +24,9 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
     oscillator.connect(gainNode);
     gainNode.connect(audioContext.destination);
     
-    // Set frequency and type based on selected timbre
+    // Set frequency and type
     oscillator.frequency.value = frequency;
-    oscillator.type = getOscillatorType(selectedTimbre);
+    oscillator.type = "sine";
     
     // Envelope for more natural sound
     gainNode.gain.setValueAtTime(0, audioContext.currentTime);
@@ -84,7 +70,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
       </div>
       
       {/* Text */}
-      <div className="w-[30%] space-y-3 text-left">
+      <div className="w-[30%] space-y-2 text-left">
         {label && (
           <h3 className="text-xl md:text-3xl lg:text-4xl font-bold text-primary">
             {label}
@@ -95,46 +81,6 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
             {description}
           </p>
         )}
-        
-        {/* Timbre Selection Buttons */}
-        <div className="flex gap-2 justify-start mt-3">
-          <button
-            onClick={() => setSelectedTimbre('acoustic')}
-            className={cn(
-              "px-3 py-1.5 rounded-[10px] text-xs md:text-sm font-semibold transition-all",
-              "border-2",
-              selectedTimbre === 'acoustic'
-                ? "bg-red-600 text-white border-red-700 scale-105"
-                : "bg-red-500 text-white border-red-600 hover:bg-red-600"
-            )}
-          >
-            Acústico
-          </button>
-          <button
-            onClick={() => setSelectedTimbre('digital')}
-            className={cn(
-              "px-3 py-1.5 rounded-[10px] text-xs md:text-sm font-semibold transition-all",
-              "border-2",
-              selectedTimbre === 'digital'
-                ? "bg-red-600 text-white border-red-700 scale-105"
-                : "bg-red-500 text-white border-red-600 hover:bg-red-600"
-            )}
-          >
-            Digital
-          </button>
-          <button
-            onClick={() => setSelectedTimbre('electric')}
-            className={cn(
-              "px-3 py-1.5 rounded-[10px] text-xs md:text-sm font-semibold transition-all",
-              "border-2",
-              selectedTimbre === 'electric'
-                ? "bg-red-600 text-white border-red-700 scale-105"
-                : "bg-red-500 text-white border-red-600 hover:bg-red-600"
-            )}
-          >
-            Elétrico
-          </button>
-        </div>
       </div>
     </div>
   );
