@@ -134,18 +134,18 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
             </p>
             
             {/* Timbre Selection Buttons */}
-            <div className="flex justify-between items-center gap-4 mt-[30px]">
+            <div className="flex items-start gap-4 mt-[30px]">
               {/* Play Button */}
               <button
                 onClick={playButtonSound}
-                className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white dark:bg-[hsl(var(--gray-container))] border-2 border-black dark:border-white flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600 transition-all active:scale-95"
+                className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white dark:bg-[hsl(var(--gray-container))] border-2 border-black dark:border-white flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600 transition-all active:scale-95 flex-shrink-0"
                 aria-label="Play"
               >
                 <Play className="w-5 h-5 md:w-6 md:h-6 fill-black text-black dark:fill-white dark:text-white" />
               </button>
               
               {/* Timbre Buttons */}
-              <div className="flex flex-col md:flex-row justify-end gap-4">
+              <div className="flex flex-col md:flex-row flex-1 justify-end gap-4">
                 <button
                   onClick={() => setSelectedTimbre('acoustic')}
                   className={cn(
