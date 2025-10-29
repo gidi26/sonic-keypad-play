@@ -23,11 +23,11 @@ export function AppSidebar() {
   const isActive = (url: string) => location.pathname === url;
 
   return (
-    <Sidebar collapsible="icon" className={collapsed ? "w-14" : "w-48"}>
-      <SidebarContent>
+    <Sidebar collapsible="icon" className={collapsed ? "w-20" : "w-48"}>
+      <SidebarContent className="mt-[50px]">
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="space-y-8">
               {pages.map((page) => (
                 <SidebarMenuItem key={page.number}>
                   <SidebarMenuButton asChild isActive={isActive(page.url)}>
