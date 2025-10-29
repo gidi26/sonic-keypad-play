@@ -52,7 +52,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
         <button
           onClick={playSound}
           className={cn(
-            "relative overflow-hidden rounded-2xl transition-all duration-300 w-full",
+            "relative overflow-hidden transition-all duration-300 w-full",
             "hover:scale-105 active:scale-95",
             "focus:outline-none focus:ring-4 focus:ring-primary/50",
             isPlaying && "scale-95 animate-pulse"
@@ -72,12 +72,12 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
       {/* Text */}
       <div className="w-[30%] space-y-2 text-left">
         {label && (
-          <h3 className="text-3xl md:text-4xl font-bold text-primary">
+          <h3 className="text-xl md:text-3xl lg:text-4xl font-bold text-primary">
             {label}
           </h3>
         )}
         {description && (
-          <p className="text-sm md:text-base text-muted-foreground">
+          <p className="text-[0.42rem] md:text-sm lg:text-base text-muted-foreground">
             {description}
           </p>
         )}
