@@ -41,10 +41,10 @@ const Index = () => {
           <div className="flex items-center justify-center gap-8">
             <div className="h-[1.3px] w-[125px] bg-foreground/60" />
             <div className="text-center">
-              <h1 className="text-[4.5rem] md:text-[6.75rem] font-black tracking-tight">
+              <h1 className="text-[4.5rem] md:text-[6.75rem] font-black tracking-tight font-poppins">
                 mov 1
               </h1>
-              <p className="text-[2.44rem] md:text-[2.93rem] font-bold text-primary mt-2">
+              <p className="text-[2.44rem] md:text-[2.93rem] font-bold text-primary mt-2 font-anton">
                 CLUSTER
               </p>
             </div>
