@@ -1,4 +1,5 @@
 import { PianoKeyboard } from "@/components/PianoKeyboard";
+import { cn } from "@/lib/utils";
 
 const Index = () => {
   // 15 Piano notes with their frequencies
@@ -54,7 +55,10 @@ const Index = () => {
             {keyboards.map((keyboard, index) => (
               <div
                 key={keyboard.note}
-                className="bg-card rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in"
+                className={cn(
+                  "rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in",
+                  index % 2 === 0 ? "bg-[#c6c3c3]" : "bg-card"
+                )}
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <PianoKeyboard

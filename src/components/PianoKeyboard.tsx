@@ -70,10 +70,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
       </div>
       
       {/* Text */}
-      <div className={cn(
-        "flex-1 space-y-2",
-        reversed ? "text-right" : "text-left"
-      )}>
+      <div className="flex-1 space-y-2 text-left">
         {label && (
           <h3 className="text-3xl md:text-4xl font-bold text-primary">
             {label}
