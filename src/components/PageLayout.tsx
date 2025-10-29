@@ -114,7 +114,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                     mov {movementId}
                   </h1>
                   <p className="text-2xl md:text-4xl font-bold text-primary mt-2 font-anton tracking-wide">
-                    {tonalityName}
+                    CLUSTER
                   </p>
                 </div>
                 <div className="h-px w-24 bg-border" />
@@ -136,7 +136,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="text-center mb-12">
             <p className="text-xl md:text-4xl font-bold text-[#737373] dark:text-white">
-              Movimento {movementId} - Tonalidade {tonalityId}
+              {tonalityName}
             </p>
             
             {/* Timbre Selection Buttons */}
