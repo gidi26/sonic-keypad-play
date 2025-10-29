@@ -22,6 +22,30 @@ const Index = () => {
       currentAudioContextRef.current = null;
     }
   };
+
+  const playButtonSound = () => {
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    // Pleasant notification sound - two tones
+    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+    oscillator.frequency.setValueAtTime(1000, audioContext.currentTime + 0.1);
+    oscillator.type = 'sine';
+    
+    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.3);
+    
+    setTimeout(() => {
+      audioContext.close();
+    }, 300);
+  };
   // 15 Piano notes with their frequencies
   const keyboards = [
     { note: "C4", frequency: 261.63, label: "C4", description: "Middle C - The foundation of all music" },
@@ -82,7 +106,8 @@ const Index = () => {
             <div className="flex justify-between items-center gap-4 mt-[30px]">
               {/* Play Button */}
               <button
-                className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-black flex items-center justify-center hover:bg-gray-100 transition-all"
+                onClick={playButtonSound}
+                className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-black flex items-center justify-center hover:bg-gray-100 transition-all active:scale-95"
                 aria-label="Play"
               >
                 <Play className="w-5 h-5 md:w-6 md:h-6 fill-black text-black" />
