@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { PianoKeyboard, TimbreType } from "@/components/PianoKeyboard";
 import { cn } from "@/lib/utils";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Play } from "lucide-react";
 
 const Index = () => {
   const [selectedTimbre, setSelectedTimbre] = useState<TimbreType>('acoustic');
@@ -79,34 +79,45 @@ const Index = () => {
             </p>
             
             {/* Timbre Selection Buttons */}
-            <div className="flex justify-end gap-4 mt-[30px]">
+            <div className="flex justify-between items-center gap-4 mt-[30px]">
+              {/* Play Button */}
               <button
-                onClick={() => setSelectedTimbre('acoustic')}
-                className={cn(
-                  "px-[1.2rem] py-[0.6rem] rounded-[20px] font-semibold text-white transition-all",
-                  selectedTimbre === 'acoustic' ? "bg-red-600" : "bg-black"
-                )}
+                className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-black flex items-center justify-center hover:bg-gray-100 transition-all"
+                aria-label="Play"
               >
-                Acústico
+                <Play className="w-5 h-5 md:w-6 md:h-6 fill-black text-black" />
               </button>
-              <button
-                onClick={() => setSelectedTimbre('digital')}
-                className={cn(
-                  "px-[1.2rem] py-[0.6rem] rounded-[20px] font-semibold text-white transition-all",
-                  selectedTimbre === 'digital' ? "bg-red-600" : "bg-black"
-                )}
-              >
-                Digital
-              </button>
-              <button
-                onClick={() => setSelectedTimbre('electric')}
-                className={cn(
-                  "px-[1.2rem] py-[0.6rem] rounded-[20px] font-semibold text-white transition-all",
-                  selectedTimbre === 'electric' ? "bg-red-600" : "bg-black"
-                )}
-              >
-                Elétrico
-              </button>
+              
+              {/* Timbre Buttons */}
+              <div className="flex justify-end gap-4">
+                <button
+                  onClick={() => setSelectedTimbre('acoustic')}
+                  className={cn(
+                    "px-[0.84rem] py-[0.42rem] md:px-[1.2rem] md:py-[0.6rem] rounded-[20px] font-semibold text-white transition-all",
+                    selectedTimbre === 'acoustic' ? "bg-red-600" : "bg-black"
+                  )}
+                >
+                  Acústico
+                </button>
+                <button
+                  onClick={() => setSelectedTimbre('digital')}
+                  className={cn(
+                    "px-[0.84rem] py-[0.42rem] md:px-[1.2rem] md:py-[0.6rem] rounded-[20px] font-semibold text-white transition-all",
+                    selectedTimbre === 'digital' ? "bg-red-600" : "bg-black"
+                  )}
+                >
+                  Digital
+                </button>
+                <button
+                  onClick={() => setSelectedTimbre('electric')}
+                  className={cn(
+                    "px-[0.84rem] py-[0.42rem] md:px-[1.2rem] md:py-[0.6rem] rounded-[20px] font-semibold text-white transition-all",
+                    selectedTimbre === 'electric' ? "bg-red-600" : "bg-black"
+                  )}
+                >
+                  Elétrico
+                </button>
+              </div>
             </div>
           </div>
 
