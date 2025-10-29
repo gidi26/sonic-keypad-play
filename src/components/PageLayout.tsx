@@ -17,6 +17,7 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
     return saved === 'dark';
   });
   const currentAudioContextRef = useRef<AudioContext | null>(null);
+  const playButtonAudioContextRef = useRef<AudioContext | null>(null);
 
   useEffect(() => {
     if (isDark) {
@@ -33,10 +34,19 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
       currentAudioContextRef.current.close();
       currentAudioContextRef.current = null;
     }
+    if (playButtonAudioContextRef.current) {
+      playButtonAudioContextRef.current.close();
+      playButtonAudioContextRef.current = null;
+    }
   };
 
   const playButtonSound = () => {
+    // Stop any keyboard audio playing
+    stopCurrentAudio();
+    
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    playButtonAudioContextRef.current = audioContext;
+    
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
     
@@ -55,6 +65,9 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
     
     setTimeout(() => {
       audioContext.close();
+      if (playButtonAudioContextRef.current === audioContext) {
+        playButtonAudioContextRef.current = null;
+      }
     }, 300);
   };
 
