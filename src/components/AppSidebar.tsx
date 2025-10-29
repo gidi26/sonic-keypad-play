@@ -59,7 +59,7 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar collapsible="icon" className={collapsed ? "w-16" : "w-64"}>
+    <Sidebar collapsible="icon" className={`${collapsed ? "w-16" : "w-64"} bg-[#545454]`}>
       <SidebarContent className="mt-[50px]">
         <SidebarGroup>
           <SidebarGroupContent>
