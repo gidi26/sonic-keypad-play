@@ -110,7 +110,7 @@ const Index = () => {
                 className={cn(
                   "rounded-3xl p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in",
                   index % 2 === 0 
-                    ? (isDark ? "bg-[hsl(var(--gray-container))]" : "bg-[#d0cccc]")
+                    ? (isDark ? "bg-[hsl(var(--gray-container))]" : "bg-[#d7d4d4]")
                     : "bg-card"
                 )}
                 style={{ animationDelay: `${index * 50}ms` }}
