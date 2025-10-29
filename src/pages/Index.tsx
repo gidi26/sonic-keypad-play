@@ -107,10 +107,10 @@ const Index = () => {
               {/* Play Button */}
               <button
                 onClick={playButtonSound}
-                className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-black flex items-center justify-center hover:bg-gray-100 transition-all active:scale-95"
+                className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white dark:bg-gray-500 border-2 border-black dark:border-white flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600 transition-all active:scale-95"
                 aria-label="Play"
               >
-                <Play className="w-5 h-5 md:w-6 md:h-6 fill-black text-black" />
+                <Play className="w-5 h-5 md:w-6 md:h-6 fill-black text-black dark:fill-white dark:text-white" />
               </button>
               
               {/* Timbre Buttons */}
