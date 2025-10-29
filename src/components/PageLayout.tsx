@@ -12,14 +12,19 @@ interface PageLayoutProps {
 
 const PageLayout = ({ pageNumber }: PageLayoutProps) => {
   const [selectedTimbre, setSelectedTimbre] = useState<TimbreType>('acoustic');
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem('theme');
+    return saved === 'dark';
+  });
   const currentAudioContextRef = useRef<AudioContext | null>(null);
 
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   }, [isDark]);
 
