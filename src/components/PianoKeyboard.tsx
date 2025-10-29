@@ -85,7 +85,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
           className={cn(
             "relative overflow-hidden transition-all duration-300 w-full",
             "hover:scale-105 active:scale-95",
-            "focus:outline-none focus:ring-4 focus:ring-primary/50",
+            "focus:outline-none",
             isPlaying && "scale-95 animate-pulse"
           )}
         >
@@ -95,7 +95,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
             className="w-full h-auto"
           />
           {isPlaying && (
-            <div className="absolute inset-0 bg-primary/20 animate-pulse" />
+            <div className="absolute inset-0 bg-primary/14 animate-pulse" />
           )}
         </button>
       </div>
