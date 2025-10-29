@@ -145,11 +145,11 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
               </button>
               
               {/* Timbre Buttons */}
-              <div className="flex justify-end gap-4">
+              <div className="flex justify-end gap-2 md:gap-4">
                 <button
                   onClick={() => setSelectedTimbre('acoustic')}
                   className={cn(
-                    "px-[0.84rem] py-[0.42rem] md:px-[1.2rem] md:py-[0.6rem] rounded-[20px] font-semibold text-white transition-all",
+                    "px-[0.67rem] py-[0.34rem] md:px-[1.2rem] md:py-[0.6rem] rounded-[20px] font-semibold text-sm md:text-base text-white transition-all",
                     selectedTimbre === 'acoustic' ? "bg-red-600" : "bg-black"
                   )}
                 >
@@ -158,7 +158,7 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
                 <button
                   onClick={() => setSelectedTimbre('digital')}
                   className={cn(
-                    "px-[0.84rem] py-[0.42rem] md:px-[1.2rem] md:py-[0.6rem] rounded-[20px] font-semibold text-white transition-all",
+                    "px-[0.67rem] py-[0.34rem] md:px-[1.2rem] md:py-[0.6rem] rounded-[20px] font-semibold text-sm md:text-base text-white transition-all",
                     selectedTimbre === 'digital' ? "bg-red-600" : "bg-black"
                   )}
                 >
@@ -167,7 +167,7 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
                 <button
                   onClick={() => setSelectedTimbre('electric')}
                   className={cn(
-                    "px-[0.84rem] py-[0.42rem] md:px-[1.2rem] md:py-[0.6rem] rounded-[20px] font-semibold text-white transition-all",
+                    "px-[0.67rem] py-[0.34rem] md:px-[1.2rem] md:py-[0.6rem] rounded-[20px] font-semibold text-sm md:text-base text-white transition-all",
                     selectedTimbre === 'electric' ? "bg-red-600" : "bg-black"
                   )}
                 >
