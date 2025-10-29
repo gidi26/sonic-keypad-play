@@ -71,7 +71,7 @@ const Index = () => {
             </p>
             
             {/* Timbre Selection Buttons */}
-            <div className="flex justify-center gap-4 mt-[30px]">
+            <div className="flex justify-end gap-4 mt-[30px]">
               <button
                 onClick={() => setSelectedTimbre('acoustic')}
                 className={cn(
