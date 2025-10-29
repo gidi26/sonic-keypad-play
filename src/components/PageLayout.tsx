@@ -126,9 +126,6 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
               <p className="text-[2.5rem] md:text-[3.5rem] font-black tracking-tight text-white mt-1">
                 {pageNumber}
               </p>
-              <p className="text-3xl md:text-4xl font-bold text-[#737373] mt-0.5">
-                Página {pageNumber}
-              </p>
             </div>
             <div className="h-px w-24 bg-border" />
           </div>
@@ -148,8 +145,8 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
       <main className="container mx-auto px-2 py-6">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="text-center mb-12">
-            <p className="text-lg text-muted-foreground">
-              Clique em cada teclado para ouvir uma nota musical diferente
+            <p className="text-3xl md:text-4xl font-bold text-[#737373]">
+              Página {pageNumber}
             </p>
             
             {/* Timbre Selection Buttons */}
