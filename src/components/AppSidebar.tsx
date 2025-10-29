@@ -33,7 +33,7 @@ export function AppSidebar() {
   const isActive = (url: string) => location.pathname === url;
 
   return (
-    <Sidebar collapsible="icon" className={collapsed ? "w-32" : "w-48"}>
+    <Sidebar collapsible="icon" className={collapsed ? "w-16" : "w-48"}>
       <SidebarContent className="mt-[50px]">
         <SidebarGroup>
           <SidebarGroupContent>
