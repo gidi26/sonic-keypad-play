@@ -39,7 +39,7 @@ export function AppSidebar() {
 
   const movements = Array.from({ length: 20 }, (_, i) => ({
     id: i + 1,
-    name: `Movimento ${i + 1}`,
+    name: `MOV ${i + 1}`,
   }));
 
   const toggleMovement = (movementId: number) => {
