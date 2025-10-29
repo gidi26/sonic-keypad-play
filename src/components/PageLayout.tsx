@@ -114,7 +114,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                   <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
                     <User className="w-5 h-5 text-primary-foreground" />
                   </div>
-                  <span className="text-sm font-medium text-foreground">Usuário</span>
+                  <span className="text-sm font-medium text-foreground hidden md:inline">Usuário</span>
                 </div>
 
                 {/* Sidebar Toggle */}
@@ -135,7 +135,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
               {/* Theme Toggle Button */}
               <button
                 onClick={() => setIsDark(!isDark)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-gray-500 text-white border-2 border-white hover:bg-gray-600 transition-all"
+                className="absolute right-4 bottom-4 p-2 rounded-full bg-gray-500 text-white border-2 border-white hover:bg-gray-600 transition-all"
                 aria-label="Alternar tema"
               >
                 {isDark ? <Sun size={20} /> : <Moon size={20} />}
