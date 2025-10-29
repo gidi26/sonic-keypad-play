@@ -126,6 +126,9 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
               <p className="text-[2.5rem] md:text-[3.5rem] font-black tracking-tight text-white mt-1">
                 {pageNumber}
               </p>
+              <p className="text-3xl md:text-4xl font-bold text-black dark:text-white mt-2">
+                Página {pageNumber}
+              </p>
             </div>
             <div className="h-px w-24 bg-border" />
           </div>
