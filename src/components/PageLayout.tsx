@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef, ReactNode } from "react";
 import { PianoKeyboard, TimbreType } from "@/components/PianoKeyboard";
 import { cn } from "@/lib/utils";
-import { Moon, Sun, Play, Menu } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Moon, Sun, Play } from "lucide-react";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/AppSidebar";
 
 interface PageLayoutProps {
   pageNumber: number;
@@ -13,9 +13,7 @@ interface PageLayoutProps {
 const PageLayout = ({ pageNumber }: PageLayoutProps) => {
   const [selectedTimbre, setSelectedTimbre] = useState<TimbreType>('acoustic');
   const [isDark, setIsDark] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const currentAudioContextRef = useRef<AudioContext | null>(null);
-  const location = useLocation();
 
   useEffect(() => {
     if (isDark) {
@@ -73,76 +71,47 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
     { note: "C6", frequency: 1046.50, label: "C6", description: "Two octaves up - Sparkling" },
   ];
 
-  const pages = Array.from({ length: 12 }, (_, i) => i + 1);
-
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-card relative">
-        <div className="container mx-auto px-2 py-4">
-          <div className="flex items-center justify-center gap-8">
-            {/* Menu Hamburger */}
-            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-              <SheetTrigger asChild>
-                <button
-                  className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-md hover:bg-accent transition-colors"
-                  aria-label="Menu"
-                >
-                  <Menu className="w-6 h-6 text-black dark:text-white" />
-                </button>
-              </SheetTrigger>
-              <SheetContent side="left" className="w-64 bg-card border-border">
-                <div className="py-6">
-                  <h2 className="text-2xl font-bold mb-6 text-foreground">Páginas</h2>
-                  <nav className="space-y-2">
-                    {pages.map((page) => (
-                      <Link
-                        key={page}
-                        to={page === 1 ? "/" : `/page${page}`}
-                        onClick={() => setIsMenuOpen(false)}
-                        className={cn(
-                          "block px-4 py-3 rounded-lg transition-colors font-medium",
-                          location.pathname === (page === 1 ? "/" : `/page${page}`)
-                            ? "bg-primary text-primary-foreground"
-                            : "hover:bg-accent text-foreground"
-                        )}
-                      >
-                        Página {page}
-                      </Link>
-                    ))}
-                  </nav>
+    <SidebarProvider defaultOpen={false}>
+      <div className="min-h-screen flex w-full bg-background">
+        <AppSidebar />
+        
+        <div className="flex-1 flex flex-col">
+          {/* Header */}
+          <header className="border-b border-border bg-card relative">
+            <div className="container mx-auto px-2 py-4">
+              <div className="flex items-center justify-center gap-8">
+                {/* Sidebar Toggle */}
+                <SidebarTrigger className="absolute left-4 top-1/2 -translate-y-1/2" />
+
+                <div className="h-px w-24 bg-border" />
+                <div className="text-center">
+                  <h1 className="text-5xl md:text-7xl font-black tracking-tight">
+                    mov 1
+                  </h1>
+                  <p className="text-3xl md:text-4xl font-bold text-primary mt-2">
+                    CLUSTER
+                  </p>
+                  <p className="text-[2.5rem] md:text-[3.5rem] font-black tracking-tight text-white mt-1">
+                    {pageNumber}
+                  </p>
                 </div>
-              </SheetContent>
-            </Sheet>
-
-            <div className="h-px w-24 bg-border" />
-            <div className="text-center">
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight">
-                mov 1
-              </h1>
-              <p className="text-3xl md:text-4xl font-bold text-primary mt-2">
-                CLUSTER
-              </p>
-              <p className="text-[2.5rem] md:text-[3.5rem] font-black tracking-tight text-white mt-1">
-                {pageNumber}
-              </p>
+                <div className="h-px w-24 bg-border" />
+              </div>
+              
+              {/* Theme Toggle Button */}
+              <button
+                onClick={() => setIsDark(!isDark)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-gray-500 text-white border-2 border-white hover:bg-gray-600 transition-all"
+                aria-label="Alternar tema"
+              >
+                {isDark ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
             </div>
-            <div className="h-px w-24 bg-border" />
-          </div>
-          
-          {/* Theme Toggle Button */}
-          <button
-            onClick={() => setIsDark(!isDark)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-gray-500 text-white border-2 border-white hover:bg-gray-600 transition-all"
-            aria-label="Alternar tema"
-          >
-            {isDark ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-        </div>
-      </header>
+          </header>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-2 py-4">
+          {/* Main Content */}
+          <main className="container mx-auto px-2 py-4">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="text-center mb-12">
             <p className="text-3xl md:text-4xl font-bold text-[#737373]">
@@ -228,10 +197,12 @@ const PageLayout = ({ pageNumber }: PageLayoutProps) => {
             <div className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold text-lg">
               15 Interactive Piano Keys
             </div>
+            </div>
           </div>
+          </main>
         </div>
-      </main>
-    </div>
+      </div>
+    </SidebarProvider>
   );
 };
 
