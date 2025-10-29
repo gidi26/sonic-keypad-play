@@ -97,10 +97,10 @@ export function AppSidebar() {
                               className="data-[active=true]:bg-red-600 data-[active=true]:text-white hover:bg-red-500 hover:text-white"
                             >
                               <NavLink
-                                to={`/movimento/${movement.id}/tonalidade/${tonality.number}`}
+                                 to={`/movimento/${movement.id}/tonalidade/${tonality.number}`}
                                 className="w-full"
                               >
-                                <span className="text-xs">{tonality.name}</span>
+                                <span className="text-base">{tonality.name}</span>
                               </NavLink>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
