@@ -18,6 +18,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
   ];
   const tonalityName = tonalityNames[tonalityId - 1] || "Unknown";
   const [selectedTimbre, setSelectedTimbre] = useState<TimbreType>('acoustic');
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem('theme');
     return saved === 'dark';
@@ -50,6 +51,8 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
     // Stop any keyboard audio playing
     stopCurrentAudio();
     
+    setIsPlaying(true);
+    
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     playButtonAudioContextRef.current = audioContext;
     
@@ -74,6 +77,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
       if (playButtonAudioContextRef.current === audioContext) {
         playButtonAudioContextRef.current = null;
       }
+      setIsPlaying(false);
     }, 300);
   };
 
@@ -152,10 +156,20 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
               {/* Play Button */}
               <button
                 onClick={playButtonSound}
-                className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white dark:bg-[hsl(var(--gray-container))] border-2 border-black dark:border-white flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600 transition-all active:scale-95"
+                className={cn(
+                  "w-12 h-12 md:w-14 md:h-14 rounded-full border-2 flex items-center justify-center transition-all active:scale-95",
+                  isPlaying 
+                    ? "bg-red-600 border-red-600" 
+                    : "bg-white dark:bg-[hsl(var(--gray-container))] border-black dark:border-white hover:bg-gray-100 dark:hover:bg-gray-600"
+                )}
                 aria-label="Play"
               >
-                <Play className="w-5 h-5 md:w-6 md:h-6 fill-black text-black dark:fill-white dark:text-white" />
+                <Play className={cn(
+                  "w-5 h-5 md:w-6 md:h-6",
+                  isPlaying 
+                    ? "fill-white text-white" 
+                    : "fill-black text-black dark:fill-white dark:text-white"
+                )} />
               </button>
               
               {/* Timbre Buttons */}
