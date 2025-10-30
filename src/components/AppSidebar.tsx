@@ -68,8 +68,12 @@ export function AppSidebar() {
               <Collapsible open={mainMenuOpen} onOpenChange={setMainMenuOpen}>
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
-                    <SidebarMenuButton className="w-full justify-between hover:bg-red-500 hover:text-white font-bold">
-                      <span>{collapsed ? "MENU" : "MENU PRINCIPAL"}</span>
+                    <SidebarMenuButton className={`w-full justify-between font-bold ${
+                      mainMenuOpen 
+                        ? 'bg-red-500 text-white hover:bg-red-600' 
+                        : 'bg-black text-white dark:bg-white dark:text-black hover:bg-red-500 hover:text-white dark:hover:bg-red-500'
+                    }`}>
+                      <span>{collapsed ? "MOV 251" : "MOVIMENTOS 251"}</span>
                       {!collapsed && (
                         <ChevronDown
                           className={`transition-transform ${
