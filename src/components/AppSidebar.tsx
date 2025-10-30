@@ -21,6 +21,7 @@ export function AppSidebar() {
   const location = useLocation();
   const collapsed = state === "collapsed";
   const [openMovements, setOpenMovements] = useState<number[]>([1]);
+  const [mainMenuOpen, setMainMenuOpen] = useState(true);
 
   const tonalities = [
     { number: 1, name: "C ou Am" },
@@ -63,53 +64,73 @@ export function AppSidebar() {
       <SidebarContent className="mt-[50px]">
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu className="space-y-1">
-              {movements.map((movement) => (
-                <Collapsible
-                  key={movement.id}
-                  open={openMovements.includes(movement.id)}
-                  onOpenChange={() => toggleMovement(movement.id)}
-                >
-                  <SidebarMenuItem>
-                    <CollapsibleTrigger asChild>
-                      <SidebarMenuButton
-                        className={`w-full justify-between hover:bg-red-500 hover:text-white ${
-                          isMovementActive(movement.id) ? 'bg-red-600 text-white' : ''
-                        }`}
-                      >
-                        <span className="font-bold text-sm">{collapsed ? `MOV ${movement.id}` : movement.name}</span>
-                        {!collapsed && (
-                          <ChevronDown
-                            className={`transition-transform ${
-                              openMovements.includes(movement.id) ? 'rotate-180' : ''
-                            }`}
-                          />
-                        )}
-                      </SidebarMenuButton>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <SidebarMenuSub>
-                        {tonalities.map((tonality) => (
-                          <SidebarMenuSubItem key={tonality.number}>
-                            <SidebarMenuSubButton
-                              asChild
-                              isActive={isActive(movement.id, tonality.number)}
-                              className="data-[active=true]:bg-black data-[active=true]:text-white dark:data-[active=true]:bg-white dark:data-[active=true]:text-black hover:bg-red-500 hover:text-white"
-                            >
-                              <NavLink
-                                 to={`/movimento/${movement.id}/tonalidade/${tonality.number}`}
-                                className="w-full"
+            <SidebarMenu>
+              <Collapsible open={mainMenuOpen} onOpenChange={setMainMenuOpen}>
+                <SidebarMenuItem>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuButton className="w-full justify-between hover:bg-red-500 hover:text-white font-bold">
+                      <span>{collapsed ? "MENU" : "MENU PRINCIPAL"}</span>
+                      {!collapsed && (
+                        <ChevronDown
+                          className={`transition-transform ${
+                            mainMenuOpen ? 'rotate-180' : ''
+                          }`}
+                        />
+                      )}
+                    </SidebarMenuButton>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub className="space-y-1">
+                      {movements.map((movement) => (
+                        <Collapsible
+                          key={movement.id}
+                          open={openMovements.includes(movement.id)}
+                          onOpenChange={() => toggleMovement(movement.id)}
+                        >
+                          <SidebarMenuSubItem>
+                            <CollapsibleTrigger asChild>
+                              <SidebarMenuSubButton
+                                className={`w-full justify-between hover:bg-red-500 hover:text-white ${
+                                  isMovementActive(movement.id) ? 'bg-red-600 text-white' : ''
+                                }`}
                               >
-                                <span className="text-base">{tonality.name}</span>
-                              </NavLink>
-                            </SidebarMenuSubButton>
+                                <span className="font-bold text-sm">{collapsed ? `MOV ${movement.id}` : movement.name}</span>
+                                {!collapsed && (
+                                  <ChevronDown
+                                    className={`transition-transform ${
+                                      openMovements.includes(movement.id) ? 'rotate-180' : ''
+                                    }`}
+                                  />
+                                )}
+                              </SidebarMenuSubButton>
+                            </CollapsibleTrigger>
+                            <CollapsibleContent>
+                              <SidebarMenuSub className="ml-4">
+                                {tonalities.map((tonality) => (
+                                  <SidebarMenuSubItem key={tonality.number}>
+                                    <SidebarMenuSubButton
+                                      asChild
+                                      isActive={isActive(movement.id, tonality.number)}
+                                      className="data-[active=true]:bg-black data-[active=true]:text-white dark:data-[active=true]:bg-white dark:data-[active=true]:text-black hover:bg-red-500 hover:text-white"
+                                    >
+                                      <NavLink
+                                        to={`/movimento/${movement.id}/tonalidade/${tonality.number}`}
+                                        className="w-full"
+                                      >
+                                        <span className="text-base">{tonality.name}</span>
+                                      </NavLink>
+                                    </SidebarMenuSubButton>
+                                  </SidebarMenuSubItem>
+                                ))}
+                              </SidebarMenuSub>
+                            </CollapsibleContent>
                           </SidebarMenuSubItem>
-                        ))}
-                      </SidebarMenuSub>
-                    </CollapsibleContent>
-                  </SidebarMenuItem>
-                </Collapsible>
-              ))}
+                        </Collapsible>
+                      ))}
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </SidebarMenuItem>
+              </Collapsible>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
