@@ -14,13 +14,12 @@ interface PianoKeyboardProps {
   onPlay?: () => void;
   audioContextRef?: MutableRefObject<AudioContext | null>;
   audioUrl?: string;
-  audioRef?: MutableRefObject<HTMLAudioElement | null>;
+  onAudioCreated?: (audio: HTMLAudioElement) => void;
 }
 
-export const PianoKeyboard = ({ note, frequency, label, description, reversed = false, timbre = 'acoustic', onPlay, audioContextRef, audioUrl, audioRef: externalAudioRef }: PianoKeyboardProps) => {
+export const PianoKeyboard = ({ note, frequency, label, description, reversed = false, timbre = 'acoustic', onPlay, audioContextRef, audioUrl, onAudioCreated }: PianoKeyboardProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const internalAudioRef = useRef<HTMLAudioElement | null>(null);
-  const audioRef = externalAudioRef || internalAudioRef;
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const getOscillatorType = (timbre: TimbreType): OscillatorType => {
     switch (timbre) {
@@ -36,7 +35,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
   };
 
   const playSound = () => {
-    // Stop any currently playing audio
+    // Stop any currently playing audio FIRST
     if (onPlay) {
       onPlay();
     }
@@ -45,7 +44,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
     
     // If audioUrl is provided, use real audio file
     if (audioUrl) {
-      // Stop any previously playing audio
+      // Stop any previously playing audio from this keyboard
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
@@ -53,6 +52,11 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
       
       const audio = new Audio(audioUrl);
       audioRef.current = audio;
+      
+      // Register this audio with the parent
+      if (onAudioCreated) {
+        onAudioCreated(audio);
+      }
       
       audio.play().catch(error => {
         console.error('Error playing audio:', error);
