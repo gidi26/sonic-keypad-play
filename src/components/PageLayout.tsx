@@ -27,7 +27,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
   const currentAudioContextRef = useRef<AudioContext | null>(null);
   const playButtonAudioContextRef = useRef<AudioContext | null>(null);
   const playButtonAudioRef = useRef<HTMLAudioElement | null>(null);
-  const keyboardAudioRefs = useRef<(HTMLAudioElement | null)[]>([]);
+  const activeAudiosRef = useRef<Set<HTMLAudioElement>>(new Set());
 
   useEffect(() => {
     if (isDark) {
@@ -52,13 +52,22 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
       playButtonAudioRef.current.pause();
       playButtonAudioRef.current.currentTime = 0;
     }
-    // Stop all keyboard audios
-    keyboardAudioRefs.current.forEach(audio => {
-      if (audio) {
-        audio.pause();
-        audio.currentTime = 0;
-      }
+    // Stop all active keyboard audios
+    activeAudiosRef.current.forEach(audio => {
+      audio.pause();
+      audio.currentTime = 0;
     });
+    activeAudiosRef.current.clear();
+  };
+
+  const registerAudio = (audio: HTMLAudioElement) => {
+    activeAudiosRef.current.add(audio);
+    audio.onended = () => {
+      activeAudiosRef.current.delete(audio);
+    };
+    audio.onpause = () => {
+      activeAudiosRef.current.delete(audio);
+    };
   };
 
   const playButtonSound = () => {
@@ -72,6 +81,9 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
     
     const audio = new Audio(fullAudioUrl);
     playButtonAudioRef.current = audio;
+    
+    // Register the full audio
+    registerAudio(audio);
     
     audio.play().catch(error => {
       console.error('Error playing full audio:', error);
@@ -219,11 +231,6 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
             {keyboards.map((keyboard, index) => {
               const audioUrl = getAudioUrl(movementId, tonalityId, selectedTimbre, index + 1);
               
-              // Initialize the audio ref for this keyboard
-              if (!keyboardAudioRefs.current[index]) {
-                keyboardAudioRefs.current[index] = null;
-              }
-              
               return (
                 <div
                   key={keyboard.note}
@@ -245,7 +252,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                     onPlay={stopCurrentAudio}
                     audioContextRef={currentAudioContextRef}
                     audioUrl={audioUrl}
-                    audioRef={{ current: keyboardAudioRefs.current[index] } as MutableRefObject<HTMLAudioElement | null>}
+                    onAudioCreated={registerAudio}
                   />
                 </div>
               );
