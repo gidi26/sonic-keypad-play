@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Moon, Sun, Play, User } from "lucide-react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+import { getAudioUrl, getFullAudioUrl, getContainerCount } from "@/utils/audioMapping";
 
 interface PageLayoutProps {
   movementId: number;
@@ -25,6 +26,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
   });
   const currentAudioContextRef = useRef<AudioContext | null>(null);
   const playButtonAudioContextRef = useRef<AudioContext | null>(null);
+  const playButtonAudioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     if (isDark) {
@@ -45,6 +47,10 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
       playButtonAudioContextRef.current.close();
       playButtonAudioContextRef.current = null;
     }
+    if (playButtonAudioRef.current) {
+      playButtonAudioRef.current.pause();
+      playButtonAudioRef.current.currentTime = 0;
+    }
   };
 
   const playButtonSound = () => {
@@ -53,35 +59,28 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
     
     setIsPlaying(true);
     
-    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-    playButtonAudioContextRef.current = audioContext;
+    // Get the full audio URL for the current movement, tonality, and timbre
+    const fullAudioUrl = getFullAudioUrl(movementId, tonalityId, selectedTimbre);
     
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
+    const audio = new Audio(fullAudioUrl);
+    playButtonAudioRef.current = audio;
     
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-    
-    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-    oscillator.frequency.setValueAtTime(1000, audioContext.currentTime + 0.1);
-    oscillator.type = 'sine';
-    
-    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
-    
-    oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + 0.3);
-    
-    setTimeout(() => {
-      audioContext.close();
-      if (playButtonAudioContextRef.current === audioContext) {
-        playButtonAudioContextRef.current = null;
-      }
+    audio.play().catch(error => {
+      console.error('Error playing full audio:', error);
       setIsPlaying(false);
-    }, 300);
+    });
+    
+    audio.onended = () => {
+      setIsPlaying(false);
+    };
+    
+    // Set a timeout as backup
+    setTimeout(() => {
+      setIsPlaying(false);
+    }, 30000); // 30 seconds max
   };
 
-  const keyboards = [
+  const allKeyboards = [
     { note: "C4", frequency: 261.63, label: "C4", description: "Middle C - The foundation of all music" },
     { note: "D4", frequency: 293.66, label: "D4", description: "Second note - Rising melody" },
     { note: "E4", frequency: 329.63, label: "E4", description: "Third note - Creating harmony" },
@@ -98,6 +97,10 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
     { note: "B5", frequency: 987.77, label: "B5", description: "Top register - Ethereal" },
     { note: "C6", frequency: 1046.50, label: "C6", description: "Two octaves up - Sparkling" },
   ];
+
+  // Get the correct number of containers based on movement
+  const containerCount = getContainerCount(movementId);
+  const keyboards = allKeyboards.slice(0, containerCount);
 
   return (
     <SidebarProvider defaultOpen={false}>
@@ -203,31 +206,36 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
             </div>
           </div>
 
-          {/* 15 Keyboards in alternating layout */}
+          {/* Keyboards in alternating layout */}
           <div className="space-y-8">
-            {keyboards.map((keyboard, index) => (
-              <div
-                key={keyboard.note}
-                className={cn(
-                  "rounded-3xl p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in",
-                  index % 2 === 0 
-                    ? (isDark ? "bg-[hsl(var(--gray-container))]" : "bg-[#c6c3c3]")
-                    : "bg-card"
-                )}
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                <PianoKeyboard
-                  note={keyboard.note}
-                  frequency={keyboard.frequency}
-                  label={keyboard.label}
-                  description={keyboard.description}
-                  reversed={index % 2 !== 0}
-                  timbre={selectedTimbre}
-                  onPlay={stopCurrentAudio}
-                  audioContextRef={currentAudioContextRef}
-                />
-              </div>
-            ))}
+            {keyboards.map((keyboard, index) => {
+              const audioUrl = getAudioUrl(movementId, tonalityId, selectedTimbre, index + 1);
+              
+              return (
+                <div
+                  key={keyboard.note}
+                  className={cn(
+                    "rounded-3xl p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in",
+                    index % 2 === 0 
+                      ? (isDark ? "bg-[hsl(var(--gray-container))]" : "bg-[#c6c3c3]")
+                      : "bg-card"
+                  )}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <PianoKeyboard
+                    note={keyboard.note}
+                    frequency={keyboard.frequency}
+                    label={keyboard.label}
+                    description={keyboard.description}
+                    reversed={index % 2 !== 0}
+                    timbre={selectedTimbre}
+                    onPlay={stopCurrentAudio}
+                    audioContextRef={currentAudioContextRef}
+                    audioUrl={audioUrl}
+                  />
+                </div>
+              );
+            })}
           </div>
 
           {/* Info Footer */}
@@ -236,7 +244,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
               The Nord Piano 6 - Professional Stage Piano
             </p>
             <div className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold text-lg">
-              15 Interactive Piano Keys
+              {containerCount} Interactive Piano Keys
             </div>
             </div>
           </div>

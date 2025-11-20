@@ -1,4 +1,4 @@
-import { useState, MutableRefObject } from "react";
+import { useState, useRef, MutableRefObject } from "react";
 import keyboardImage from "@/assets/keyboard.png";
 import { cn } from "@/lib/utils";
 
@@ -13,10 +13,12 @@ interface PianoKeyboardProps {
   timbre?: TimbreType;
   onPlay?: () => void;
   audioContextRef?: MutableRefObject<AudioContext | null>;
+  audioUrl?: string;
 }
 
-export const PianoKeyboard = ({ note, frequency, label, description, reversed = false, timbre = 'acoustic', onPlay, audioContextRef }: PianoKeyboardProps) => {
+export const PianoKeyboard = ({ note, frequency, label, description, reversed = false, timbre = 'acoustic', onPlay, audioContextRef, audioUrl }: PianoKeyboardProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const getOscillatorType = (timbre: TimbreType): OscillatorType => {
     switch (timbre) {
@@ -39,38 +41,63 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
     
     setIsPlaying(true);
     
-    // Create audio context and oscillator
-    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
-    
-    // Store the current audio context
-    if (audioContextRef) {
-      audioContextRef.current = audioContext;
-    }
-    
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-    
-    // Set frequency and type
-    oscillator.frequency.value = frequency;
-    oscillator.type = getOscillatorType(timbre);
-    
-    // Envelope for more natural sound
-    gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-    gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.01);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
-    
-    oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + 1.5);
-    
-    setTimeout(() => {
-      setIsPlaying(false);
-      audioContext.close();
-      if (audioContextRef && audioContextRef.current === audioContext) {
-        audioContextRef.current = null;
+    // If audioUrl is provided, use real audio file
+    if (audioUrl) {
+      // Stop any previously playing audio
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
       }
-    }, 1500);
+      
+      const audio = new Audio(audioUrl);
+      audioRef.current = audio;
+      
+      audio.play().catch(error => {
+        console.error('Error playing audio:', error);
+      });
+      
+      audio.onended = () => {
+        setIsPlaying(false);
+      };
+      
+      // Set a timeout as backup
+      setTimeout(() => {
+        setIsPlaying(false);
+      }, 5000);
+    } else {
+      // Fallback to synthesized audio
+      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      // Store the current audio context
+      if (audioContextRef) {
+        audioContextRef.current = audioContext;
+      }
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      // Set frequency and type
+      oscillator.frequency.value = frequency;
+      oscillator.type = getOscillatorType(timbre);
+      
+      // Envelope for more natural sound
+      gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+      gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.01);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 1.5);
+      
+      setTimeout(() => {
+        setIsPlaying(false);
+        audioContext.close();
+        if (audioContextRef && audioContextRef.current === audioContext) {
+          audioContextRef.current = null;
+        }
+      }, 1500);
+    }
   };
 
   return (
