@@ -14,11 +14,13 @@ interface PianoKeyboardProps {
   onPlay?: () => void;
   audioContextRef?: MutableRefObject<AudioContext | null>;
   audioUrl?: string;
+  audioRef?: MutableRefObject<HTMLAudioElement | null>;
 }
 
-export const PianoKeyboard = ({ note, frequency, label, description, reversed = false, timbre = 'acoustic', onPlay, audioContextRef, audioUrl }: PianoKeyboardProps) => {
+export const PianoKeyboard = ({ note, frequency, label, description, reversed = false, timbre = 'acoustic', onPlay, audioContextRef, audioUrl, audioRef: externalAudioRef }: PianoKeyboardProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const internalAudioRef = useRef<HTMLAudioElement | null>(null);
+  const audioRef = externalAudioRef || internalAudioRef;
 
   const getOscillatorType = (timbre: TimbreType): OscillatorType => {
     switch (timbre) {
