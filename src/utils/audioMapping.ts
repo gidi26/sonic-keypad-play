@@ -61,6 +61,9 @@ export const getContainerCount = (movementId: number): number => {
     4: 5,   // Movimento 4: 5 containers
     5: 7,   // Movimento 5: 7 containers
     6: 7,   // Movimento 6: 7 containers
+    7: 7,   // Movimento 7: 7 containers
+    8: 5,   // Movimento 8: 5 containers
+    9: 8,   // Movimento 9: 8 containers
   };
   
   return containerMap[movementId] || 15; // Default to 15 for movements not yet configured
