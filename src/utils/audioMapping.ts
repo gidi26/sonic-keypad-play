@@ -37,7 +37,7 @@ export const getAudioUrl = (
   const tonalityCode = getTonalityCode(tonalityId);
   const timbreCode = getTimbreCode(timbre);
   
-  return `https://gidiferreira.com/audapp/${movementStr}-${tonalityCode}-${timbreCode}-${String(containerNum).padStart(2, '0')}.wav`;
+  return `https://gidiferreira.com/audapp/${movementStr}-${tonalityCode}-${timbreCode}-${String(containerNum).padStart(2, '0')}.mp3`;
 };
 
 export const getFullAudioUrl = (
@@ -49,10 +49,17 @@ export const getFullAudioUrl = (
   const tonalityCode = getTonalityCode(tonalityId);
   const timbreCode = getTimbreCode(timbre);
   
-  return `https://gidiferreira.com/audapp/${movementStr}-${tonalityCode}-${timbreCode}-full.wav`;
+  return `https://gidiferreira.com/audapp/${movementStr}-${tonalityCode}-${timbreCode}-full.mp3`;
 };
 
 export const getContainerCount = (movementId: number): number => {
-  // Movement 1 has only 5 containers, others have 15
-  return movementId === 1 ? 5 : 15;
+  // Define containers per movement
+  const containerMap: { [key: number]: number } = {
+    1: 5,   // Movimento 1: 5 containers
+    2: 5,   // Movimento 2: 5 containers
+    3: 8,   // Movimento 3: 8 containers
+    4: 5,   // Movimento 4: 5 containers
+  };
+  
+  return containerMap[movementId] || 15; // Default to 15 for movements not yet configured
 };
