@@ -135,7 +135,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
           
           {/* Movement Label - positioned inside the image */}
           {containerIndex !== undefined && movementId !== undefined && (
-            <div className="absolute top-4 md:top-6 left-1/2 -translate-x-1/2 flex flex-col items-center z-10">
+            <div className="absolute top-3 md:top-4 left-1/2 -translate-x-1/2 flex flex-col items-center z-10">
               <div className="bg-keyboard-label-bg rounded-md px-10 py-2 md:px-14 md:py-2.5">
                 <span className="text-white font-semibold text-xl md:text-2xl">
                   Container {containerIndex}
