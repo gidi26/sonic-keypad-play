@@ -1,5 +1,6 @@
 import { Language } from "@/contexts/LanguageContext";
 import { movement2Data } from "./movement2Texts";
+import { movement3Data } from "./movement3Texts";
 
 interface ContainerText {
   label: string;
@@ -104,6 +105,14 @@ export const getContainerTexts = (
   // Movement 2
   if (movementId === 2) {
     const texts = movement2Data[language]?.[tonalityId]?.containers?.[containerIndex - 1];
+    if (texts) {
+      return texts;
+    }
+  }
+  
+  // Movement 3
+  if (movementId === 3) {
+    const texts = movement3Data[language]?.[tonalityId]?.containers?.[containerIndex - 1];
     if (texts) {
       return texts;
     }
