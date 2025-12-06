@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Moon, Sun, Play, User } from "lucide-react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
-import { getAudioUrl, getFullAudioUrl, getContainerCount } from "@/utils/audioMapping";
+import { getAudioUrl, getFullAudioUrl, getContainerCount, getImageUrl } from "@/utils/audioMapping";
 
 interface PageLayoutProps {
   movementId: number;
@@ -230,6 +230,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
           <div className="space-y-8">
             {keyboards.map((keyboard, index) => {
               const audioUrl = getAudioUrl(movementId, tonalityId, selectedTimbre, index + 1);
+              const imageUrl = movementId <= 10 ? getImageUrl(movementId, tonalityId, index + 1) : undefined;
               
               return (
                 <div
@@ -252,6 +253,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                     onPlay={stopCurrentAudio}
                     audioContextRef={currentAudioContextRef}
                     audioUrl={audioUrl}
+                    imageUrl={imageUrl}
                     onAudioCreated={registerAudio}
                   />
                 </div>
