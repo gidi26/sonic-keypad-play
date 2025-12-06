@@ -1,5 +1,5 @@
 import { useState, useRef, MutableRefObject } from "react";
-import keyboardImage from "@/assets/keyboard.png";
+import defaultKeyboardImage from "@/assets/keyboard.png";
 import { cn } from "@/lib/utils";
 
 export type TimbreType = 'acoustic' | 'digital' | 'electric';
@@ -14,11 +14,13 @@ interface PianoKeyboardProps {
   onPlay?: () => void;
   audioContextRef?: MutableRefObject<AudioContext | null>;
   audioUrl?: string;
+  imageUrl?: string;
   onAudioCreated?: (audio: HTMLAudioElement) => void;
 }
 
-export const PianoKeyboard = ({ note, frequency, label, description, reversed = false, timbre = 'acoustic', onPlay, audioContextRef, audioUrl, onAudioCreated }: PianoKeyboardProps) => {
+export const PianoKeyboard = ({ note, frequency, label, description, reversed = false, timbre = 'acoustic', onPlay, audioContextRef, audioUrl, imageUrl, onAudioCreated }: PianoKeyboardProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const getOscillatorType = (timbre: TimbreType): OscillatorType => {
@@ -123,9 +125,10 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
           )}
         >
           <img
-            src={keyboardImage}
+            src={imageUrl && !imageError ? imageUrl : defaultKeyboardImage}
             alt={`Piano keyboard - ${note}`}
             className="w-full h-auto"
+            onError={() => setImageError(true)}
           />
           {isPlaying && (
             <div className="absolute inset-0 bg-red-500/10 animate-pulse" />

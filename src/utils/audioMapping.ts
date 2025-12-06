@@ -52,6 +52,17 @@ export const getFullAudioUrl = (
   return `https://gidiferreira.com/audapp/${movementStr}-${tonalityCode}-${timbreCode}-full.mp3`;
 };
 
+export const getImageUrl = (
+  movementId: number,
+  tonalityId: number,
+  containerNum: number
+): string => {
+  const movementStr = String(movementId).padStart(2, '0');
+  const tonalityCode = getTonalityCode(tonalityId);
+  
+  return `https://gidiferreira.com/audapp/${movementStr}-${tonalityCode}-${String(containerNum).padStart(2, '0')}.png`;
+};
+
 export const getContainerCount = (movementId: number): number => {
   // Define containers per movement
   const containerMap: { [key: number]: number } = {
