@@ -230,7 +230,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
           <div className="space-y-8">
             {keyboards.map((keyboard, index) => {
               const audioUrl = getAudioUrl(movementId, tonalityId, selectedTimbre, index + 1);
-              const imageUrl = movementId <= 10 ? getImageUrl(movementId, tonalityId, index + 1) : undefined;
+              const imageUrl = getImageUrl(movementId, tonalityId, index + 1);
               
               return (
                 <div
