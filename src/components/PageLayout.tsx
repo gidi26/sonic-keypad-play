@@ -266,10 +266,10 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
           {/* Info Footer */}
           <div className="text-center pt-12 space-y-4">
             <p className="text-sm text-muted-foreground">
-              The Nord Piano 6 - Professional Stage Piano
+              Todos os direitos reservados - Gidi Ferreira 2025
             </p>
             <div className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold text-lg">
-              {containerCount} Interactive Piano Keys
+              Digital Move LTDA
             </div>
             </div>
           </div>
