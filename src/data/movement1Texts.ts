@@ -1,0 +1,108 @@
+import { Language } from "@/contexts/LanguageContext";
+
+interface ContainerText {
+  label: string;
+  description: string;
+}
+
+interface TonalityTexts {
+  containers: ContainerText[];
+}
+
+type Movement1Data = {
+  [key in Language]: {
+    [tonalityId: number]: TonalityTexts;
+  };
+};
+
+// Helper to generate chord based on tonality
+const getChord = (tonalityId: number): string => {
+  const chords: { [key: number]: string } = {
+    1: "Am7(9)(11)",
+    2: "A#m7(9)(11)",
+    3: "Bm7(9)(11)",
+    4: "Cm7(9)(11)",
+    5: "C#m7(9)(11)",
+    6: "Dm7(9)(11)",
+    7: "D#m7(9)(11)",
+    8: "Em7(9)(11)",
+    9: "Fm7(9)(11)",
+    10: "F#m7(9)(11)",
+    11: "Gm7(9)(11)",
+    12: "G#m7(9)(11)",
+  };
+  return chords[tonalityId] || "Am7(9)(11)";
+};
+
+// Portuguese texts
+const createPtTexts = (tonalityId: number): TonalityTexts => ({
+  containers: [
+    { label: "Neutro", description: "Cromático Ascendente" },
+    { label: "Neutro", description: "Cromático Ascendente" },
+    { label: "2", description: "Harmonia em 6º" },
+    { label: "5", description: "Harmonia em 6º" },
+    { label: `1 - ${getChord(tonalityId)}`, description: "Tom ou Relativo" },
+  ],
+});
+
+// English texts
+const createEnTexts = (tonalityId: number): TonalityTexts => ({
+  containers: [
+    { label: "Neutral", description: "Chromatic Ascending" },
+    { label: "Neutral", description: "Chromatic Ascending" },
+    { label: "2", description: "Harmony in 6th degree" },
+    { label: "5", description: "Harmony in 6th degree" },
+    { label: `1 - ${getChord(tonalityId)}`, description: "Tone or Relative" },
+  ],
+});
+
+// Spanish texts
+const createEsTexts = (tonalityId: number): TonalityTexts => ({
+  containers: [
+    { label: "Neutro", description: "Cromático Ascendente" },
+    { label: "Neutro", description: "Cromático Ascendente" },
+    { label: "2", description: "Armonía en sexto grado" },
+    { label: "5", description: "Armonía en sexto grado" },
+    { label: `1 - ${getChord(tonalityId)}`, description: "Tonal o Relativo" },
+  ],
+});
+
+// Generate data for all tonalities
+const generateMovement1Data = (): Movement1Data => {
+  const data: Movement1Data = {
+    pt: {},
+    en: {},
+    es: {},
+  };
+
+  for (let i = 1; i <= 12; i++) {
+    data.pt[i] = createPtTexts(i);
+    data.en[i] = createEnTexts(i);
+    data.es[i] = createEsTexts(i);
+  }
+
+  return data;
+};
+
+export const movement1Data = generateMovement1Data();
+
+export const getContainerTexts = (
+  movementId: number,
+  tonalityId: number,
+  containerIndex: number,
+  language: Language
+): ContainerText => {
+  // For now, only movement 1 has specific texts
+  if (movementId === 1) {
+    const texts = movement1Data[language]?.[tonalityId]?.containers?.[containerIndex - 1];
+    if (texts) {
+      return texts;
+    }
+  }
+  
+  // Default fallback for other movements
+  return {
+    label: `Container ${containerIndex}`,
+    description: `Movement ${movementId}`,
+  };
+};
