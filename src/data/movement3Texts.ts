@@ -17,18 +17,18 @@ type Movement3Data = {
 
 // Tonality mapping: tonalityId -> [chord4, dimChord, mainChord]
 const tonalityChords: { [key: number]: { fourth: string; dim: string; main: string } } = {
-  1: { fourth: "F", dim: "Galt", main: "C" },      // C
-  2: { fourth: "F#", dim: "G#alt", main: "C#" },   // C#
-  3: { fourth: "G", dim: "Aalt", main: "D" },      // D
-  4: { fourth: "G#", dim: "A#alt", main: "D#" },   // D#
-  5: { fourth: "A", dim: "Balt", main: "E" },      // E
-  6: { fourth: "A#", dim: "Calt", main: "F" },     // F
-  7: { fourth: "B", dim: "C#alt", main: "F#" },    // F#
-  8: { fourth: "C", dim: "Dalt", main: "G" },      // G
-  9: { fourth: "C#", dim: "D#alt", main: "G#" },   // G#
-  10: { fourth: "D", dim: "Ealt", main: "A" },     // A
-  11: { fourth: "D#", dim: "Falt", main: "A#" },   // A#
-  12: { fourth: "E", dim: "F#alt", main: "B" },    // B
+  1: { fourth: "F", dim: "G alt", main: "C" },      // C
+  2: { fourth: "F#", dim: "G# alt", main: "C#" },   // C#
+  3: { fourth: "G", dim: "A alt", main: "D" },      // D
+  4: { fourth: "G#", dim: "A# alt", main: "D#" },   // D#
+  5: { fourth: "A", dim: "B alt", main: "E" },      // E
+  6: { fourth: "A#", dim: "C alt", main: "F" },     // F
+  7: { fourth: "B", dim: "C# alt", main: "F#" },    // F#
+  8: { fourth: "C", dim: "D alt", main: "G" },      // G
+  9: { fourth: "C#", dim: "D# alt", main: "G#" },   // G#
+  10: { fourth: "D", dim: "E alt", main: "A" },     // A
+  11: { fourth: "D#", dim: "F alt", main: "A#" },   // A#
+  12: { fourth: "E", dim: "F# alt", main: "B" },    // B
 };
 
 // Portuguese texts
