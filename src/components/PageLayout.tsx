@@ -5,6 +5,8 @@ import { Moon, Sun, Play, User } from "lucide-react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { getAudioUrl, getFullAudioUrl, getContainerCount, getImageUrl } from "@/utils/audioMapping";
+import { useLanguage, Language } from "@/contexts/LanguageContext";
+import { getContainerTexts } from "@/data/movement1Texts";
 
 interface PageLayoutProps {
   movementId: number;
@@ -13,6 +15,7 @@ interface PageLayoutProps {
 }
 
 const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
+  const { language, setLanguage } = useLanguage();
   const tonalityNames = [
     "C ou Am", "C# ou A#m", "D ou Bm", "D# ou Cm", "E ou C#m", "F ou Dm",
     "F# ou D#m", "G ou Em", "G# ou Fm", "A ou F#m", "A# ou Gm", "B ou G#m"
@@ -137,7 +140,11 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                   {/* Language Flags */}
                   <div className="flex items-center gap-1 mr-2">
                     <button
-                      className="w-8 h-8 rounded-full overflow-hidden hover:scale-110 transition-transform border-2 border-transparent hover:border-primary"
+                      onClick={() => setLanguage('pt')}
+                      className={cn(
+                        "w-8 h-8 rounded-full overflow-hidden hover:scale-110 transition-transform border-2",
+                        language === 'pt' ? "border-primary" : "border-transparent hover:border-primary"
+                      )}
                       aria-label="Português"
                     >
                       <svg viewBox="0 0 512 512" className="w-full h-full">
@@ -148,7 +155,11 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                       </svg>
                     </button>
                     <button
-                      className="w-8 h-8 rounded-full overflow-hidden hover:scale-110 transition-transform border-2 border-transparent hover:border-primary"
+                      onClick={() => setLanguage('es')}
+                      className={cn(
+                        "w-8 h-8 rounded-full overflow-hidden hover:scale-110 transition-transform border-2",
+                        language === 'es' ? "border-primary" : "border-transparent hover:border-primary"
+                      )}
                       aria-label="Español"
                     >
                       <svg viewBox="0 0 512 512" className="w-full h-full">
@@ -158,7 +169,11 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                       </svg>
                     </button>
                     <button
-                      className="w-8 h-8 rounded-full overflow-hidden hover:scale-110 transition-transform border-2 border-transparent hover:border-primary"
+                      onClick={() => setLanguage('en')}
+                      className={cn(
+                        "w-8 h-8 rounded-full overflow-hidden hover:scale-110 transition-transform border-2",
+                        language === 'en' ? "border-primary" : "border-transparent hover:border-primary"
+                      )}
                       aria-label="English"
                     >
                       <svg viewBox="0 0 512 512" className="w-full h-full">
@@ -270,6 +285,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
             {keyboards.map((keyboard, index) => {
               const audioUrl = getAudioUrl(movementId, tonalityId, selectedTimbre, index + 1);
               const imageUrl = getImageUrl(movementId, tonalityId, index + 1);
+              const containerTexts = getContainerTexts(movementId, tonalityId, index + 1, language);
               
               return (
                 <div
@@ -285,8 +301,8 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                   <PianoKeyboard
                     note={keyboard.note}
                     frequency={keyboard.frequency}
-                    label={keyboard.label}
-                    description={keyboard.description}
+                    label={containerTexts.label}
+                    description={containerTexts.description}
                     reversed={index % 2 !== 0}
                     timbre={selectedTimbre}
                     onPlay={stopCurrentAudio}
