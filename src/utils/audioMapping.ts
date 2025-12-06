@@ -63,7 +63,7 @@ export const getContainerCount = (movementId: number): number => {
     6: 7,   // Movimento 6: 7 containers
     7: 7,   // Movimento 7: 7 containers
     8: 5,   // Movimento 8: 5 containers
-    9: 8,   // Movimento 9: 8 containers
+    9: 9,   // Movimento 9: 9 containers
     10: 9,  // Movimento 10: 9 containers
     11: 8,  // Movimento 11: 8 containers
     12: 6,  // Movimento 12: 6 containers
