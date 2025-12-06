@@ -202,7 +202,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                     selectedTimbre === 'acoustic' ? "bg-red-600" : "bg-black"
                   )}
                 >
-                  Acústico
+                  Piano
                 </button>
                 <button
                   onClick={() => setSelectedTimbre('digital')}
@@ -211,7 +211,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                     selectedTimbre === 'digital' ? "bg-red-600" : "bg-black"
                   )}
                 >
-                  Digital
+                  Mks20
                 </button>
                 <button
                   onClick={() => setSelectedTimbre('electric')}
@@ -220,7 +220,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                     selectedTimbre === 'electric' ? "bg-red-600" : "bg-black"
                   )}
                 >
-                  Elétrico
+                  Rhodes
                 </button>
               </div>
             </div>
