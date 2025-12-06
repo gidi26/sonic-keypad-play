@@ -27,6 +27,14 @@ export const getTimbreCode = (timbre: 'acoustic' | 'digital' | 'electric'): stri
   return timbreMap[timbre];
 };
 
+// Special container mapping for movement 16 (containers 1-9, then 16, then 11)
+const getContainerNumber = (movementId: number, containerNum: number): string => {
+  if (movementId === 16 && containerNum === 10) {
+    return '16';
+  }
+  return String(containerNum).padStart(2, '0');
+};
+
 export const getAudioUrl = (
   movementId: number,
   tonalityId: number,
@@ -36,8 +44,9 @@ export const getAudioUrl = (
   const movementStr = String(movementId).padStart(2, '0');
   const tonalityCode = getTonalityCode(tonalityId);
   const timbreCode = getTimbreCode(timbre);
+  const containerStr = getContainerNumber(movementId, containerNum);
   
-  return `https://gidiferreira.com/audapp/${movementStr}-${tonalityCode}-${timbreCode}-${String(containerNum).padStart(2, '0')}.mp3`;
+  return `https://gidiferreira.com/audapp/${movementStr}-${tonalityCode}-${timbreCode}-${containerStr}.mp3`;
 };
 
 export const getFullAudioUrl = (
@@ -70,7 +79,7 @@ export const getContainerCount = (movementId: number): number => {
     13: 5,  // Movimento 13: 5 containers
     14: 6,  // Movimento 14: 6 containers
     15: 6,  // Movimento 15: 6 containers
-    16: 9,  // Movimento 16: 9 containers
+    16: 11, // Movimento 16: 11 containers (special: 1-9, 16, 11)
     17: 6,  // Movimento 17: 6 containers
     18: 6,  // Movimento 18: 6 containers
     19: 8,  // Movimento 19: 8 containers
