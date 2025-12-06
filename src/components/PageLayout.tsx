@@ -134,6 +134,45 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
               <div className="flex items-center justify-center gap-8">
                 {/* User Info */}
                 <div className="absolute right-4 top-4 flex items-center gap-2">
+                  {/* Language Flags */}
+                  <div className="flex items-center gap-1 mr-2">
+                    <button
+                      className="w-8 h-8 rounded-full overflow-hidden hover:scale-110 transition-transform border-2 border-transparent hover:border-primary"
+                      aria-label="Português"
+                    >
+                      <svg viewBox="0 0 512 512" className="w-full h-full">
+                        <rect fill="#009B3A" width="512" height="512"/>
+                        <polygon fill="#FEDF00" points="256,64 480,256 256,448 32,256"/>
+                        <circle fill="#002776" cx="256" cy="256" r="90"/>
+                        <path fill="#FFF" d="M166,256c0-8,1-16,3-24 60,0 120,0 180,0 2,8 3,16 3,24 0,50-40,90-90,90s-90-40-93-90z" opacity="0.3"/>
+                      </svg>
+                    </button>
+                    <button
+                      className="w-8 h-8 rounded-full overflow-hidden hover:scale-110 transition-transform border-2 border-transparent hover:border-primary"
+                      aria-label="Español"
+                    >
+                      <svg viewBox="0 0 512 512" className="w-full h-full">
+                        <rect fill="#AA151B" width="512" height="128"/>
+                        <rect fill="#F1BF00" y="128" width="512" height="256"/>
+                        <rect fill="#AA151B" y="384" width="512" height="128"/>
+                      </svg>
+                    </button>
+                    <button
+                      className="w-8 h-8 rounded-full overflow-hidden hover:scale-110 transition-transform border-2 border-transparent hover:border-primary"
+                      aria-label="English"
+                    >
+                      <svg viewBox="0 0 512 512" className="w-full h-full">
+                        <rect fill="#BD3D44" width="512" height="512"/>
+                        <rect fill="#FFF" y="39" width="512" height="40"/>
+                        <rect fill="#FFF" y="118" width="512" height="40"/>
+                        <rect fill="#FFF" y="197" width="512" height="40"/>
+                        <rect fill="#FFF" y="276" width="512" height="40"/>
+                        <rect fill="#FFF" y="355" width="512" height="40"/>
+                        <rect fill="#FFF" y="434" width="512" height="40"/>
+                        <rect fill="#192F5D" width="205" height="276"/>
+                      </svg>
+                    </button>
+                  </div>
                   <button
                     onClick={() => setIsDark(!isDark)}
                     className="p-2 rounded-full bg-gray-500 text-white border-2 border-white hover:bg-gray-600 transition-all"
