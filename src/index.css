@@ -41,6 +41,8 @@ All colors MUST be HSL.
     --keyboard-hover: 0 72% 45%;
     --keyboard-active: 0 72% 40%;
     --gray-container: 0 0% 77%;
+    --keyboard-label-bg: 216 17% 27%;
+    --keyboard-label-text: 214 22% 80%;
 
     --sidebar-background: 0 0% 98%;
 
@@ -91,6 +93,8 @@ All colors MUST be HSL.
     --keyboard-hover: 0 72% 45%;
     --keyboard-active: 0 72% 40%;
     --gray-container: 0 0% 20%;
+    --keyboard-label-bg: 216 17% 27%;
+    --keyboard-label-text: 214 22% 80%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
