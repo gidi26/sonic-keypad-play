@@ -243,6 +243,18 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                   )}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
+                  {/* Movement Label */}
+                  <div className="flex flex-col items-center mb-3">
+                    <span className="text-keyboard-label-text text-sm font-medium mb-1">
+                      Movimento {movementId}
+                    </span>
+                    <div className="bg-keyboard-label-bg rounded-lg px-6 py-2">
+                      <span className="text-white font-semibold text-lg">
+                        Container {index + 1}
+                      </span>
+                    </div>
+                  </div>
+                  
                   <PianoKeyboard
                     note={keyboard.note}
                     frequency={keyboard.frequency}
