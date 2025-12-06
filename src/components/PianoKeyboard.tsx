@@ -16,9 +16,11 @@ interface PianoKeyboardProps {
   audioUrl?: string;
   imageUrl?: string;
   onAudioCreated?: (audio: HTMLAudioElement) => void;
+  containerIndex?: number;
+  movementId?: number;
 }
 
-export const PianoKeyboard = ({ note, frequency, label, description, reversed = false, timbre = 'acoustic', onPlay, audioContextRef, audioUrl, imageUrl, onAudioCreated }: PianoKeyboardProps) => {
+export const PianoKeyboard = ({ note, frequency, label, description, reversed = false, timbre = 'acoustic', onPlay, audioContextRef, audioUrl, imageUrl, onAudioCreated, containerIndex, movementId }: PianoKeyboardProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [imageError, setImageError] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -130,6 +132,21 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
             className="w-full h-auto"
             onError={() => setImageError(true)}
           />
+          
+          {/* Movement Label - positioned inside the image */}
+          {containerIndex !== undefined && movementId !== undefined && (
+            <div className="absolute top-2 left-1/2 -translate-x-1/2 flex flex-col items-center z-10">
+              <span className="text-keyboard-label-text text-xs md:text-sm font-medium mb-1">
+                Movimento {movementId}
+              </span>
+              <div className="bg-keyboard-label-bg rounded-md px-3 py-1 md:px-4 md:py-1.5">
+                <span className="text-white font-semibold text-sm md:text-base">
+                  Container {containerIndex}
+                </span>
+              </div>
+            </div>
+          )}
+          
           {isPlaying && (
             <div className="absolute inset-0 bg-red-500/10 animate-pulse" />
           )}
