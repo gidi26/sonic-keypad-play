@@ -41,8 +41,8 @@ const createPtTexts = (tonalityId: number): TonalityTexts => {
   const chords = getChords(tonalityId);
   return {
     containers: [
-      { label: 'Função 0', description: 'Nota de cromático ascendente' },
-      { label: 'Função 0', description: 'Nota de cromático ascendente' },
+      { label: 'Função 0', description: 'Nota de aproximação do Acorde Subdominante' },
+      { label: 'Função 0', description: 'Nota de aproximação do Acorde Subdominante' },
       { label: 'Função 2', description: `${chords.subdominant} Acorde subdominante` },
       { label: 'Função 0', description: `${chords.approach} Acorde de aproximação para Subdominante` },
       { label: 'Função 2', description: `${chords.subdominant.replace('(11+)', '(11)')} Acorde Subdominante` },
@@ -57,8 +57,8 @@ const createEnTexts = (tonalityId: number): TonalityTexts => {
   const chords = getChords(tonalityId);
   return {
     containers: [
-      { label: 'Function 0', description: 'Ascending chromatic note' },
-      { label: 'Function 0', description: 'Ascending chromatic note' },
+      { label: 'Function 0', description: 'Approach note to the Subdominant Chord' },
+      { label: 'Function 0', description: 'Approach note to the Subdominant Chord' },
       { label: 'Function 2', description: `${chords.subdominant} Subdominant chord` },
       { label: 'Function 0', description: `${chords.approach} Approach chord to subdominant` },
       { label: 'Function 2', description: `${chords.subdominant.replace('(11+)', '(11)')} Subdominant chord` },
@@ -73,8 +73,8 @@ const createEsTexts = (tonalityId: number): TonalityTexts => {
   const chords = getChords(tonalityId);
   return {
     containers: [
-      { label: 'Función 0', description: 'Nota cromática ascendente' },
-      { label: 'Función 0', description: 'Nota cromática ascendente' },
+      { label: 'Función 0', description: 'Nota de aproximación del Acorde Subdominante' },
+      { label: 'Función 0', description: 'Nota de aproximación del Acorde Subdominante' },
       { label: 'Función 2', description: `${chords.subdominant} Acorde de subdominante` },
       { label: 'Función 0', description: `${chords.approach} Acorde de aproximación a subdominante` },
       { label: 'Función 2', description: `${chords.subdominant.replace('(11+)', '(11)')} Acorde de subdominante` },
