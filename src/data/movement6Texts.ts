@@ -41,8 +41,8 @@ const createPtTexts = (tonalityId: number): TonalityTexts => {
   const chords = getChords(tonalityId);
   return {
     containers: [
-      { label: 'Função 0', description: 'Nota de cromático ascendente' },
-      { label: 'Função 0', description: 'Nota de cromático ascendente' },
+      { label: 'Função 0', description: 'Nota de aproximação do acorde subdominante' },
+      { label: 'Função 0', description: 'Nota de aproximação do acorde subdominante' },
       { label: 'Função 2', description: `${chords.subdominant} Acorde subdominante` },
       { label: 'Função 0', description: `${chords.approach} Acorde de aproximação para Dominante` },
       { label: 'Função 5', description: `${chords.dominant} Acorde Dominante Trítono` },
@@ -57,8 +57,8 @@ const createEnTexts = (tonalityId: number): TonalityTexts => {
   const chords = getChords(tonalityId);
   return {
     containers: [
-      { label: 'Function 0', description: 'Ascending chromatic note' },
-      { label: 'Function 0', description: 'Ascending chromatic note' },
+      { label: 'Function 0', description: 'Approach note to the subdominant chord' },
+      { label: 'Function 0', description: 'Approach note to the subdominant chord' },
       { label: 'Function 2', description: `${chords.subdominant} Subdominant chord` },
       { label: 'Function 0', description: `${chords.approach} Approach chord for the dominant` },
       { label: 'Function 5', description: `${chords.dominant} Dominant Tritone chord` },
@@ -73,8 +73,8 @@ const createEsTexts = (tonalityId: number): TonalityTexts => {
   const chords = getChords(tonalityId);
   return {
     containers: [
-      { label: 'Función 0', description: 'Nota cromática ascendente' },
-      { label: 'Función 0', description: 'Nota cromática ascendente' },
+      { label: 'Función 0', description: 'Nota de aproximación del acorde subdominante' },
+      { label: 'Función 0', description: 'Nota de aproximación del acorde subdominante' },
       { label: 'Función 2', description: `${chords.subdominant} Acorde subdominante` },
       { label: 'Función 0', description: `${chords.approach} Acorde de aproximación para la dominante` },
       { label: 'Función 5', description: `${chords.dominant} Acorde Dominante Trítono` },
