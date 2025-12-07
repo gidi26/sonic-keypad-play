@@ -136,9 +136,21 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
             <div className="container mx-auto px-2 py-4">
               <div className="flex items-center justify-center gap-8">
                 {/* User Info */}
-                <div className="absolute right-4 top-4 flex items-center gap-2">
+                <div className="absolute right-4 top-4 flex flex-col items-end gap-2">
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setIsDark(!isDark)}
+                      className="p-2 rounded-full bg-gray-500 text-white border-2 border-white hover:bg-gray-600 transition-all"
+                      aria-label="Alternar tema"
+                    >
+                      {isDark ? <Sun size={20} /> : <Moon size={20} />}
+                    </button>
+                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                      <User className="w-5 h-5 text-primary-foreground" />
+                    </div>
+                  </div>
                   {/* Language Flags */}
-                  <div className="flex items-center gap-1 mr-2">
+                  <div className="flex items-center gap-1">
                     <button
                       onClick={() => setLanguage('pt')}
                       className={cn(
@@ -187,16 +199,6 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                         <rect fill="#192F5D" width="205" height="276"/>
                       </svg>
                     </button>
-                  </div>
-                  <button
-                    onClick={() => setIsDark(!isDark)}
-                    className="p-2 rounded-full bg-gray-500 text-white border-2 border-white hover:bg-gray-600 transition-all"
-                    aria-label="Alternar tema"
-                  >
-                    {isDark ? <Sun size={20} /> : <Moon size={20} />}
-                  </button>
-                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                    <User className="w-5 h-5 text-primary-foreground" />
                   </div>
                   <span className="text-sm font-medium text-foreground hidden md:inline">Usuário</span>
                 </div>
