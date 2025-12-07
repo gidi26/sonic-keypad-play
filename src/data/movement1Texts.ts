@@ -4,6 +4,7 @@ import { movement3Data } from "./movement3Texts";
 import { movement4Data } from "./movement4Texts";
 import { movement5Data } from "./movement5Texts";
 import { movement6Data } from "./movement6Texts";
+import { movement7Data } from "./movement7Texts";
 
 const tonalityKeyMap: { [key: number]: string } = {
   1: "C",
@@ -160,6 +161,14 @@ export const getContainerTexts = (
   // Movement 6
   if (movementId === 6) {
     const texts = movement6Data[language]?.[tonalityId]?.containers?.[containerIndex - 1];
+    if (texts) {
+      return texts;
+    }
+  }
+  
+  // Movement 7
+  if (movementId === 7) {
+    const texts = movement7Data[language]?.[tonalityId]?.containers?.[containerIndex - 1];
     if (texts) {
       return texts;
     }
