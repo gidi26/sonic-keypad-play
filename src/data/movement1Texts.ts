@@ -2,7 +2,22 @@ import { Language } from "@/contexts/LanguageContext";
 import { movement2Data } from "./movement2Texts";
 import { movement3Data } from "./movement3Texts";
 import { movement4Data } from "./movement4Texts";
+import { movement5Data } from "./movement5Texts";
 
+const tonalityKeyMap: { [key: number]: string } = {
+  1: "C",
+  2: "C#",
+  3: "D",
+  4: "D#",
+  5: "E",
+  6: "F",
+  7: "F#",
+  8: "G",
+  9: "G#",
+  10: "A",
+  11: "A#",
+  12: "B",
+};
 interface ContainerText {
   label: string;
   description: string;
@@ -124,6 +139,20 @@ export const getContainerTexts = (
     const texts = movement4Data[language]?.[tonalityId]?.containers?.[containerIndex - 1];
     if (texts) {
       return texts;
+    }
+  }
+  
+  // Movement 5
+  if (movementId === 5) {
+    const tonalityKey = tonalityKeyMap[tonalityId] || "C";
+    const langData = movement5Data[language];
+    const tonalityData = langData?.[tonalityKey as keyof typeof langData];
+    const containerData = tonalityData?.[containerIndex - 1];
+    if (containerData) {
+      return {
+        label: containerData.title,
+        description: containerData.subtitle,
+      };
     }
   }
   
