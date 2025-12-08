@@ -1,23 +1,23 @@
 // Audio file mapping system for movements, tonalities, and timbres
 
 export const getTonalityCode = (tonalityId: number, movementId?: number): string => {
-  // Movement 13 has a special tonality mapping (shifted by 3 semitones up)
+  // Movement 13 has a special tonality mapping
   if (movementId === 13) {
     const movement13TonalityMap: { [key: number]: string } = {
-      1: 'd-',  // C ou Am
-      2: 'e',   // C# ou A#m
-      3: 'f',   // D ou Bm
-      4: 'f-',  // D# ou Cm
-      5: 'g',   // E ou C#m
-      6: 'g-',  // F ou Dm
-      7: 'a',   // F# ou D#m
-      8: 'a-',  // G ou Em
-      9: 'b',   // G# ou Fm
-      10: 'c',  // A ou F#m
-      11: 'c-', // A# ou Gm
-      12: 'd',  // B ou G#m
+      1: 'a',   // C ou Am
+      2: 'a-',  // C# ou A#m
+      3: 'b',   // D ou Bm
+      4: 'c',   // D# ou Cm
+      5: 'c-',  // E ou C#m
+      6: 'd',   // F ou Dm
+      7: 'd-',  // F# ou D#m
+      8: 'e',   // G ou Em
+      9: 'f',   // G# ou Fm
+      10: 'f-', // A ou F#m
+      11: 'g',  // A# ou Gm
+      12: 'g-', // B ou G#m
     };
-    return movement13TonalityMap[tonalityId] || 'd-';
+    return movement13TonalityMap[tonalityId] || 'a';
   }
 
   const tonalityMap: { [key: number]: string } = {
