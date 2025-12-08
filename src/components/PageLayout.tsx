@@ -263,7 +263,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                     mov {movementId}
                   </h1>
                   <p className="text-2xl md:text-4xl font-medium text-primary mt-2 font-anton tracking-widest">
-                    {movementId === 1 ? "WILLIANS" : movementId === 2 ? "BEREAL" : movementId === 3 ? "DEW" : movementId === 4 ? "MARVIN 1" : movementId === 5 ? "MARVIN 2" : movementId === 6 ? "JAMAL" : movementId === 7 ? "DOOBIE" : movementId === 8 ? "CLUSTER" : movementId === 9 ? "RUN" : "CLUSTER"}
+                    {movementId === 1 ? "WILLIANS" : movementId === 2 ? "BEREAL" : movementId === 3 ? "DEW" : movementId === 4 ? "MARVIN 1" : movementId === 5 ? "MARVIN 2" : movementId === 6 ? "JAMAL" : movementId === 7 ? "DOOBIE" : movementId === 8 ? "CLUSTER" : movementId === 9 ? "RUN" : movementId === 10 ? "DROP" : "CLUSTER"}
                   </p>
                 </div>
                 <div className="h-px w-24 bg-border" />
