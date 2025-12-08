@@ -1,6 +1,25 @@
 // Audio file mapping system for movements, tonalities, and timbres
 
-export const getTonalityCode = (tonalityId: number): string => {
+export const getTonalityCode = (tonalityId: number, movementId?: number): string => {
+  // Movement 13 has a special tonality mapping (shifted by 3 semitones up)
+  if (movementId === 13) {
+    const movement13TonalityMap: { [key: number]: string } = {
+      1: 'd-',  // C ou Am
+      2: 'e',   // C# ou A#m
+      3: 'f',   // D ou Bm
+      4: 'f-',  // D# ou Cm
+      5: 'g',   // E ou C#m
+      6: 'g-',  // F ou Dm
+      7: 'a',   // F# ou D#m
+      8: 'a-',  // G ou Em
+      9: 'b',   // G# ou Fm
+      10: 'c',  // A ou F#m
+      11: 'c-', // A# ou Gm
+      12: 'd',  // B ou G#m
+    };
+    return movement13TonalityMap[tonalityId] || 'd-';
+  }
+
   const tonalityMap: { [key: number]: string } = {
     1: 'c',   // C ou Am
     2: 'c-',  // C# ou A#m
@@ -34,7 +53,7 @@ export const getAudioUrl = (
   containerNum: number
 ): string => {
   const movementStr = String(movementId).padStart(2, '0');
-  const tonalityCode = getTonalityCode(tonalityId);
+  const tonalityCode = getTonalityCode(tonalityId, movementId);
   const timbreCode = getTimbreCode(timbre);
   
   return `https://gidiferreira.com/audapp/${movementStr}-${tonalityCode}-${timbreCode}-${String(containerNum).padStart(2, '0')}.mp3`;
@@ -46,7 +65,7 @@ export const getFullAudioUrl = (
   timbre: 'acoustic' | 'digital' | 'electric'
 ): string => {
   const movementStr = String(movementId).padStart(2, '0');
-  const tonalityCode = getTonalityCode(tonalityId);
+  const tonalityCode = getTonalityCode(tonalityId, movementId);
   const timbreCode = getTimbreCode(timbre);
   
   return `https://gidiferreira.com/audapp/${movementStr}-${tonalityCode}-${timbreCode}-full.mp3`;
@@ -58,7 +77,7 @@ export const getImageUrl = (
   containerNum: number
 ): string => {
   const movementStr = String(movementId).padStart(2, '0');
-  const tonalityCode = getTonalityCode(tonalityId);
+  const tonalityCode = getTonalityCode(tonalityId, movementId);
   
   return `https://gidiferreira.com/audapp/${movementStr}-${tonalityCode}-${String(containerNum).padStart(2, '0')}.png`;
 };
