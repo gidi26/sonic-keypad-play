@@ -21,6 +21,8 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
 }) => {
   const [selectedOuter, setSelectedOuter] = useState<number | null>(null);
   const [selectedInner, setSelectedInner] = useState<number | null>(null);
+  const [selectedSub5, setSelectedSub5] = useState<number | null>(null);
+  const [selectedAR, setSelectedAR] = useState<number | null>(null);
   const [noteRotation, setNoteRotation] = useState(0);
 
   const size = 580;
@@ -188,11 +190,11 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             );
           })}
 
-          {/* Functions ring (inner) - shows only Sub5 */}
+          {/* Camada 2 - Sub5 */}
           {innerSegments.map((segment, index) => {
             const startAngle = index * segmentAngle;
             const endAngle = (index + 1) * segmentAngle;
-            const isSelected = selectedInner === index;
+            const isSelected = selectedSub5 === index;
             const isSub5 = segment.label.includes('Sub5');
             const textPos = getTextPosition(index, 12, (functions2OuterR + innermostR) / 2);
 
@@ -204,7 +206,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   stroke="hsl(var(--border))"
                   strokeWidth="2"
                   className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
-                  onClick={() => isSub5 && setSelectedInner(selectedInner === index ? null : index)}
+                  onClick={() => isSub5 && setSelectedSub5(selectedSub5 === index ? null : index)}
                 />
                 {isSub5 && (
                   <text
@@ -225,11 +227,11 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             );
           })}
 
-          {/* Duplicated Sub5 functions ring - shows AR labels */}
+          {/* Camada 1 - AR (Ati relativa) */}
           {innerSegments.map((segment, index) => {
             const startAngle = index * segmentAngle;
             const endAngle = (index + 1) * segmentAngle;
-            const isSelected = selectedInner === index;
+            const isSelected = selectedAR === index;
             const isSub5 = segment.label.includes('Sub5');
             const textPos = getTextPosition(index, 12, (innermostR + innermost2R) / 2);
             
@@ -244,14 +246,14 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             const displayLabel = arLabelMap[segment.label] || segment.label;
 
             return (
-              <g key={`duplicated-sub5-${index}`}>
+              <g key={`ar-${index}`}>
                 <path
                   d={createArcPath(startAngle, endAngle, innermost2R, innermostR)}
                   fill={!isSub5 ? 'transparent' : isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
                   stroke="hsl(var(--border))"
                   strokeWidth="2"
                   className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
-                  onClick={() => isSub5 && setSelectedInner(selectedInner === index ? null : index)}
+                  onClick={() => isSub5 && setSelectedAR(selectedAR === index ? null : index)}
                 />
                 {isSub5 && (
                   <text
