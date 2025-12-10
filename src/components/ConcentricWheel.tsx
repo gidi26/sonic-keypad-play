@@ -239,6 +239,61 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           </p>
         )}
       </div>
+
+      {/* Functions legend */}
+      <div className="mt-6 p-4 bg-card border border-border rounded-lg max-w-md">
+        <h3 className="text-sm font-bold text-foreground mb-3 text-center">Legenda - Funções Harmônicas</h3>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-sm">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-pink-500">T</span>
+            <span className="text-muted-foreground">Tônica</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-pink-500">Sub5 I</span>
+            <span className="text-muted-foreground">-</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-pink-500">ST</span>
+            <span className="text-muted-foreground">Supertônica</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-pink-500">Sub5 II</span>
+            <span className="text-muted-foreground">-</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-pink-500">MD</span>
+            <span className="text-muted-foreground">Mediante</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-pink-500">SD</span>
+            <span className="text-muted-foreground">Subdominante</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-pink-500">Sub5 IV</span>
+            <span className="text-muted-foreground">-</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-pink-500">D</span>
+            <span className="text-muted-foreground">Dominante</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-pink-500">Sub5 V</span>
+            <span className="text-muted-foreground">-</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-pink-500">SPD</span>
+            <span className="text-muted-foreground">Superdominante</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-pink-500">Sub5 VI</span>
+            <span className="text-muted-foreground">-</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-pink-500">S</span>
+            <span className="text-muted-foreground">Sensível</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
