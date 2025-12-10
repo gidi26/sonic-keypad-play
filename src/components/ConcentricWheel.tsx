@@ -98,7 +98,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               <g key={`note-${index}`}>
                 <path
                   d={createArcPath(startAngle, endAngle, degreesOuterR, noteRadius)}
-                  fill={isTonicPosition ? '#ffffff' : '#230912'}
+                  fill={isTonicPosition ? '#ffffff' : 'hsl(var(--primary))'}
                   stroke={isTonicPosition ? '#230912' : 'hsl(var(--background))'}
                   strokeWidth={isTonicPosition ? 3 : 2}
                   className="cursor-grab active:cursor-grabbing"
