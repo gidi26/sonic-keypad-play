@@ -187,7 +187,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               const textPos = getTextPosition(index, 12, (functionsOuterR + functions2OuterR) / 2);
 
               return (
-                <g key={`inner-${index}`}>
+                <g key={`inner-${index}`} style={{ opacity: isSub5 ? 0.7 : 1 }}>
                   <path
                     d={createArcPath(startAngle, endAngle, functions2OuterR, functionsOuterR)}
                     fill={isSub5 ? '#230912' : isSelected ? '#ca35b2' : '#3a2627'}
@@ -226,7 +226,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               const textPos = getTextPosition(index, 12, (functions2OuterR + innermostR) / 2);
 
               return (
-                <g key={`innermost-${index}`}>
+                <g key={`innermost-${index}`} style={{ opacity: !isSub5 ? 0.7 : 1 }}>
                   <path
                     d={createArcPath(startAngle, endAngle, innermostR, functions2OuterR)}
                     fill={!isSub5 ? '#230912' : isSelected ? '#ca35b2' : '#3a2627'}
@@ -275,7 +275,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               const displayLabel = arLabelMap[segment.label] || segment.label;
 
               return (
-                <g key={`ar-${index}`}>
+                <g key={`ar-${index}`} style={{ opacity: !isSub5 ? 0.7 : 1 }}>
                   <path
                     d={createArcPath(startAngle, endAngle, innermost2R, innermostR)}
                     fill={!isSub5 ? '#230912' : isSelected ? '#ca35b2' : '#3a2627'}
@@ -322,7 +322,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               const displayLabel = relativaLabelMap[index] || '';
 
               return (
-                <g key={`relativa-${index}`}>
+                <g key={`relativa-${index}`} style={{ opacity: !hasContent ? 0.7 : 1 }}>
                   <path
                     d={createArcPath(startAngle, endAngle, innermost3R, innermost2R)}
                     fill={hasContent ? (isSelected ? '#ca35b2' : '#3a2627') : '#230912'}
