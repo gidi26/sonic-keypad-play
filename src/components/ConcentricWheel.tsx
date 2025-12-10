@@ -111,8 +111,8 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                 <path
                   d={createArcPath(startAngle, endAngle, degreesOuterR, noteRadius)}
                   fill={isTonicPosition ? '#ffffff' : 'hsl(var(--primary))'}
-                  stroke={isTonicPosition ? 'hsl(var(--primary))' : 'hsl(var(--background))'}
-                  strokeWidth={isTonicPosition ? 3 : 2}
+                  stroke="none"
+                  strokeWidth={0}
                   className="cursor-grab active:cursor-grabbing"
                 />
                 <text
@@ -149,7 +149,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   <path
                     d={createArcPath(startAngle, endAngle, functionsOuterR, degreesOuterR)}
                     fill={isSelected ? 'hsl(var(--foreground))' : isSharp ? 'hsl(var(--muted-foreground) / 0.3)' : 'hsl(var(--muted))'}
-                    stroke="hsl(var(--border))"
+                    stroke="#210a12"
                     strokeWidth="2"
                     className="cursor-pointer transition-all duration-200 hover:brightness-110"
                     onClick={() => setSelectedOuter(selectedOuter === index ? null : index)}
@@ -186,7 +186,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   <path
                     d={createArcPath(startAngle, endAngle, functions2OuterR, functionsOuterR)}
                     fill={isSub5 ? 'transparent' : isSelected ? '#ca35b2' : 'hsl(var(--accent))'}
-                    stroke="hsl(var(--border))"
+                    stroke="#210a12"
                     strokeWidth="2"
                     className={isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
                     onClick={() => !isSub5 && setSelectedInner(selectedInner === index ? null : index)}
@@ -225,7 +225,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   <path
                     d={createArcPath(startAngle, endAngle, innermostR, functions2OuterR)}
                     fill={!isSub5 ? 'transparent' : isSelected ? '#ca35b2' : 'hsl(var(--accent))'}
-                    stroke="hsl(var(--border))"
+                    stroke="#210a12"
                     strokeWidth="2"
                     className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
                     onClick={() => isSub5 && setSelectedSub5(selectedSub5 === index ? null : index)}
@@ -274,7 +274,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   <path
                     d={createArcPath(startAngle, endAngle, innermost2R, innermostR)}
                     fill={!isSub5 ? 'transparent' : isSelected ? '#ca35b2' : '#808080'}
-                    stroke="hsl(var(--border))"
+                    stroke="#210a12"
                     strokeWidth="2"
                     className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
                     onClick={() => isSub5 && setSelectedAR(selectedAR === index ? null : index)}
@@ -306,7 +306,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           cy={center}
           r={centerRadius}
           fill="hsl(var(--background))"
-          stroke="hsl(var(--border))"
+          stroke="#210a12"
           strokeWidth="3"
           className="drop-shadow-lg"
         />
