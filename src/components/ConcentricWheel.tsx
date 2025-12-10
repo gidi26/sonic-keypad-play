@@ -40,6 +40,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const size = 580;
   const center = size / 2;
   const noteRadius = 280;
+  const noteInnerRadius = 244; // Gap between tonality and degrees layer
   const degreesOuterR = 240;
   const functionsOuterR = 200;
   const functions2OuterR = 160;
@@ -99,7 +100,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           {noteSegments.map((segment, index) => {
             const startAngle = index * segmentAngle;
             const endAngle = (index + 1) * segmentAngle;
-            const textPos = getTextPosition(index, 12, (noteRadius + degreesOuterR) / 2);
+            const textPos = getTextPosition(index, 12, (noteRadius + noteInnerRadius) / 2);
             
             // Calculate if this note is in the tonic position (aligned with grade I at top)
             const normalizedRotation = (((-noteRotation) % 360) + 360) % 360;
@@ -109,7 +110,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             return (
               <g key={`note-${index}`}>
                 <path
-                  d={createArcPath(startAngle, endAngle, degreesOuterR, noteRadius)}
+                  d={createArcPath(startAngle, endAngle, noteInnerRadius, noteRadius)}
                   fill={isTonicPosition ? '#ffffff' : 'hsl(var(--primary))'}
                   stroke="#210a12"
                   strokeWidth={2}
