@@ -38,16 +38,16 @@ const HarmoniaFuncional: React.FC = () => {
 
   const outerSegments = [
     { label: 'I' },
-    { label: 'bII' },
+    { label: '#I' },
     { label: 'II' },
-    { label: 'bIII' },
+    { label: '#II' },
     { label: 'III' },
     { label: 'IV' },
-    { label: 'bV' },
+    { label: '#IV' },
     { label: 'V' },
-    { label: 'bVI' },
+    { label: '#V' },
     { label: 'VI' },
-    { label: 'bVII' },
+    { label: '#VI' },
     { label: 'VII' },
   ];
 
