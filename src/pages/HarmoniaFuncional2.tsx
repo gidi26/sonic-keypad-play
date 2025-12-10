@@ -111,9 +111,9 @@ const HarmoniaFuncional2: React.FC = () => {
 
           {/* Main Content */}
           <main className="flex-1 flex flex-col items-center justify-center p-4">
-            <p className="text-muted-foreground mb-4 text-center max-w-md">
-              Clique nos segmentos para explorar as funções harmônicas
-            </p>
+            <h2 className="text-4xl md:text-6xl font-black text-foreground mb-4 text-center">
+              ORBIT
+            </h2>
             
             <ConcentricWheel
               outerSegments={outerSegments}
