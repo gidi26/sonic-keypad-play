@@ -60,7 +60,9 @@ const HarmoniaFuncional: React.FC = () => {
     { label: 'SD' },
     { label: 'Sub5 IV' },
     { label: 'D' },
-    { label: 'SD' },
+    { label: 'Sub5 V' },
+    { label: 'SPD' },
+    { label: 'Sub5 VI' },
     { label: 'S' },
   ];
 
