@@ -156,6 +156,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     fill={isSelected ? '#ca35b2' : isSharp ? '#4d3334' : '#6b4a4c'}
                     stroke="#210a12"
                     strokeWidth="4"
+                    strokeOpacity={0.3}
                     className="cursor-pointer transition-all duration-200 hover:brightness-110"
                     onClick={() => setSelectedOuter(selectedOuter === index ? null : index)}
                   />
@@ -193,6 +194,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     fill={isSub5 ? '#230912' : isSelected ? '#ca35b2' : '#3a2627'}
                     stroke="#210a12"
                     strokeWidth="4"
+                    strokeOpacity={0.3}
                     className={isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
                     onClick={() => !isSub5 && setSelectedInner(selectedInner === index ? null : index)}
                   />
@@ -232,6 +234,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     fill={!isSub5 ? '#230912' : isSelected ? '#ca35b2' : '#3a2627'}
                     stroke="#210a12"
                     strokeWidth="4"
+                    strokeOpacity={0.3}
                     className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
                     onClick={() => isSub5 && setSelectedSub5(selectedSub5 === index ? null : index)}
                   />
@@ -281,6 +284,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     fill={!isSub5 ? '#230912' : isSelected ? '#ca35b2' : '#3a2627'}
                     stroke="#210a12"
                     strokeWidth="4"
+                    strokeOpacity={0.3}
                     className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
                     onClick={() => isSub5 && setSelectedAR(selectedAR === index ? null : index)}
                   />
@@ -328,6 +332,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     fill={hasContent ? (isSelected ? '#ca35b2' : '#3a2627') : '#230912'}
                     stroke="#210a12"
                     strokeWidth="4"
+                    strokeOpacity={0.3}
                     className={hasContent ? 'cursor-pointer transition-all duration-200 hover:brightness-110' : ''}
                     onClick={() => hasContent && setSelectedAR2(selectedAR2 === index ? null : index)}
                   />
