@@ -98,13 +98,6 @@ const HarmoniaFuncional2: React.FC = () => {
                 {/* Sidebar Toggle */}
                 <SidebarTrigger className="absolute left-4 top-1/2 -translate-y-1/2 scale-150" />
 
-                <div className="h-px w-24 bg-border" />
-                <div className="text-center">
-                  <h1 className="text-3xl md:text-5xl font-black tracking-tight font-poppins">
-                    Harmonia Funcional 2
-                  </h1>
-                </div>
-                <div className="h-px w-24 bg-border" />
               </div>
             </div>
           </header>
