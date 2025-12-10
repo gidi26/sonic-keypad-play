@@ -81,12 +81,12 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
         onAudioCreated(audio);
       }
       
-      // Delay playback by 500ms to allow previous audio to fade
+      // Delay playback by 100ms to allow previous audio to fade
       setTimeout(() => {
         audio.play().catch(error => {
           console.error('Error playing audio:', error);
         });
-      }, 500);
+      }, 100);
       
       audio.onended = () => {
         setIsPlaying(false);
@@ -95,9 +95,9 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
       // Set a timeout as backup
       setTimeout(() => {
         setIsPlaying(false);
-      }, 5500);
+      }, 5100);
     } else {
-      // Fallback to synthesized audio - also with 500ms delay
+      // Fallback to synthesized audio - also with 100ms delay
       setTimeout(() => {
         const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
         const oscillator = audioContext.createOscillator();
@@ -130,7 +130,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
             audioContextRef.current = null;
           }
         }, 1500);
-      }, 500);
+      }, 100);
     }
   };
 
