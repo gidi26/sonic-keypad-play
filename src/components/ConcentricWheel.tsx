@@ -23,6 +23,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const [selectedInner, setSelectedInner] = useState<number | null>(null);
   const [selectedSub5, setSelectedSub5] = useState<number | null>(null);
   const [selectedAR, setSelectedAR] = useState<number | null>(null);
+  const [selectedAR2, setSelectedAR2] = useState<number | null>(null);
   const [noteRotation, setNoteRotation] = useState(0);
   const [activeLayer, setActiveLayer] = useState<'antiRelativa' | 'sub5' | 'funcoes' | 'graus' | null>(null);
 
@@ -46,7 +47,8 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const functions2OuterR = 160;
   const innermostR = 120;
   const innermost2R = 80;
-  const centerRadius = 45;
+  const innermost3R = 55;
+  const centerRadius = 30;
 
   const createArcPath = (
     startAngle: number,
@@ -281,6 +283,55 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     strokeWidth="4"
                     className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
                     onClick={() => isSub5 && setSelectedAR(selectedAR === index ? null : index)}
+                  />
+                  {isSub5 && (
+                    <text
+                      x={textPos.x}
+                      y={textPos.y}
+                      fill={isSelected ? '#3a2627' : '#ffffff'}
+                      fontSize="13"
+                      fontWeight="400"
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
+                      className="pointer-events-none select-none"
+                    >
+                      {displayLabel}
+                    </text>
+                  )}
+                </g>
+              );
+            })}
+          </g>
+
+          {/* Camada 0 - AR2 (Anti relativa 2) */}
+          <g style={{ opacity: getLayerOpacity('antiRelativa'), transition: 'opacity 0.3s ease' }}>
+            {innerSegments.map((segment, index) => {
+              const startAngle = index * segmentAngle;
+              const endAngle = (index + 1) * segmentAngle;
+              const isSelected = selectedAR2 === index;
+              const isSub5 = segment.label.includes('Sub5');
+              const textPos = getTextPosition(index, 12, (innermost2R + innermost3R) / 2);
+              
+              // Map Sub5 labels to AR2 labels
+              const ar2LabelMap: { [key: string]: string } = {
+                'Sub5 I': 'AR2 II',
+                'Sub5 II': 'AR2 III',
+                'Sub5 IV': 'AR2 V',
+                'Sub5 V': 'AR2 VI',
+                'Sub5 VI': 'AR2 VII'
+              };
+              const displayLabel = ar2LabelMap[segment.label] || segment.label;
+
+              return (
+                <g key={`ar2-${index}`}>
+                  <path
+                    d={createArcPath(startAngle, endAngle, innermost3R, innermost2R)}
+                    fill={!isSub5 ? '#230912' : isSelected ? '#ca35b2' : '#3a2627'}
+                    stroke="#210a12"
+                    strokeWidth="4"
+                    className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
+                    onClick={() => isSub5 && setSelectedAR2(selectedAR2 === index ? null : index)}
                   />
                   {isSub5 && (
                     <text
