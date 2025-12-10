@@ -69,7 +69,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
         height={size}
         viewBox={`0 0 ${size} ${size}`}
         className="drop-shadow-2xl"
-        style={{ transform: `rotate(${rotation}deg)`, transition: 'transform 0.3s ease-out' }}
+        style={{ transform: `rotate(${rotation - 15}deg)`, transition: 'transform 0.3s ease-out' }}
       >
         {/* Outer ring segments */}
         {outerSegments.map((segment, index) => {
