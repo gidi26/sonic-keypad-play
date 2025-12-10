@@ -1,8 +1,27 @@
 import { useState, useRef, MutableRefObject } from "react";
 import defaultKeyboardImage from "@/assets/keyboard.png";
+import funcao0Image from "@/assets/funcao-0.png";
+import funcao1Image from "@/assets/funcao-1.png";
+import funcao2Image from "@/assets/funcao-2.png";
+import funcao5Image from "@/assets/funcao-5.png";
 import { cn } from "@/lib/utils";
 
 export type TimbreType = 'acoustic' | 'digital' | 'electric';
+
+// Map function numbers to their emoji images
+const functionEmojiMap: Record<string, string> = {
+  '0': funcao0Image,
+  '1': funcao1Image,
+  '2': funcao2Image,
+  '5': funcao5Image,
+};
+
+// Helper to extract function number from label
+const getFunctionNumber = (label?: string): string | null => {
+  if (!label) return null;
+  const match = label.match(/(?:Função|Function|Función)\s*(\d+)/i);
+  return match ? match[1] : null;
+};
 
 interface PianoKeyboardProps {
   note: string;
@@ -143,7 +162,14 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
       {/* Text */}
       <div className="w-[30%] space-y-2 text-left">
         {label && (
-          <h3 className="text-base md:text-[1.4rem] lg:text-[1.7rem] font-bold text-primary">
+          <h3 className="text-base md:text-[1.4rem] lg:text-[1.7rem] font-bold text-primary flex items-center gap-2">
+            {getFunctionNumber(label) && functionEmojiMap[getFunctionNumber(label)!] && (
+              <img 
+                src={functionEmojiMap[getFunctionNumber(label)!]} 
+                alt={`Função ${getFunctionNumber(label)}`}
+                className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 inline-block"
+              />
+            )}
             {label}
           </h3>
         )}
