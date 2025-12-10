@@ -284,7 +284,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
       {/* Functions legend */}
       <div className="mt-6 p-4 bg-card border border-border rounded-lg max-w-md">
         <h3 className="text-sm font-bold text-foreground mb-3 text-center">Legenda - Funções Harmônicas</h3>
-        <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-sm">
+        <div className="flex flex-col gap-1 text-sm">
           <div className="flex items-center gap-2">
             <span className="font-semibold" style={{ color: '#8b1a1a' }}>T</span>
             <span className="text-muted-foreground">Tônica</span>
