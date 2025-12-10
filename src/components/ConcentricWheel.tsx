@@ -32,6 +32,8 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
 
   const getLayerOpacity = (layer: 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
     if (activeLayer === null) return 1;
+    // Graus layer always stays visible
+    if (layer === 'graus') return 1;
     return activeLayer === layer ? 1 : 0.15;
   };
 
