@@ -114,6 +114,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   fill={isTonicPosition ? '#ffffff' : 'hsl(var(--primary))'}
                   stroke="#771621"
                   strokeWidth={4}
+                  strokeOpacity={0}
                   className="cursor-grab active:cursor-grabbing"
                 />
                 <text
