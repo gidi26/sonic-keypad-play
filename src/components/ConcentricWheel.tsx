@@ -360,7 +360,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           onClick={() => setActiveLayer(null)}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
             activeLayer === null 
-              ? 'bg-primary text-primary-foreground' 
+              ? 'bg-[#230912] text-white' 
               : 'bg-muted text-muted-foreground hover:bg-muted/80'
           }`}
         >
@@ -370,7 +370,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           onClick={() => toggleLayer('relativa')}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
             activeLayer === 'relativa' 
-              ? 'bg-primary text-primary-foreground' 
+              ? 'bg-[#230912] text-white' 
               : 'bg-muted text-muted-foreground hover:bg-muted/80'
           }`}
         >
@@ -380,7 +380,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           onClick={() => toggleLayer('antiRelativa')}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
             activeLayer === 'antiRelativa' 
-              ? 'bg-primary text-primary-foreground' 
+              ? 'bg-[#230912] text-white' 
               : 'bg-muted text-muted-foreground hover:bg-muted/80'
           }`}
         >
@@ -390,7 +390,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           onClick={() => toggleLayer('sub5')}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
             activeLayer === 'sub5' 
-              ? 'bg-primary text-primary-foreground' 
+              ? 'bg-[#230912] text-white' 
               : 'bg-muted text-muted-foreground hover:bg-muted/80'
           }`}
         >
@@ -400,7 +400,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           onClick={() => toggleLayer('funcoes')}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
             activeLayer === 'funcoes' 
-              ? 'bg-primary text-primary-foreground' 
+              ? 'bg-[#230912] text-white' 
               : 'bg-muted text-muted-foreground hover:bg-muted/80'
           }`}
         >
@@ -410,7 +410,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           onClick={() => toggleLayer('graus')}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
             activeLayer === 'graus' 
-              ? 'bg-primary text-primary-foreground' 
+              ? 'bg-[#230912] text-white' 
               : 'bg-muted text-muted-foreground hover:bg-muted/80'
           }`}
         >
@@ -422,7 +422,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
       <div className="flex items-center gap-4 mt-4">
         <button
           onClick={() => rotateNotes('left')}
-          className="p-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all active:scale-95"
+          className="p-3 rounded-full bg-[#230912] text-white hover:bg-[#230912]/90 transition-all active:scale-95"
           aria-label="Girar para esquerda"
         >
           <ChevronLeft size={24} />
@@ -430,7 +430,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
         <span className="text-sm font-medium text-muted-foreground">Girar tonalidade</span>
         <button
           onClick={() => rotateNotes('right')}
-          className="p-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all active:scale-95"
+          className="p-3 rounded-full bg-[#230912] text-white hover:bg-[#230912]/90 transition-all active:scale-95"
           aria-label="Girar para direita"
         >
           <ChevronRight size={24} />
