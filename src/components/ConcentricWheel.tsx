@@ -153,7 +153,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                 <g key={`outer-${index}`}>
                   <path
                     d={createArcPath(startAngle, endAngle, functionsOuterR, degreesOuterR)}
-                    fill={isSelected ? '#ee1d3a' : isSharp ? '#4d3334' : '#6b4a4c'}
+                    fill={isSelected ? '#ee1d3a' : isSharp ? '#4d3334' : '#ffffff'}
                     stroke="#210a12"
                     strokeWidth="4"
                     className="cursor-pointer transition-all duration-200 hover:brightness-110"
@@ -162,7 +162,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   <text
                     x={textPos.x}
                     y={textPos.y}
-                    fill={isSelected ? '#ffffff' : '#ffffff'}
+                    fill={isSelected ? '#ffffff' : isSharp ? '#ffffff' : '#000000'}
                     fontSize="12"
                     fontWeight="400"
                     textAnchor="middle"
