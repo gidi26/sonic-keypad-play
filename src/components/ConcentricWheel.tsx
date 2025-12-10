@@ -30,8 +30,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const functionsOuterR = 200;
   const functions2OuterR = 160;
   const innermostR = 120;
-  const innermost2R = 80;
-  const centerRadius = 45;
+  const centerRadius = 55;
 
   const createArcPath = (
     startAngle: number,
@@ -225,42 +224,6 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             );
           })}
 
-          {/* Duplicated functions ring - shows non-Sub5 functions */}
-          {innerSegments.map((segment, index) => {
-            const startAngle = index * segmentAngle;
-            const endAngle = (index + 1) * segmentAngle;
-            const isSelected = selectedInner === index;
-            const isSub5 = segment.label.includes('Sub5');
-            const textPos = getTextPosition(index, 12, (innermostR + innermost2R) / 2);
-
-            return (
-              <g key={`duplicated-${index}`}>
-                <path
-                  d={createArcPath(startAngle, endAngle, innermost2R, innermostR)}
-                  fill={isSub5 ? 'transparent' : isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
-                  stroke="hsl(var(--border))"
-                  strokeWidth="2"
-                  className={isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
-                  onClick={() => !isSub5 && setSelectedInner(selectedInner === index ? null : index)}
-                />
-                {!isSub5 && (
-                  <text
-                    x={textPos.x}
-                    y={textPos.y}
-                    fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
-                    fontSize="13"
-                    fontWeight="600"
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
-                    className="pointer-events-none select-none"
-                  >
-                    {segment.label}
-                  </text>
-                )}
-              </g>
-            );
-          })}
         </g>
 
         {/* Center circle */}
