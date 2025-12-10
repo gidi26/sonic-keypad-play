@@ -61,7 +61,7 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar collapsible="icon" className={`${collapsed ? "w-20" : "w-80"} !bg-[#c6c3c3] dark:!bg-[hsl(0_0%_20%)] text-lg`}>
+    <Sidebar collapsible="icon" className={`${collapsed ? "w-20" : "w-80"} !bg-[#c6c3c3] dark:!bg-[hsl(0_0%_20%)] text-sm`}>
       <SidebarContent className="mt-[50px]">
         <SidebarGroup>
           <SidebarGroupContent>
@@ -70,7 +70,7 @@ export function AppSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  className={`w-full justify-between font-bold text-lg ${
+                  className={`w-full justify-between font-bold text-sm ${
                     location.pathname === '/harmonia-funcional-2'
                       ? 'bg-red-500 text-white hover:bg-red-600' 
                       : 'bg-black text-white dark:bg-white dark:text-black hover:bg-red-500 hover:text-white dark:hover:bg-red-500'
@@ -85,7 +85,7 @@ export function AppSidebar() {
               <Collapsible open={mainMenuOpen} onOpenChange={setMainMenuOpen}>
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
-                    <SidebarMenuButton className={`w-full justify-between font-bold text-lg ${
+                    <SidebarMenuButton className={`w-full justify-between font-bold text-sm ${
                       mainMenuOpen 
                         ? 'bg-red-500 text-white hover:bg-red-600' 
                         : 'bg-black text-white dark:bg-white dark:text-black hover:bg-red-500 hover:text-white dark:hover:bg-red-500'
@@ -115,7 +115,7 @@ export function AppSidebar() {
                                   isMovementActive(movement.id) ? 'bg-red-600 text-white' : ''
                                 }`}
                               >
-                                <span className="font-bold text-base">{collapsed ? `MOV ${movement.id}` : movement.name}</span>
+                                <span className="font-bold text-sm">{collapsed ? `MOV ${movement.id}` : movement.name}</span>
                                 {!collapsed && (
                                   <ChevronDown
                                     className={`transition-transform ${
@@ -138,7 +138,7 @@ export function AppSidebar() {
                                         to={`/movimento/${movement.id}/tonalidade/${tonality.number}`}
                                         className="w-full"
                                       >
-                                        <span className="text-base">{tonality.name}</span>
+                                        <span className="text-sm">{tonality.name}</span>
                                       </NavLink>
                                     </SidebarMenuSubButton>
                                   </SidebarMenuSubItem>
