@@ -90,7 +90,7 @@ export function AppSidebar() {
                         ? 'bg-red-500 text-white hover:bg-red-600' 
                         : 'bg-black text-white dark:bg-white dark:text-black hover:bg-red-500 hover:text-white dark:hover:bg-red-500'
                     }`}>
-                      <span>{collapsed ? "MOV 251" : "MOVIMENTOS 251"}</span>
+                      <span>{collapsed ? "MOV" : "MOV"}</span>
                       {!collapsed && (
                         <ChevronDown
                           className={`transition-transform ${
