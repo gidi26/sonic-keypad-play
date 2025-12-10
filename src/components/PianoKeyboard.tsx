@@ -58,7 +58,7 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
   };
 
   const playSound = () => {
-    // Stop any currently playing audio FIRST
+    // Notify parent to stop other audios with delay
     if (onPlay) {
       onPlay();
     }
@@ -81,9 +81,12 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
         onAudioCreated(audio);
       }
       
-      audio.play().catch(error => {
-        console.error('Error playing audio:', error);
-      });
+      // Delay playback by 500ms to allow previous audio to fade
+      setTimeout(() => {
+        audio.play().catch(error => {
+          console.error('Error playing audio:', error);
+        });
+      }, 500);
       
       audio.onended = () => {
         setIsPlaying(false);
@@ -92,40 +95,42 @@ export const PianoKeyboard = ({ note, frequency, label, description, reversed = 
       // Set a timeout as backup
       setTimeout(() => {
         setIsPlaying(false);
-      }, 5000);
+      }, 5500);
     } else {
-      // Fallback to synthesized audio
-      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-      const oscillator = audioContext.createOscillator();
-      const gainNode = audioContext.createGain();
-      
-      // Store the current audio context
-      if (audioContextRef) {
-        audioContextRef.current = audioContext;
-      }
-      
-      oscillator.connect(gainNode);
-      gainNode.connect(audioContext.destination);
-      
-      // Set frequency and type
-      oscillator.frequency.value = frequency;
-      oscillator.type = getOscillatorType(timbre);
-      
-      // Envelope for more natural sound
-      gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-      gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.01);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
-      
-      oscillator.start(audioContext.currentTime);
-      oscillator.stop(audioContext.currentTime + 1.5);
-      
+      // Fallback to synthesized audio - also with 500ms delay
       setTimeout(() => {
-        setIsPlaying(false);
-        audioContext.close();
-        if (audioContextRef && audioContextRef.current === audioContext) {
-          audioContextRef.current = null;
+        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        // Store the current audio context
+        if (audioContextRef) {
+          audioContextRef.current = audioContext;
         }
-      }, 1500);
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        // Set frequency and type
+        oscillator.frequency.value = frequency;
+        oscillator.type = getOscillatorType(timbre);
+        
+        // Envelope for more natural sound
+        gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 1.5);
+        
+        setTimeout(() => {
+          setIsPlaying(false);
+          audioContext.close();
+          if (audioContextRef && audioContextRef.current === audioContext) {
+            audioContextRef.current = null;
+          }
+        }, 1500);
+      }, 500);
     }
   };
 
