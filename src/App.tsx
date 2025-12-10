@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import MovementPage from "./pages/MovementPage";
 import HarmoniaFuncional from "./pages/HarmoniaFuncional";
+import HarmoniaFuncional2 from "./pages/HarmoniaFuncional2";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const App = () => (
             <Route path="/" element={<Navigate to="/movimento/1/tonalidade/1" replace />} />
             <Route path="/movimento/:movementId/tonalidade/:tonalityId" element={<MovementPage />} />
             <Route path="/harmonia-funcional" element={<HarmoniaFuncional />} />
+            <Route path="/harmonia-funcional-2" element={<HarmoniaFuncional2 />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
