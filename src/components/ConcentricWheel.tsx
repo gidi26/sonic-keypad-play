@@ -160,9 +160,9 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   <text
                     x={textPos.x}
                     y={textPos.y}
-                    fill={isSelected ? 'hsl(var(--background))' : 'hsl(var(--foreground))'}
+                    fill={isSelected ? '#3a2627' : '#ffffff'}
                     fontSize="12"
-                    fontWeight="bold"
+                    fontWeight="500"
                     textAnchor="middle"
                     dominantBaseline="middle"
                     transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
@@ -198,9 +198,9 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     <text
                       x={textPos.x}
                       y={textPos.y}
-                      fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
+                      fill={isSelected ? '#3a2627' : '#ffffff'}
                       fontSize="13"
-                      fontWeight="600"
+                      fontWeight="500"
                       textAnchor="middle"
                       dominantBaseline="middle"
                       transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
@@ -237,9 +237,9 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     <text
                       x={textPos.x}
                       y={textPos.y}
-                      fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
+                      fill={isSelected ? '#3a2627' : '#ffffff'}
                       fontSize="13"
-                      fontWeight="600"
+                      fontWeight="500"
                       textAnchor="middle"
                       dominantBaseline="middle"
                       transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
@@ -286,9 +286,9 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     <text
                       x={textPos.x}
                       y={textPos.y}
-                      fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
+                      fill={isSelected ? '#3a2627' : '#ffffff'}
                       fontSize="13"
-                      fontWeight="600"
+                      fontWeight="500"
                       textAnchor="middle"
                       dominantBaseline="middle"
                       transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
