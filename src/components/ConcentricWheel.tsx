@@ -67,7 +67,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const segmentAngle = 360 / 12;
 
   const rotateNotes = (direction: 'left' | 'right') => {
-    setNoteRotation(prev => prev + (direction === 'left' ? -30 : 30));
+    setNoteRotation(prev => prev + (direction === 'left' ? 30 : -30));
   };
 
   return (
