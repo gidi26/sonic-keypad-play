@@ -151,7 +151,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                 <g key={`outer-${index}`}>
                   <path
                     d={createArcPath(startAngle, endAngle, functionsOuterR, degreesOuterR)}
-                    fill={isSelected ? 'hsl(var(--foreground))' : isSharp ? 'hsl(var(--muted-foreground) / 0.3)' : 'hsl(var(--muted))'}
+                    fill={isSelected ? '#ca35b2' : '#3a2627'}
                     stroke="#210a12"
                     strokeWidth="4"
                     className="cursor-pointer transition-all duration-200 hover:brightness-110"
@@ -188,7 +188,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                 <g key={`inner-${index}`}>
                   <path
                     d={createArcPath(startAngle, endAngle, functions2OuterR, functionsOuterR)}
-                    fill={isSub5 ? 'transparent' : isSelected ? '#ca35b2' : 'hsl(var(--accent))'}
+                    fill={isSub5 ? 'transparent' : isSelected ? '#ca35b2' : '#3a2627'}
                     stroke="#210a12"
                     strokeWidth="4"
                     className={isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
@@ -227,7 +227,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                 <g key={`innermost-${index}`}>
                   <path
                     d={createArcPath(startAngle, endAngle, innermostR, functions2OuterR)}
-                    fill={!isSub5 ? 'transparent' : isSelected ? '#ca35b2' : 'hsl(var(--accent))'}
+                    fill={!isSub5 ? 'transparent' : isSelected ? '#ca35b2' : '#3a2627'}
                     stroke="#210a12"
                     strokeWidth="4"
                     className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
@@ -276,7 +276,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                 <g key={`ar-${index}`}>
                   <path
                     d={createArcPath(startAngle, endAngle, innermost2R, innermostR)}
-                    fill={!isSub5 ? 'transparent' : isSelected ? '#ca35b2' : '#808080'}
+                    fill={!isSub5 ? 'transparent' : isSelected ? '#ca35b2' : '#3a2627'}
                     stroke="#210a12"
                     strokeWidth="4"
                     className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
