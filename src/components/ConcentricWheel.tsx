@@ -324,6 +324,16 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
       {/* Layer toggle buttons */}
       <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
         <button
+          onClick={() => setActiveLayer(null)}
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+            activeLayer === null 
+              ? 'bg-primary text-primary-foreground' 
+              : 'bg-muted text-muted-foreground hover:bg-muted/80'
+          }`}
+        >
+          Full
+        </button>
+        <button
           onClick={() => toggleLayer('antiRelativa')}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
             activeLayer === 'antiRelativa' 
