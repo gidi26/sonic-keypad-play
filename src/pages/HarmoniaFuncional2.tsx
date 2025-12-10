@@ -111,7 +111,7 @@ const HarmoniaFuncional2: React.FC = () => {
 
           {/* Main Content */}
           <main className="flex-1 flex flex-col items-center justify-center p-4">
-            <h2 className="text-4xl md:text-6xl font-black text-foreground mb-4 text-center">
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-4 text-center">
               ORBIT
             </h2>
             
