@@ -185,7 +185,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                 <g key={`inner-${index}`}>
                   <path
                     d={createArcPath(startAngle, endAngle, functions2OuterR, functionsOuterR)}
-                    fill={isSub5 ? 'transparent' : isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
+                    fill={isSub5 ? 'transparent' : isSelected ? 'hsl(var(--primary))' : 'hsl(var(--accent))'}
                     stroke="hsl(var(--border))"
                     strokeWidth="2"
                     className={isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
@@ -224,7 +224,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                 <g key={`innermost-${index}`}>
                   <path
                     d={createArcPath(startAngle, endAngle, innermostR, functions2OuterR)}
-                    fill={!isSub5 ? 'transparent' : isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
+                    fill={!isSub5 ? 'transparent' : isSelected ? 'hsl(var(--primary))' : 'hsl(var(--accent))'}
                     stroke="hsl(var(--border))"
                     strokeWidth="2"
                     className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
@@ -273,7 +273,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                 <g key={`ar-${index}`}>
                   <path
                     d={createArcPath(startAngle, endAngle, innermost2R, innermostR)}
-                    fill={!isSub5 ? 'transparent' : isSelected ? '#2b6d4c' : '#808080'}
+                    fill={!isSub5 ? 'transparent' : isSelected ? 'hsl(var(--primary))' : '#808080'}
                     stroke="hsl(var(--border))"
                     strokeWidth="2"
                     className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
