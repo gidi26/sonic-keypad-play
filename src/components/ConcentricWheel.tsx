@@ -162,7 +162,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   <text
                     x={textPos.x}
                     y={textPos.y}
-                    fill={isSelected ? '#3a2627' : '#ffffff'}
+                    fill={isSelected ? '#ffffff' : '#ffffff'}
                     fontSize="12"
                     fontWeight="400"
                     textAnchor="middle"
@@ -200,7 +200,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     <text
                       x={textPos.x}
                       y={textPos.y}
-                      fill={isSelected ? '#3a2627' : '#ffffff'}
+                      fill={isSelected ? '#ffffff' : '#ffffff'}
                       fontSize="13"
                       fontWeight="400"
                       textAnchor="middle"
@@ -239,7 +239,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     <text
                       x={textPos.x}
                       y={textPos.y}
-                      fill={isSelected ? '#3a2627' : '#ffffff'}
+                      fill={isSelected ? '#ffffff' : '#ffffff'}
                       fontSize="13"
                       fontWeight="400"
                       textAnchor="middle"
@@ -288,7 +288,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     <text
                       x={textPos.x}
                       y={textPos.y}
-                      fill={isSelected ? '#3a2627' : '#ffffff'}
+                      fill={isSelected ? '#ffffff' : '#ffffff'}
                       fontSize="13"
                       fontWeight="400"
                       textAnchor="middle"
@@ -335,7 +335,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     <text
                       x={textPos.x}
                       y={textPos.y}
-                      fill={isSelected ? '#3a2627' : '#ffffff'}
+                      fill={isSelected ? '#ffffff' : '#ffffff'}
                       fontSize="13"
                       fontWeight="400"
                       textAnchor="middle"
