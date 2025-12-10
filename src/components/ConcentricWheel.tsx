@@ -39,7 +39,7 @@ const translations = {
     legendTitle: 'Leyenda - Funciones Armónicas',
     tonic: 'Tónica',
     supertonic: 'Supertónica',
-    mediant: 'Por',
+    mediant: 'Mediante',
     subdominant: 'Subdominante',
     dominant: 'Dominante',
     superdominant: 'Superdominante',
