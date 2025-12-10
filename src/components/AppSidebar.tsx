@@ -22,6 +22,7 @@ export function AppSidebar() {
   const collapsed = state === "collapsed";
   const [openMovements, setOpenMovements] = useState<number[]>([1]);
   const [mainMenuOpen, setMainMenuOpen] = useState(true);
+  const [harmoniaMenuOpen, setHarmoniaMenuOpen] = useState(false);
 
   const tonalities = [
     { number: 1, name: "C ou Am" },
@@ -131,6 +132,37 @@ export function AppSidebar() {
                           </SidebarMenuSubItem>
                         </Collapsible>
                       ))}
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </SidebarMenuItem>
+              </Collapsible>
+              
+              {/* Harmonia Funcional Menu */}
+              <Collapsible open={harmoniaMenuOpen} onOpenChange={setHarmoniaMenuOpen}>
+                <SidebarMenuItem>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuButton className={`w-full justify-between font-bold ${
+                      harmoniaMenuOpen 
+                        ? 'bg-red-500 text-white hover:bg-red-600' 
+                        : 'bg-black text-white dark:bg-white dark:text-black hover:bg-red-500 hover:text-white dark:hover:bg-red-500'
+                    }`}>
+                      <span>{collapsed ? "HF" : "HARMONIA FUNCIONAL"}</span>
+                      {!collapsed && (
+                        <ChevronDown
+                          className={`transition-transform ${
+                            harmoniaMenuOpen ? 'rotate-180' : ''
+                          }`}
+                        />
+                      )}
+                    </SidebarMenuButton>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub className="space-y-1">
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton className="w-full text-muted-foreground">
+                          <span className="text-sm">Em breve...</span>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
                     </SidebarMenuSub>
                   </CollapsibleContent>
                 </SidebarMenuItem>
