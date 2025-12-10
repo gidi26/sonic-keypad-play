@@ -1,5 +1,57 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+
+const translations = {
+  pt: {
+    legendTitle: 'Legenda - Funções Harmônicas',
+    tonic: 'Tônica',
+    supertonic: 'Supertônica',
+    mediant: 'Mediante',
+    subdominant: 'Subdominante',
+    dominant: 'Dominante',
+    superdominant: 'Superdominante',
+    sensible: 'Sensível',
+    relative: 'Relativa',
+    antiRelative: 'Anti Relativa',
+    sub5: 'Sub5',
+    functions: 'Funções',
+    degrees: 'Graus',
+    turnTonality: 'Girar tonalidade',
+  },
+  en: {
+    legendTitle: 'Legend - Harmonic Functions',
+    tonic: 'Tonic',
+    supertonic: 'Supertonic',
+    mediant: 'Mediant',
+    subdominant: 'Subdominant',
+    dominant: 'Dominant',
+    superdominant: 'Superdominant',
+    sensible: 'Sensible',
+    relative: 'Relative',
+    antiRelative: 'Anti-relative',
+    sub5: 'Sub5',
+    functions: 'Functions',
+    degrees: 'Degrees',
+    turnTonality: 'Turn Tonality',
+  },
+  es: {
+    legendTitle: 'Leyenda - Funciones Armónicas',
+    tonic: 'Tónica',
+    supertonic: 'Supertónica',
+    mediant: 'Por',
+    subdominant: 'Subdominante',
+    dominant: 'Dominante',
+    superdominant: 'Superdominante',
+    sensible: 'Sensible',
+    relative: 'Relativo',
+    antiRelative: 'Antirelativo',
+    sub5: 'Sub5',
+    functions: 'Funciones',
+    degrees: 'Grados',
+    turnTonality: 'Girar Tonalidad',
+  },
+};
 
 interface WheelSegment {
   label: string;
@@ -19,6 +71,8 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   noteSegments,
   centerLabel = "HF"
 }) => {
+  const { language } = useLanguage();
+  const t = translations[language];
   const [selectedOuter, setSelectedOuter] = useState<number | null>(null);
   const [selectedInner, setSelectedInner] = useState<number | null>(null);
   const [selectedSub5, setSelectedSub5] = useState<number | null>(null);
@@ -372,7 +426,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               : 'bg-muted text-muted-foreground hover:bg-muted/80'
           }`}
         >
-          Relativa
+          {t.relative}
         </button>
         <button
           onClick={() => toggleLayer('antiRelativa')}
@@ -382,7 +436,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               : 'bg-muted text-muted-foreground hover:bg-muted/80'
           }`}
         >
-          Anti Relativa
+          {t.antiRelative}
         </button>
         <button
           onClick={() => toggleLayer('sub5')}
@@ -392,7 +446,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               : 'bg-muted text-muted-foreground hover:bg-muted/80'
           }`}
         >
-          Sub5
+          {t.sub5}
         </button>
         <button
           onClick={() => toggleLayer('funcoes')}
@@ -402,7 +456,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               : 'bg-muted text-muted-foreground hover:bg-muted/80'
           }`}
         >
-          Funções
+          {t.functions}
         </button>
         <button
           onClick={() => toggleLayer('graus')}
@@ -412,7 +466,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               : 'bg-muted text-muted-foreground hover:bg-muted/80'
           }`}
         >
-          Graus
+          {t.degrees}
         </button>
       </div>
 
@@ -425,7 +479,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
         >
           <ChevronLeft size={24} />
         </button>
-        <span className="text-sm font-medium text-white">Girar tonalidade</span>
+        <span className="text-sm font-medium text-white">{t.turnTonality}</span>
         <button
           onClick={() => rotateNotes('right')}
           className="p-3 rounded-full bg-[#230912] text-white hover:bg-[#230912]/90 transition-all active:scale-95"
@@ -438,49 +492,49 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
 
       {/* Functions legend */}
       <div className="mt-6 p-4 bg-card border border-border rounded-lg max-w-md">
-        <h3 className="text-sm font-bold text-foreground mb-3 text-center">Legenda - Funções Harmônicas</h3>
+        <h3 className="text-sm font-bold text-foreground mb-3 text-center">{t.legendTitle}</h3>
         <div className="flex flex-col gap-1 text-sm">
           <div className="flex items-center gap-2">
             <span className="font-bold text-foreground">I</span>
             <span className="text-muted-foreground">-</span>
             <span className="font-semibold" style={{ color: '#8b1a1a' }}>T</span>
-            <span className="text-muted-foreground">Tônica</span>
+            <span className="text-muted-foreground">{t.tonic}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="font-bold text-foreground">II</span>
             <span className="text-muted-foreground">-</span>
             <span className="font-semibold" style={{ color: '#8b1a1a' }}>ST</span>
-            <span className="text-muted-foreground">Supertônica</span>
+            <span className="text-muted-foreground">{t.supertonic}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="font-bold text-foreground">III</span>
             <span className="text-muted-foreground">-</span>
             <span className="font-semibold" style={{ color: '#8b1a1a' }}>MD</span>
-            <span className="text-muted-foreground">Mediante</span>
+            <span className="text-muted-foreground">{t.mediant}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="font-bold text-foreground">IV</span>
             <span className="text-muted-foreground">-</span>
             <span className="font-semibold" style={{ color: '#8b1a1a' }}>SD</span>
-            <span className="text-muted-foreground">Subdominante</span>
+            <span className="text-muted-foreground">{t.subdominant}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="font-bold text-foreground">V</span>
             <span className="text-muted-foreground">-</span>
             <span className="font-semibold" style={{ color: '#8b1a1a' }}>D</span>
-            <span className="text-muted-foreground">Dominante</span>
+            <span className="text-muted-foreground">{t.dominant}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="font-bold text-foreground">VI</span>
             <span className="text-muted-foreground">-</span>
             <span className="font-semibold" style={{ color: '#8b1a1a' }}>SPD</span>
-            <span className="text-muted-foreground">Superdominante</span>
+            <span className="text-muted-foreground">{t.superdominant}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="font-bold text-foreground">VII</span>
             <span className="text-muted-foreground">-</span>
             <span className="font-semibold" style={{ color: '#8b1a1a' }}>S</span>
-            <span className="text-muted-foreground">Sensível</span>
+            <span className="text-muted-foreground">{t.sensible}</span>
           </div>
         </div>
       </div>
