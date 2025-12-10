@@ -24,6 +24,16 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const [selectedSub5, setSelectedSub5] = useState<number | null>(null);
   const [selectedAR, setSelectedAR] = useState<number | null>(null);
   const [noteRotation, setNoteRotation] = useState(0);
+  const [activeLayer, setActiveLayer] = useState<'antiRelativa' | 'sub5' | 'funcoes' | 'graus' | null>(null);
+
+  const toggleLayer = (layer: 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
+    setActiveLayer(activeLayer === layer ? null : layer);
+  };
+
+  const getLayerOpacity = (layer: 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
+    if (activeLayer === null) return 1;
+    return activeLayer === layer ? 1 : 0.15;
+  };
 
   const size = 580;
   const center = size / 2;
@@ -123,66 +133,31 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
 
         {/* Fixed inner layers */}
         <g style={{ transform: 'rotate(-15deg)', transformOrigin: 'center' }}>
-          {/* Degrees ring */}
-          {outerSegments.map((segment, index) => {
-            const startAngle = index * segmentAngle;
-            const endAngle = (index + 1) * segmentAngle;
-            const isSelected = selectedOuter === index;
-            const isSharp = segment.label.includes('#');
-            const textPos = getTextPosition(index, 12, (degreesOuterR + functionsOuterR) / 2);
+          {/* Degrees ring - Camada 4 Graus */}
+          <g style={{ opacity: getLayerOpacity('graus'), transition: 'opacity 0.3s ease' }}>
+            {outerSegments.map((segment, index) => {
+              const startAngle = index * segmentAngle;
+              const endAngle = (index + 1) * segmentAngle;
+              const isSelected = selectedOuter === index;
+              const isSharp = segment.label.includes('#');
+              const textPos = getTextPosition(index, 12, (degreesOuterR + functionsOuterR) / 2);
 
-            return (
-              <g key={`outer-${index}`}>
-                <path
-                  d={createArcPath(startAngle, endAngle, functionsOuterR, degreesOuterR)}
-                  fill={isSelected ? 'hsl(var(--foreground))' : isSharp ? 'hsl(var(--muted-foreground) / 0.3)' : 'hsl(var(--muted))'}
-                  stroke="hsl(var(--border))"
-                  strokeWidth="2"
-                  className="cursor-pointer transition-all duration-200 hover:brightness-110"
-                  onClick={() => setSelectedOuter(selectedOuter === index ? null : index)}
-                />
-                <text
-                  x={textPos.x}
-                  y={textPos.y}
-                  fill={isSelected ? 'hsl(var(--background))' : 'hsl(var(--foreground))'}
-                  fontSize="12"
-                  fontWeight="bold"
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
-                  className="pointer-events-none select-none"
-                >
-                  {segment.label}
-                </text>
-              </g>
-            );
-          })}
-
-          {/* Functions ring (outer) - shows non-Sub5 functions */}
-          {innerSegments.map((segment, index) => {
-            const startAngle = index * segmentAngle;
-            const endAngle = (index + 1) * segmentAngle;
-            const isSelected = selectedInner === index;
-            const isSub5 = segment.label.includes('Sub5');
-            const textPos = getTextPosition(index, 12, (functionsOuterR + functions2OuterR) / 2);
-
-            return (
-              <g key={`inner-${index}`}>
-                <path
-                  d={createArcPath(startAngle, endAngle, functions2OuterR, functionsOuterR)}
-                  fill={isSub5 ? 'transparent' : isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
-                  stroke="hsl(var(--border))"
-                  strokeWidth="2"
-                  className={isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
-                  onClick={() => !isSub5 && setSelectedInner(selectedInner === index ? null : index)}
-                />
-                {!isSub5 && (
+              return (
+                <g key={`outer-${index}`}>
+                  <path
+                    d={createArcPath(startAngle, endAngle, functionsOuterR, degreesOuterR)}
+                    fill={isSelected ? 'hsl(var(--foreground))' : isSharp ? 'hsl(var(--muted-foreground) / 0.3)' : 'hsl(var(--muted))'}
+                    stroke="hsl(var(--border))"
+                    strokeWidth="2"
+                    className="cursor-pointer transition-all duration-200 hover:brightness-110"
+                    onClick={() => setSelectedOuter(selectedOuter === index ? null : index)}
+                  />
                   <text
                     x={textPos.x}
                     y={textPos.y}
-                    fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
-                    fontSize="13"
-                    fontWeight="600"
+                    fill={isSelected ? 'hsl(var(--background))' : 'hsl(var(--foreground))'}
+                    fontSize="12"
+                    fontWeight="bold"
                     textAnchor="middle"
                     dominantBaseline="middle"
                     transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
@@ -190,94 +165,137 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   >
                     {segment.label}
                   </text>
-                )}
-              </g>
-            );
-          })}
+                </g>
+              );
+            })}
+          </g>
+
+          {/* Functions ring (outer) - Camada 3 Funções */}
+          <g style={{ opacity: getLayerOpacity('funcoes'), transition: 'opacity 0.3s ease' }}>
+            {innerSegments.map((segment, index) => {
+              const startAngle = index * segmentAngle;
+              const endAngle = (index + 1) * segmentAngle;
+              const isSelected = selectedInner === index;
+              const isSub5 = segment.label.includes('Sub5');
+              const textPos = getTextPosition(index, 12, (functionsOuterR + functions2OuterR) / 2);
+
+              return (
+                <g key={`inner-${index}`}>
+                  <path
+                    d={createArcPath(startAngle, endAngle, functions2OuterR, functionsOuterR)}
+                    fill={isSub5 ? 'transparent' : isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
+                    stroke="hsl(var(--border))"
+                    strokeWidth="2"
+                    className={isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
+                    onClick={() => !isSub5 && setSelectedInner(selectedInner === index ? null : index)}
+                  />
+                  {!isSub5 && (
+                    <text
+                      x={textPos.x}
+                      y={textPos.y}
+                      fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
+                      fontSize="13"
+                      fontWeight="600"
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
+                      className="pointer-events-none select-none"
+                    >
+                      {segment.label}
+                    </text>
+                  )}
+                </g>
+              );
+            })}
+          </g>
 
           {/* Camada 2 - Sub5 */}
-          {innerSegments.map((segment, index) => {
-            const startAngle = index * segmentAngle;
-            const endAngle = (index + 1) * segmentAngle;
-            const isSelected = selectedSub5 === index;
-            const isSub5 = segment.label.includes('Sub5');
-            const textPos = getTextPosition(index, 12, (functions2OuterR + innermostR) / 2);
+          <g style={{ opacity: getLayerOpacity('sub5'), transition: 'opacity 0.3s ease' }}>
+            {innerSegments.map((segment, index) => {
+              const startAngle = index * segmentAngle;
+              const endAngle = (index + 1) * segmentAngle;
+              const isSelected = selectedSub5 === index;
+              const isSub5 = segment.label.includes('Sub5');
+              const textPos = getTextPosition(index, 12, (functions2OuterR + innermostR) / 2);
 
-            return (
-              <g key={`innermost-${index}`}>
-                <path
-                  d={createArcPath(startAngle, endAngle, innermostR, functions2OuterR)}
-                  fill={!isSub5 ? 'transparent' : isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
-                  stroke="hsl(var(--border))"
-                  strokeWidth="2"
-                  className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
-                  onClick={() => isSub5 && setSelectedSub5(selectedSub5 === index ? null : index)}
-                />
-                {isSub5 && (
-                  <text
-                    x={textPos.x}
-                    y={textPos.y}
-                    fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
-                    fontSize="13"
-                    fontWeight="600"
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
-                    className="pointer-events-none select-none"
-                  >
-                    {segment.label}
-                  </text>
-                )}
-              </g>
-            );
-          })}
+              return (
+                <g key={`innermost-${index}`}>
+                  <path
+                    d={createArcPath(startAngle, endAngle, innermostR, functions2OuterR)}
+                    fill={!isSub5 ? 'transparent' : isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
+                    stroke="hsl(var(--border))"
+                    strokeWidth="2"
+                    className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
+                    onClick={() => isSub5 && setSelectedSub5(selectedSub5 === index ? null : index)}
+                  />
+                  {isSub5 && (
+                    <text
+                      x={textPos.x}
+                      y={textPos.y}
+                      fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
+                      fontSize="13"
+                      fontWeight="600"
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
+                      className="pointer-events-none select-none"
+                    >
+                      {segment.label}
+                    </text>
+                  )}
+                </g>
+              );
+            })}
+          </g>
 
-          {/* Camada 1 - AR (Ati relativa) */}
-          {innerSegments.map((segment, index) => {
-            const startAngle = index * segmentAngle;
-            const endAngle = (index + 1) * segmentAngle;
-            const isSelected = selectedAR === index;
-            const isSub5 = segment.label.includes('Sub5');
-            const textPos = getTextPosition(index, 12, (innermostR + innermost2R) / 2);
-            
-            // Map Sub5 labels to AR labels
-            const arLabelMap: { [key: string]: string } = {
-              'Sub5 I': 'AR II',
-              'Sub5 II': 'AR III',
-              'Sub5 IV': 'AR V',
-              'Sub5 V': 'AR VI',
-              'Sub5 VI': 'AR VII'
-            };
-            const displayLabel = arLabelMap[segment.label] || segment.label;
+          {/* Camada 1 - AR (Anti relativa) */}
+          <g style={{ opacity: getLayerOpacity('antiRelativa'), transition: 'opacity 0.3s ease' }}>
+            {innerSegments.map((segment, index) => {
+              const startAngle = index * segmentAngle;
+              const endAngle = (index + 1) * segmentAngle;
+              const isSelected = selectedAR === index;
+              const isSub5 = segment.label.includes('Sub5');
+              const textPos = getTextPosition(index, 12, (innermostR + innermost2R) / 2);
+              
+              // Map Sub5 labels to AR labels
+              const arLabelMap: { [key: string]: string } = {
+                'Sub5 I': 'AR II',
+                'Sub5 II': 'AR III',
+                'Sub5 IV': 'AR V',
+                'Sub5 V': 'AR VI',
+                'Sub5 VI': 'AR VII'
+              };
+              const displayLabel = arLabelMap[segment.label] || segment.label;
 
-            return (
-              <g key={`ar-${index}`}>
-                <path
-                  d={createArcPath(startAngle, endAngle, innermost2R, innermostR)}
-                  fill={!isSub5 ? 'transparent' : isSelected ? '#2b6d4c' : '#808080'}
-                  stroke="hsl(var(--border))"
-                  strokeWidth="2"
-                  className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
-                  onClick={() => isSub5 && setSelectedAR(selectedAR === index ? null : index)}
-                />
-                {isSub5 && (
-                  <text
-                    x={textPos.x}
-                    y={textPos.y}
-                    fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
-                    fontSize="13"
-                    fontWeight="600"
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
-                    className="pointer-events-none select-none"
-                  >
-                    {displayLabel}
-                  </text>
-                )}
-              </g>
-            );
-          })}
+              return (
+                <g key={`ar-${index}`}>
+                  <path
+                    d={createArcPath(startAngle, endAngle, innermost2R, innermostR)}
+                    fill={!isSub5 ? 'transparent' : isSelected ? '#2b6d4c' : '#808080'}
+                    stroke="hsl(var(--border))"
+                    strokeWidth="2"
+                    className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
+                    onClick={() => isSub5 && setSelectedAR(selectedAR === index ? null : index)}
+                  />
+                  {isSub5 && (
+                    <text
+                      x={textPos.x}
+                      y={textPos.y}
+                      fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
+                      fontSize="13"
+                      fontWeight="600"
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
+                      className="pointer-events-none select-none"
+                    >
+                      {displayLabel}
+                    </text>
+                  )}
+                </g>
+              );
+            })}
+          </g>
         </g>
 
         {/* Center circle */}
@@ -303,8 +321,52 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
         </text>
       </svg>
 
+      {/* Layer toggle buttons */}
+      <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
+        <button
+          onClick={() => toggleLayer('antiRelativa')}
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+            activeLayer === 'antiRelativa' 
+              ? 'bg-primary text-primary-foreground' 
+              : 'bg-muted text-muted-foreground hover:bg-muted/80'
+          }`}
+        >
+          Anti Relativa
+        </button>
+        <button
+          onClick={() => toggleLayer('sub5')}
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+            activeLayer === 'sub5' 
+              ? 'bg-primary text-primary-foreground' 
+              : 'bg-muted text-muted-foreground hover:bg-muted/80'
+          }`}
+        >
+          Sub5
+        </button>
+        <button
+          onClick={() => toggleLayer('funcoes')}
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+            activeLayer === 'funcoes' 
+              ? 'bg-primary text-primary-foreground' 
+              : 'bg-muted text-muted-foreground hover:bg-muted/80'
+          }`}
+        >
+          Funções
+        </button>
+        <button
+          onClick={() => toggleLayer('graus')}
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+            activeLayer === 'graus' 
+              ? 'bg-primary text-primary-foreground' 
+              : 'bg-muted text-muted-foreground hover:bg-muted/80'
+          }`}
+        >
+          Graus
+        </button>
+      </div>
+
       {/* Rotation controls */}
-      <div className="flex items-center gap-4 mt-6">
+      <div className="flex items-center gap-4 mt-4">
         <button
           onClick={() => rotateNotes('left')}
           className="p-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all active:scale-95"
