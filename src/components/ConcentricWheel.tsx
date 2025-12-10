@@ -20,12 +20,12 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const [selectedInner, setSelectedInner] = useState<number | null>(null);
   const [rotation, setRotation] = useState(0);
 
-  const size = 400;
+  const size = 520;
   const center = size / 2;
-  const outerRadius = 190;
-  const middleRadius = 140;
-  const innerRadius = 90;
-  const centerRadius = 50;
+  const outerRadius = 247;
+  const middleRadius = 182;
+  const innerRadius = 117;
+  const centerRadius = 65;
 
   const createArcPath = (
     startAngle: number,
