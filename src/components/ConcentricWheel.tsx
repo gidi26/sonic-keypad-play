@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface WheelSegment {
   label: string;
@@ -8,23 +9,26 @@ interface WheelSegment {
 interface ConcentricWheelProps {
   outerSegments: WheelSegment[];
   innerSegments: WheelSegment[];
+  noteSegments: WheelSegment[];
   centerLabel?: string;
 }
 
 const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   outerSegments,
   innerSegments,
+  noteSegments,
   centerLabel = "HF"
 }) => {
   const [selectedOuter, setSelectedOuter] = useState<number | null>(null);
   const [selectedInner, setSelectedInner] = useState<number | null>(null);
-  const [rotation, setRotation] = useState(0);
+  const [noteRotation, setNoteRotation] = useState(0);
 
-  const size = 520;
+  const size = 580;
   const center = size / 2;
-  const outerRadius = 247;
-  const middleRadius = 182;
-  const innerRadius = 117;
+  const noteRadius = 280;
+  const outerRadius = 230;
+  const middleRadius = 175;
+  const innerRadius = 120;
   const centerRadius = 65;
 
   const createArcPath = (
@@ -62,82 +66,122 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
 
   const segmentAngle = 360 / 12;
 
+  const rotateNotes = (direction: 'left' | 'right') => {
+    setNoteRotation(prev => prev + (direction === 'left' ? -30 : 30));
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center p-8">
+    <div className="flex flex-col items-center justify-center p-4">
       <svg
         width={size}
         height={size}
         viewBox={`0 0 ${size} ${size}`}
         className="drop-shadow-2xl"
-        style={{ transform: `rotate(${rotation - 15}deg)`, transition: 'transform 0.3s ease-out' }}
       >
-        {/* Outer ring segments */}
-        {outerSegments.map((segment, index) => {
-          const startAngle = index * segmentAngle;
-          const endAngle = (index + 1) * segmentAngle;
-          const isSelected = selectedOuter === index;
-          const textPos = getTextPosition(index, 12, (outerRadius + middleRadius) / 2);
+        {/* Notes ring (rotatable) */}
+        <g style={{ transform: `rotate(${noteRotation - 15}deg)`, transformOrigin: 'center', transition: 'transform 0.3s ease-out' }}>
+          {noteSegments.map((segment, index) => {
+            const startAngle = index * segmentAngle;
+            const endAngle = (index + 1) * segmentAngle;
+            const textPos = getTextPosition(index, 12, (noteRadius + outerRadius) / 2);
 
-          return (
-            <g key={`outer-${index}`}>
-              <path
-                d={createArcPath(startAngle, endAngle, middleRadius, outerRadius)}
-                fill={isSelected ? 'hsl(var(--primary))' : 'hsl(var(--muted))'}
-                stroke="hsl(var(--border))"
-                strokeWidth="2"
-                className="cursor-pointer transition-all duration-200 hover:brightness-110"
-                onClick={() => setSelectedOuter(selectedOuter === index ? null : index)}
-              />
-              <text
-                x={textPos.x}
-                y={textPos.y}
-                fill={isSelected ? 'hsl(var(--primary-foreground))' : 'hsl(var(--foreground))'}
-                fontSize="11"
-                fontWeight="bold"
-                textAnchor="middle"
-                dominantBaseline="middle"
-                transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
-                className="pointer-events-none select-none"
-              >
-                {segment.label}
-              </text>
-            </g>
-          );
-        })}
+            return (
+              <g key={`note-${index}`}>
+                <path
+                  d={createArcPath(startAngle, endAngle, outerRadius, noteRadius)}
+                  fill="hsl(var(--primary))"
+                  stroke="hsl(var(--background))"
+                  strokeWidth="2"
+                  className="cursor-grab active:cursor-grabbing"
+                />
+                <text
+                  x={textPos.x}
+                  y={textPos.y}
+                  fill="hsl(var(--primary-foreground))"
+                  fontSize="14"
+                  fontWeight="bold"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
+                  className="pointer-events-none select-none"
+                >
+                  {segment.label}
+                </text>
+              </g>
+            );
+          })}
+        </g>
 
-        {/* Inner ring segments */}
-        {innerSegments.map((segment, index) => {
-          const startAngle = index * segmentAngle;
-          const endAngle = (index + 1) * segmentAngle;
-          const isSelected = selectedInner === index;
-          const textPos = getTextPosition(index, 12, (middleRadius + innerRadius) / 2);
+        {/* Fixed inner layers */}
+        <g style={{ transform: 'rotate(-15deg)', transformOrigin: 'center' }}>
+          {/* Degrees ring (outer fixed) */}
+          {outerSegments.map((segment, index) => {
+            const startAngle = index * segmentAngle;
+            const endAngle = (index + 1) * segmentAngle;
+            const isSelected = selectedOuter === index;
+            const textPos = getTextPosition(index, 12, (outerRadius + middleRadius) / 2);
 
-          return (
-            <g key={`inner-${index}`}>
-              <path
-                d={createArcPath(startAngle, endAngle, innerRadius, middleRadius)}
-                fill={isSelected ? 'hsl(330, 80%, 50%)' : 'hsl(var(--accent))'}
-                stroke="hsl(var(--border))"
-                strokeWidth="2"
-                className="cursor-pointer transition-all duration-200 hover:brightness-110"
-                onClick={() => setSelectedInner(selectedInner === index ? null : index)}
-              />
-              <text
-                x={textPos.x}
-                y={textPos.y}
-                fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
-                fontSize="10"
-                fontWeight="600"
-                textAnchor="middle"
-                dominantBaseline="middle"
-                transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
-                className="pointer-events-none select-none"
-              >
-                {segment.label}
-              </text>
-            </g>
-          );
-        })}
+            return (
+              <g key={`outer-${index}`}>
+                <path
+                  d={createArcPath(startAngle, endAngle, middleRadius, outerRadius)}
+                  fill={isSelected ? 'hsl(var(--foreground))' : 'hsl(var(--muted))'}
+                  stroke="hsl(var(--border))"
+                  strokeWidth="2"
+                  className="cursor-pointer transition-all duration-200 hover:brightness-110"
+                  onClick={() => setSelectedOuter(selectedOuter === index ? null : index)}
+                />
+                <text
+                  x={textPos.x}
+                  y={textPos.y}
+                  fill={isSelected ? 'hsl(var(--background))' : 'hsl(var(--foreground))'}
+                  fontSize="13"
+                  fontWeight="bold"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
+                  className="pointer-events-none select-none"
+                >
+                  {segment.label}
+                </text>
+              </g>
+            );
+          })}
+
+          {/* Functions ring (inner fixed) */}
+          {innerSegments.map((segment, index) => {
+            const startAngle = index * segmentAngle;
+            const endAngle = (index + 1) * segmentAngle;
+            const isSelected = selectedInner === index;
+            const textPos = getTextPosition(index, 12, (middleRadius + innerRadius) / 2);
+
+            return (
+              <g key={`inner-${index}`}>
+                <path
+                  d={createArcPath(startAngle, endAngle, innerRadius, middleRadius)}
+                  fill={isSelected ? 'hsl(330, 80%, 50%)' : 'hsl(var(--accent))'}
+                  stroke="hsl(var(--border))"
+                  strokeWidth="2"
+                  className="cursor-pointer transition-all duration-200 hover:brightness-110"
+                  onClick={() => setSelectedInner(selectedInner === index ? null : index)}
+                />
+                <text
+                  x={textPos.x}
+                  y={textPos.y}
+                  fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
+                  fontSize="11"
+                  fontWeight="600"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
+                  className="pointer-events-none select-none"
+                >
+                  {segment.label}
+                </text>
+              </g>
+            );
+          })}
+        </g>
 
         {/* Center circle */}
         <circle
@@ -160,30 +204,37 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
         >
           {centerLabel}
         </text>
-
-        {/* Outer decorative ring */}
-        <circle
-          cx={center}
-          cy={center}
-          r={outerRadius + 5}
-          fill="none"
-          stroke="hsl(var(--muted-foreground))"
-          strokeWidth="3"
-          strokeDasharray="8 4"
-          opacity="0.5"
-        />
       </svg>
 
+      {/* Rotation controls */}
+      <div className="flex items-center gap-4 mt-6">
+        <button
+          onClick={() => rotateNotes('left')}
+          className="p-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all active:scale-95"
+          aria-label="Girar para esquerda"
+        >
+          <ChevronLeft size={24} />
+        </button>
+        <span className="text-sm font-medium text-muted-foreground">Girar tonalidade</span>
+        <button
+          onClick={() => rotateNotes('right')}
+          className="p-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all active:scale-95"
+          aria-label="Girar para direita"
+        >
+          <ChevronRight size={24} />
+        </button>
+      </div>
+
       {/* Selection info */}
-      <div className="mt-6 text-center space-y-2">
+      <div className="mt-4 text-center space-y-2">
         {selectedOuter !== null && (
           <p className="text-sm font-medium">
-            Camada externa: <span className="text-primary">{outerSegments[selectedOuter].label}</span>
+            Grau: <span className="text-primary">{outerSegments[selectedOuter].label}</span>
           </p>
         )}
         {selectedInner !== null && (
           <p className="text-sm font-medium">
-            Camada interna: <span className="text-pink-500">{innerSegments[selectedInner].label}</span>
+            Função: <span className="text-pink-500">{innerSegments[selectedInner].label}</span>
           </p>
         )}
       </div>
