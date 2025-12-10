@@ -26,10 +26,11 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const size = 580;
   const center = size / 2;
   const noteRadius = 280;
-  const outerRadius = 230;
-  const middleRadius = 175;
-  const innerRadius = 120;
-  const centerRadius = 65;
+  const degreesOuterR = 240;
+  const functionsOuterR = 200;
+  const functions2OuterR = 160;
+  const innermostR = 120;
+  const centerRadius = 55;
 
   const createArcPath = (
     startAngle: number,
@@ -83,12 +84,12 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           {noteSegments.map((segment, index) => {
             const startAngle = index * segmentAngle;
             const endAngle = (index + 1) * segmentAngle;
-            const textPos = getTextPosition(index, 12, (noteRadius + outerRadius) / 2);
+            const textPos = getTextPosition(index, 12, (noteRadius + degreesOuterR) / 2);
 
             return (
               <g key={`note-${index}`}>
                 <path
-                  d={createArcPath(startAngle, endAngle, outerRadius, noteRadius)}
+                  d={createArcPath(startAngle, endAngle, degreesOuterR, noteRadius)}
                   fill="hsl(var(--primary))"
                   stroke="hsl(var(--background))"
                   strokeWidth="2"
@@ -114,18 +115,18 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
 
         {/* Fixed inner layers */}
         <g style={{ transform: 'rotate(-15deg)', transformOrigin: 'center' }}>
-          {/* Degrees ring (outer fixed) */}
+          {/* Degrees ring */}
           {outerSegments.map((segment, index) => {
             const startAngle = index * segmentAngle;
             const endAngle = (index + 1) * segmentAngle;
             const isSelected = selectedOuter === index;
             const isSharp = segment.label.includes('#');
-            const textPos = getTextPosition(index, 12, (outerRadius + middleRadius) / 2);
+            const textPos = getTextPosition(index, 12, (degreesOuterR + functionsOuterR) / 2);
 
             return (
               <g key={`outer-${index}`}>
                 <path
-                  d={createArcPath(startAngle, endAngle, middleRadius, outerRadius)}
+                  d={createArcPath(startAngle, endAngle, functionsOuterR, degreesOuterR)}
                   fill={isSelected ? 'hsl(var(--foreground))' : isSharp ? 'hsl(var(--muted-foreground) / 0.3)' : 'hsl(var(--muted))'}
                   stroke="hsl(var(--border))"
                   strokeWidth="2"
@@ -136,7 +137,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   x={textPos.x}
                   y={textPos.y}
                   fill={isSelected ? 'hsl(var(--background))' : 'hsl(var(--foreground))'}
-                  fontSize="13"
+                  fontSize="12"
                   fontWeight="bold"
                   textAnchor="middle"
                   dominantBaseline="middle"
@@ -149,17 +150,17 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             );
           })}
 
-          {/* Functions ring (inner fixed) */}
+          {/* Functions ring (outer) */}
           {innerSegments.map((segment, index) => {
             const startAngle = index * segmentAngle;
             const endAngle = (index + 1) * segmentAngle;
             const isSelected = selectedInner === index;
-            const textPos = getTextPosition(index, 12, (middleRadius + innerRadius) / 2);
+            const textPos = getTextPosition(index, 12, (functionsOuterR + functions2OuterR) / 2);
 
             return (
               <g key={`inner-${index}`}>
                 <path
-                  d={createArcPath(startAngle, endAngle, innerRadius, middleRadius)}
+                  d={createArcPath(startAngle, endAngle, functions2OuterR, functionsOuterR)}
                   fill={isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
                   stroke="hsl(var(--border))"
                   strokeWidth="2"
@@ -170,7 +171,41 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   x={textPos.x}
                   y={textPos.y}
                   fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
-                  fontSize="11"
+                  fontSize="10"
+                  fontWeight="600"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
+                  className="pointer-events-none select-none"
+                >
+                  {segment.label}
+                </text>
+              </g>
+            );
+          })}
+
+          {/* Functions ring (inner duplicate) */}
+          {innerSegments.map((segment, index) => {
+            const startAngle = index * segmentAngle;
+            const endAngle = (index + 1) * segmentAngle;
+            const isSelected = selectedInner === index;
+            const textPos = getTextPosition(index, 12, (functions2OuterR + innermostR) / 2);
+
+            return (
+              <g key={`innermost-${index}`}>
+                <path
+                  d={createArcPath(startAngle, endAngle, innermostR, functions2OuterR)}
+                  fill={isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
+                  stroke="hsl(var(--border))"
+                  strokeWidth="2"
+                  className="cursor-pointer transition-all duration-200 hover:brightness-110"
+                  onClick={() => setSelectedInner(selectedInner === index ? null : index)}
+                />
+                <text
+                  x={textPos.x}
+                  y={textPos.y}
+                  fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
+                  fontSize="10"
                   fontWeight="600"
                   textAnchor="middle"
                   dominantBaseline="middle"
