@@ -111,7 +111,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               <g key={`note-${index}`}>
                 <path
                   d={createArcPath(startAngle, endAngle, noteInnerRadius, noteRadius)}
-                  fill={isTonicPosition ? '#ffffff' : 'hsl(var(--primary))'}
+                  fill={isTonicPosition ? '#ffffff' : '#230912'}
                   stroke="#771621"
                   strokeWidth={4}
                   strokeOpacity={0}
