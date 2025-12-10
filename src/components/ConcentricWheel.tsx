@@ -306,34 +306,32 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
 
           {/* Camada 1 - Relativa */}
           <g style={{ opacity: getLayerOpacity('relativa'), transition: 'opacity 0.3s ease' }}>
-            {innerSegments.map((segment, index) => {
+            {Array.from({ length: 12 }).map((_, index) => {
               const startAngle = index * segmentAngle;
               const endAngle = (index + 1) * segmentAngle;
               const isSelected = selectedAR2 === index;
-              const isSub5 = segment.label.includes('Sub5');
               const textPos = getTextPosition(index, 12, (innermost2R + innermost3R) / 2);
               
-              // Map Sub5 labels to AR2 labels
-              const ar2LabelMap: { [key: string]: string } = {
-                'Sub5 I': 'AR2 II',
-                'Sub5 II': 'AR2 III',
-                'Sub5 IV': 'AR2 V',
-                'Sub5 V': 'AR2 VI',
-                'Sub5 VI': 'AR2 VII'
+              // Elements 3, 4, 10 (indices 2, 3, 9) have content
+              const relativaLabelMap: { [key: number]: string } = {
+                2: 'R IV',
+                3: 'R V',
+                9: 'R I'
               };
-              const displayLabel = ar2LabelMap[segment.label] || segment.label;
+              const hasContent = [2, 3, 9].includes(index);
+              const displayLabel = relativaLabelMap[index] || '';
 
               return (
-                <g key={`ar2-${index}`}>
+                <g key={`relativa-${index}`}>
                   <path
                     d={createArcPath(startAngle, endAngle, innermost3R, innermost2R)}
-                    fill={!isSub5 ? '#230912' : isSelected ? '#ca35b2' : '#3a2627'}
+                    fill={hasContent ? (isSelected ? '#ca35b2' : '#3a2627') : '#230912'}
                     stroke="#210a12"
                     strokeWidth="4"
-                    className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
-                    onClick={() => isSub5 && setSelectedAR2(selectedAR2 === index ? null : index)}
+                    className={hasContent ? 'cursor-pointer transition-all duration-200 hover:brightness-110' : ''}
+                    onClick={() => hasContent && setSelectedAR2(selectedAR2 === index ? null : index)}
                   />
-                  {isSub5 && (
+                  {hasContent && (
                     <text
                       x={textPos.x}
                       y={textPos.y}
