@@ -425,7 +425,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
         >
           <ChevronLeft size={24} />
         </button>
-        <span className="text-sm font-medium text-muted-foreground">Girar tonalidade</span>
+        <span className="text-sm font-medium text-white">Girar tonalidade</span>
         <button
           onClick={() => rotateNotes('right')}
           className="p-3 rounded-full bg-[#230912] text-white hover:bg-[#230912]/90 transition-all active:scale-95"
@@ -435,19 +435,6 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
         </button>
       </div>
 
-      {/* Selection info */}
-      <div className="mt-4 text-center space-y-2">
-        {selectedOuter !== null && (
-          <p className="text-sm font-medium">
-            Grau: <span className="text-primary">{outerSegments[selectedOuter].label}</span>
-          </p>
-        )}
-        {selectedInner !== null && (
-          <p className="text-sm font-medium">
-            Função: <span style={{ color: '#8b1a1a' }}>{innerSegments[selectedInner].label}</span>
-          </p>
-        )}
-      </div>
 
       {/* Functions legend */}
       <div className="mt-6 p-4 bg-card border border-border rounded-lg max-w-md">
