@@ -155,31 +155,34 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             const startAngle = index * segmentAngle;
             const endAngle = (index + 1) * segmentAngle;
             const isSelected = selectedInner === index;
+            const isSub5 = segment.label.includes('Sub5');
             const textPos = getTextPosition(index, 12, (functionsOuterR + functions2OuterR) / 2);
 
             return (
               <g key={`inner-${index}`}>
                 <path
                   d={createArcPath(startAngle, endAngle, functions2OuterR, functionsOuterR)}
-                  fill={isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
+                  fill={isSub5 ? 'hsl(var(--background))' : isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
                   stroke="hsl(var(--border))"
                   strokeWidth="2"
                   className="cursor-pointer transition-all duration-200 hover:brightness-110"
-                  onClick={() => setSelectedInner(selectedInner === index ? null : index)}
+                  onClick={() => !isSub5 && setSelectedInner(selectedInner === index ? null : index)}
                 />
-                <text
-                  x={textPos.x}
-                  y={textPos.y}
-                  fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
-                  fontSize="10"
-                  fontWeight="600"
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
-                  className="pointer-events-none select-none"
-                >
-                  {segment.label}
-                </text>
+                {!isSub5 && (
+                  <text
+                    x={textPos.x}
+                    y={textPos.y}
+                    fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
+                    fontSize="10"
+                    fontWeight="600"
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
+                    className="pointer-events-none select-none"
+                  >
+                    {segment.label}
+                  </text>
+                )}
               </g>
             );
           })}
