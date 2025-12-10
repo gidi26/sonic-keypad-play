@@ -276,7 +276,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
         )}
         {selectedInner !== null && (
           <p className="text-sm font-medium">
-            Função: <span style={{ color: '#56da97' }}>{innerSegments[selectedInner].label}</span>
+            Função: <span style={{ color: '#8b1a1a' }}>{innerSegments[selectedInner].label}</span>
           </p>
         )}
       </div>
@@ -286,51 +286,31 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
         <h3 className="text-sm font-bold text-foreground mb-3 text-center">Legenda - Funções Harmônicas</h3>
         <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-sm">
           <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>T</span>
+            <span className="font-semibold" style={{ color: '#8b1a1a' }}>T</span>
             <span className="text-muted-foreground">Tônica</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>Sub5 I</span>
-            <span className="text-muted-foreground">-</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>ST</span>
+            <span className="font-semibold" style={{ color: '#8b1a1a' }}>ST</span>
             <span className="text-muted-foreground">Supertônica</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>Sub5 II</span>
-            <span className="text-muted-foreground">-</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>MD</span>
+            <span className="font-semibold" style={{ color: '#8b1a1a' }}>MD</span>
             <span className="text-muted-foreground">Mediante</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>SD</span>
+            <span className="font-semibold" style={{ color: '#8b1a1a' }}>SD</span>
             <span className="text-muted-foreground">Subdominante</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>Sub5 IV</span>
-            <span className="text-muted-foreground">-</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>D</span>
+            <span className="font-semibold" style={{ color: '#8b1a1a' }}>D</span>
             <span className="text-muted-foreground">Dominante</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>Sub5 V</span>
-            <span className="text-muted-foreground">-</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>SPD</span>
+            <span className="font-semibold" style={{ color: '#8b1a1a' }}>SPD</span>
             <span className="text-muted-foreground">Superdominante</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>Sub5 VI</span>
-            <span className="text-muted-foreground">-</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>S</span>
+            <span className="font-semibold" style={{ color: '#8b1a1a' }}>S</span>
             <span className="text-muted-foreground">Sensível</span>
           </div>
         </div>
