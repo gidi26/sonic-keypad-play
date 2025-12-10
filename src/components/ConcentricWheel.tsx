@@ -225,13 +225,23 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             );
           })}
 
-          {/* Duplicated Sub5 functions ring */}
+          {/* Duplicated Sub5 functions ring - shows AR labels */}
           {innerSegments.map((segment, index) => {
             const startAngle = index * segmentAngle;
             const endAngle = (index + 1) * segmentAngle;
             const isSelected = selectedInner === index;
             const isSub5 = segment.label.includes('Sub5');
             const textPos = getTextPosition(index, 12, (innermostR + innermost2R) / 2);
+            
+            // Map Sub5 labels to AR labels
+            const arLabelMap: { [key: string]: string } = {
+              'Sub5 I': 'AR II',
+              'Sub5 II': 'AR III',
+              'Sub5 IV': 'AR V',
+              'Sub5 V': 'AR VI',
+              'Sub5 VI': 'AR VII'
+            };
+            const displayLabel = arLabelMap[segment.label] || segment.label;
 
             return (
               <g key={`duplicated-sub5-${index}`}>
@@ -255,7 +265,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
                     className="pointer-events-none select-none"
                   >
-                    {segment.label}
+                    {displayLabel}
                   </text>
                 )}
               </g>
