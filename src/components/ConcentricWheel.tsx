@@ -154,7 +154,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   <path
                     d={createArcPath(startAngle, endAngle, functionsOuterR, degreesOuterR)}
                     fill={isSelected ? '#ca35b2' : isSharp ? '#4d3334' : '#6b4a4c'}
-                    stroke="#210a12"
+                    stroke="#37232a"
                     strokeWidth="4"
                     className="cursor-pointer transition-all duration-200 hover:brightness-110"
                     onClick={() => setSelectedOuter(selectedOuter === index ? null : index)}
@@ -191,7 +191,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   <path
                     d={createArcPath(startAngle, endAngle, functions2OuterR, functionsOuterR)}
                     fill={isSub5 ? 'transparent' : isSelected ? '#ca35b2' : '#3a2627'}
-                    stroke="#210a12"
+                    stroke="#37232a"
                     strokeWidth="4"
                     className={isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
                     onClick={() => !isSub5 && setSelectedInner(selectedInner === index ? null : index)}
@@ -230,7 +230,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   <path
                     d={createArcPath(startAngle, endAngle, innermostR, functions2OuterR)}
                     fill={!isSub5 ? 'transparent' : isSelected ? '#ca35b2' : '#3a2627'}
-                    stroke="#210a12"
+                    stroke="#37232a"
                     strokeWidth="4"
                     className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
                     onClick={() => isSub5 && setSelectedSub5(selectedSub5 === index ? null : index)}
@@ -279,7 +279,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   <path
                     d={createArcPath(startAngle, endAngle, innermost2R, innermostR)}
                     fill={!isSub5 ? 'transparent' : isSelected ? '#ca35b2' : '#3a2627'}
-                    stroke="#210a12"
+                    stroke="#37232a"
                     strokeWidth="4"
                     className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
                     onClick={() => isSub5 && setSelectedAR(selectedAR === index ? null : index)}
@@ -326,7 +326,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   <path
                     d={createArcPath(startAngle, endAngle, innermost3R, innermost2R)}
                     fill={hasContent ? (isSelected ? '#ca35b2' : '#3a2627') : 'transparent'}
-                    stroke="#210a12"
+                    stroke="#37232a"
                     strokeWidth="4"
                     className={hasContent ? 'cursor-pointer transition-all duration-200 hover:brightness-110' : ''}
                     onClick={() => hasContent && setSelectedAR2(selectedAR2 === index ? null : index)}
