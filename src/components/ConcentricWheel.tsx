@@ -98,7 +98,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
         {/* Notes ring (rotatable) */}
         <g style={{ transform: `rotate(${noteRotation - 15}deg)`, transformOrigin: 'center', transition: 'transform 0.3s ease-out' }}>
           {noteSegments.map((segment, index) => {
-            const gapAngle = 3; // Gap between segments in degrees
+            const gapAngle = 1.5; // Gap between segments in degrees
             const startAngle = index * segmentAngle + gapAngle / 2;
             const endAngle = (index + 1) * segmentAngle - gapAngle / 2;
             const textPos = getTextPosition(index, 12, (noteRadius + noteInnerRadius) / 2);
