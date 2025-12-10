@@ -249,7 +249,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               <g key={`ar-${index}`}>
                 <path
                   d={createArcPath(startAngle, endAngle, innermost2R, innermostR)}
-                  fill={!isSub5 ? 'transparent' : isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
+                  fill={!isSub5 ? 'transparent' : isSelected ? 'hsl(var(--muted-foreground))' : 'hsl(var(--accent))'}
                   stroke="hsl(var(--border))"
                   strokeWidth="2"
                   className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
