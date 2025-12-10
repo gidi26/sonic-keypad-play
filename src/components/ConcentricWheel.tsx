@@ -88,20 +88,25 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             const startAngle = index * segmentAngle;
             const endAngle = (index + 1) * segmentAngle;
             const textPos = getTextPosition(index, 12, (noteRadius + degreesOuterR) / 2);
+            
+            // Calculate if this note is in the tonic position (top of wheel)
+            const normalizedRotation = (((-noteRotation + 15) % 360) + 360) % 360;
+            const tonicIndex = Math.round(normalizedRotation / 30) % 12;
+            const isTonicPosition = index === tonicIndex;
 
             return (
               <g key={`note-${index}`}>
                 <path
                   d={createArcPath(startAngle, endAngle, degreesOuterR, noteRadius)}
-                  fill="hsl(var(--primary))"
-                  stroke="hsl(var(--background))"
-                  strokeWidth="2"
+                  fill={isTonicPosition ? '#ffffff' : '#230912'}
+                  stroke={isTonicPosition ? '#230912' : 'hsl(var(--background))'}
+                  strokeWidth={isTonicPosition ? 3 : 2}
                   className="cursor-grab active:cursor-grabbing"
                 />
                 <text
                   x={textPos.x}
                   y={textPos.y}
-                  fill="hsl(var(--primary-foreground))"
+                  fill={isTonicPosition ? '#230912' : 'hsl(var(--primary-foreground))'}
                   fontSize="14"
                   fontWeight="bold"
                   textAnchor="middle"
