@@ -90,12 +90,10 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-4">
+    <div className="flex flex-col items-center justify-center p-2 md:p-4 w-full max-w-full overflow-hidden">
       <svg
-        width={size}
-        height={size}
         viewBox={`0 0 ${size} ${size}`}
-        className="drop-shadow-2xl"
+        className="drop-shadow-2xl w-full max-w-[650px] h-auto"
       >
         {/* Notes ring (rotatable) */}
         <g style={{ transform: `rotate(${noteRotation - 15}deg)`, transformOrigin: 'center', transition: 'transform 0.3s ease-out' }}>
