@@ -119,13 +119,14 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             const startAngle = index * segmentAngle;
             const endAngle = (index + 1) * segmentAngle;
             const isSelected = selectedOuter === index;
+            const isSharp = segment.label.includes('#');
             const textPos = getTextPosition(index, 12, (outerRadius + middleRadius) / 2);
 
             return (
               <g key={`outer-${index}`}>
                 <path
                   d={createArcPath(startAngle, endAngle, middleRadius, outerRadius)}
-                  fill={isSelected ? 'hsl(var(--foreground))' : 'hsl(var(--muted))'}
+                  fill={isSelected ? 'hsl(var(--foreground))' : isSharp ? 'hsl(var(--muted-foreground) / 0.3)' : 'hsl(var(--muted))'}
                   stroke="hsl(var(--border))"
                   strokeWidth="2"
                   className="cursor-pointer transition-all duration-200 hover:brightness-110"
