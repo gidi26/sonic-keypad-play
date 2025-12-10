@@ -21,6 +21,21 @@ const HarmoniaFuncional: React.FC = () => {
     }
   }, [isDark]);
 
+  const noteSegments = [
+    { label: 'C' },
+    { label: 'C#' },
+    { label: 'D' },
+    { label: 'D#' },
+    { label: 'E' },
+    { label: 'F' },
+    { label: 'F#' },
+    { label: 'G' },
+    { label: 'G#' },
+    { label: 'A' },
+    { label: 'A#' },
+    { label: 'B' },
+  ];
+
   const outerSegments = [
     { label: 'I' },
     { label: 'bII' },
@@ -98,6 +113,7 @@ const HarmoniaFuncional: React.FC = () => {
             <ConcentricWheel
               outerSegments={outerSegments}
               innerSegments={innerSegments}
+              noteSegments={noteSegments}
               centerLabel="HF"
             />
           </main>
