@@ -25,13 +25,13 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const [selectedAR, setSelectedAR] = useState<number | null>(null);
   const [selectedAR2, setSelectedAR2] = useState<number | null>(null);
   const [noteRotation, setNoteRotation] = useState(0);
-  const [activeLayer, setActiveLayer] = useState<'antiRelativa' | 'sub5' | 'funcoes' | 'graus' | null>(null);
+  const [activeLayer, setActiveLayer] = useState<'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus' | null>(null);
 
-  const toggleLayer = (layer: 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
+  const toggleLayer = (layer: 'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
     setActiveLayer(activeLayer === layer ? null : layer);
   };
 
-  const getLayerOpacity = (layer: 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
+  const getLayerOpacity = (layer: 'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
     if (activeLayer === null) return 1;
     // Graus layer always stays visible
     if (layer === 'graus') return 1;
@@ -304,8 +304,8 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             })}
           </g>
 
-          {/* Camada 0 - AR2 (Anti relativa 2) */}
-          <g style={{ opacity: getLayerOpacity('antiRelativa'), transition: 'opacity 0.3s ease' }}>
+          {/* Camada 1 - Relativa */}
+          <g style={{ opacity: getLayerOpacity('relativa'), transition: 'opacity 0.3s ease' }}>
             {innerSegments.map((segment, index) => {
               const startAngle = index * segmentAngle;
               const endAngle = (index + 1) * segmentAngle;
@@ -388,6 +388,16 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           }`}
         >
           Full
+        </button>
+        <button
+          onClick={() => toggleLayer('relativa')}
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+            activeLayer === 'relativa' 
+              ? 'bg-primary text-primary-foreground' 
+              : 'bg-muted text-muted-foreground hover:bg-muted/80'
+          }`}
+        >
+          Relativa
         </button>
         <button
           onClick={() => toggleLayer('antiRelativa')}
