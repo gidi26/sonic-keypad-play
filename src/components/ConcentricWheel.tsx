@@ -23,30 +23,32 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const [selectedInner, setSelectedInner] = useState<number | null>(null);
   const [selectedSub5, setSelectedSub5] = useState<number | null>(null);
   const [selectedAR, setSelectedAR] = useState<number | null>(null);
+  const [selectedAR2, setSelectedAR2] = useState<number | null>(null);
   const [noteRotation, setNoteRotation] = useState(0);
-  const [activeLayer, setActiveLayer] = useState<'antiRelativa' | 'sub5' | 'funcoes' | 'graus' | null>(null);
+  const [activeLayer, setActiveLayer] = useState<'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus' | null>(null);
 
-  const toggleLayer = (layer: 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
+  const toggleLayer = (layer: 'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
     setActiveLayer(activeLayer === layer ? null : layer);
   };
 
-  const getLayerOpacity = (layer: 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
+  const getLayerOpacity = (layer: 'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
     if (activeLayer === null) return 1;
     // Graus layer always stays visible
     if (layer === 'graus') return 1;
     return activeLayer === layer ? 1 : 0.15;
   };
 
-  const size = 580;
+  const size = 650;
   const center = size / 2;
-  const noteRadius = 280;
-  const noteInnerRadius = 244; // Gap between tonality and degrees layer
-  const degreesOuterR = 240;
-  const functionsOuterR = 200;
-  const functions2OuterR = 160;
-  const innermostR = 120;
-  const innermost2R = 80;
-  const centerRadius = 45;
+  const noteRadius = 315;
+  const noteInnerRadius = 279; // Gap between tonality and degrees layer
+  const degreesOuterR = 275;
+  const functionsOuterR = 230;
+  const functions2OuterR = 185;
+  const innermostR = 140;
+  const innermost2R = 95;
+  const innermost3R = 55;
+  const centerRadius = 30;
 
   const createArcPath = (
     startAngle: number,
@@ -98,8 +100,9 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
         {/* Notes ring (rotatable) */}
         <g style={{ transform: `rotate(${noteRotation - 15}deg)`, transformOrigin: 'center', transition: 'transform 0.3s ease-out' }}>
           {noteSegments.map((segment, index) => {
-            const startAngle = index * segmentAngle;
-            const endAngle = (index + 1) * segmentAngle;
+            const gapAngle = 1.5; // Gap between segments in degrees
+            const startAngle = index * segmentAngle + gapAngle / 2;
+            const endAngle = (index + 1) * segmentAngle - gapAngle / 2;
             const textPos = getTextPosition(index, 12, (noteRadius + noteInnerRadius) / 2);
             
             // Calculate if this note is in the tonic position (aligned with grade I at top)
@@ -111,7 +114,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               <g key={`note-${index}`}>
                 <path
                   d={createArcPath(startAngle, endAngle, noteInnerRadius, noteRadius)}
-                  fill={isTonicPosition ? '#ffffff' : 'hsl(var(--primary))'}
+                  fill={isTonicPosition ? '#ffffff' : '#230912'}
                   stroke="#771621"
                   strokeWidth={4}
                   strokeOpacity={0}
@@ -122,7 +125,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   y={textPos.y}
                   fill={isTonicPosition ? '#230912' : 'hsl(var(--primary-foreground))'}
                   fontSize="14"
-                  fontWeight="bold"
+                  fontWeight="400"
                   textAnchor="middle"
                   dominantBaseline="middle"
                   transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
@@ -150,7 +153,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                 <g key={`outer-${index}`}>
                   <path
                     d={createArcPath(startAngle, endAngle, functionsOuterR, degreesOuterR)}
-                    fill={isSelected ? 'hsl(var(--foreground))' : isSharp ? 'hsl(var(--muted-foreground) / 0.3)' : 'hsl(var(--muted))'}
+                    fill={isSelected ? '#ca35b2' : isSharp ? '#4d3334' : '#6b4a4c'}
                     stroke="#210a12"
                     strokeWidth="4"
                     className="cursor-pointer transition-all duration-200 hover:brightness-110"
@@ -159,9 +162,9 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   <text
                     x={textPos.x}
                     y={textPos.y}
-                    fill={isSelected ? 'hsl(var(--background))' : 'hsl(var(--foreground))'}
+                    fill={isSelected ? '#3a2627' : '#ffffff'}
                     fontSize="12"
-                    fontWeight="bold"
+                    fontWeight="400"
                     textAnchor="middle"
                     dominantBaseline="middle"
                     transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
@@ -187,7 +190,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                 <g key={`inner-${index}`}>
                   <path
                     d={createArcPath(startAngle, endAngle, functions2OuterR, functionsOuterR)}
-                    fill={isSub5 ? 'transparent' : isSelected ? '#ca35b2' : 'hsl(var(--accent))'}
+                    fill={isSub5 ? '#230912' : isSelected ? '#ca35b2' : '#3a2627'}
                     stroke="#210a12"
                     strokeWidth="4"
                     className={isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
@@ -197,9 +200,9 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     <text
                       x={textPos.x}
                       y={textPos.y}
-                      fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
+                      fill={isSelected ? '#3a2627' : '#ffffff'}
                       fontSize="13"
-                      fontWeight="600"
+                      fontWeight="400"
                       textAnchor="middle"
                       dominantBaseline="middle"
                       transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
@@ -226,7 +229,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                 <g key={`innermost-${index}`}>
                   <path
                     d={createArcPath(startAngle, endAngle, innermostR, functions2OuterR)}
-                    fill={!isSub5 ? 'transparent' : isSelected ? '#ca35b2' : 'hsl(var(--accent))'}
+                    fill={!isSub5 ? '#230912' : isSelected ? '#ca35b2' : '#3a2627'}
                     stroke="#210a12"
                     strokeWidth="4"
                     className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
@@ -236,9 +239,9 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     <text
                       x={textPos.x}
                       y={textPos.y}
-                      fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
+                      fill={isSelected ? '#3a2627' : '#ffffff'}
                       fontSize="13"
-                      fontWeight="600"
+                      fontWeight="400"
                       textAnchor="middle"
                       dominantBaseline="middle"
                       transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
@@ -275,7 +278,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                 <g key={`ar-${index}`}>
                   <path
                     d={createArcPath(startAngle, endAngle, innermost2R, innermostR)}
-                    fill={!isSub5 ? 'transparent' : isSelected ? '#ca35b2' : '#808080'}
+                    fill={!isSub5 ? '#230912' : isSelected ? '#ca35b2' : '#3a2627'}
                     stroke="#210a12"
                     strokeWidth="4"
                     className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
@@ -285,9 +288,56 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                     <text
                       x={textPos.x}
                       y={textPos.y}
-                      fill={isSelected ? 'white' : 'hsl(var(--accent-foreground))'}
+                      fill={isSelected ? '#3a2627' : '#ffffff'}
                       fontSize="13"
-                      fontWeight="600"
+                      fontWeight="400"
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
+                      className="pointer-events-none select-none"
+                    >
+                      {displayLabel}
+                    </text>
+                  )}
+                </g>
+              );
+            })}
+          </g>
+
+          {/* Camada 1 - Relativa */}
+          <g style={{ opacity: getLayerOpacity('relativa'), transition: 'opacity 0.3s ease' }}>
+            {Array.from({ length: 12 }).map((_, index) => {
+              const startAngle = index * segmentAngle;
+              const endAngle = (index + 1) * segmentAngle;
+              const isSelected = selectedAR2 === index;
+              const textPos = getTextPosition(index, 12, (innermost2R + innermost3R) / 2);
+              
+              // Elements 3, 4, 10 (indices 2, 3, 9) have content
+              const relativaLabelMap: { [key: number]: string } = {
+                2: 'R IV',
+                3: 'R V',
+                9: 'R I'
+              };
+              const hasContent = [2, 3, 9].includes(index);
+              const displayLabel = relativaLabelMap[index] || '';
+
+              return (
+                <g key={`relativa-${index}`}>
+                  <path
+                    d={createArcPath(startAngle, endAngle, innermost3R, innermost2R)}
+                    fill={hasContent ? (isSelected ? '#ca35b2' : '#3a2627') : '#230912'}
+                    stroke="#210a12"
+                    strokeWidth="4"
+                    className={hasContent ? 'cursor-pointer transition-all duration-200 hover:brightness-110' : ''}
+                    onClick={() => hasContent && setSelectedAR2(selectedAR2 === index ? null : index)}
+                  />
+                  {hasContent && (
+                    <text
+                      x={textPos.x}
+                      y={textPos.y}
+                      fill={isSelected ? '#3a2627' : '#ffffff'}
+                      fontSize="13"
+                      fontWeight="400"
                       textAnchor="middle"
                       dominantBaseline="middle"
                       transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
@@ -317,7 +367,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           y={center}
           fill="hsl(var(--foreground))"
           fontSize="18"
-          fontWeight="bold"
+          fontWeight="400"
           textAnchor="middle"
           dominantBaseline="middle"
         >
@@ -336,6 +386,16 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           }`}
         >
           Full
+        </button>
+        <button
+          onClick={() => toggleLayer('relativa')}
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+            activeLayer === 'relativa' 
+              ? 'bg-primary text-primary-foreground' 
+              : 'bg-muted text-muted-foreground hover:bg-muted/80'
+          }`}
+        >
+          Relativa
         </button>
         <button
           onClick={() => toggleLayer('antiRelativa')}
