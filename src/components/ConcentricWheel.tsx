@@ -38,15 +38,15 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
     return activeLayer === layer ? 1 : 0.15;
   };
 
-  const size = 580;
+  const size = 650;
   const center = size / 2;
-  const noteRadius = 280;
-  const noteInnerRadius = 244; // Gap between tonality and degrees layer
-  const degreesOuterR = 240;
-  const functionsOuterR = 200;
-  const functions2OuterR = 160;
-  const innermostR = 120;
-  const innermost2R = 80;
+  const noteRadius = 315;
+  const noteInnerRadius = 279; // Gap between tonality and degrees layer
+  const degreesOuterR = 275;
+  const functionsOuterR = 230;
+  const functions2OuterR = 185;
+  const innermostR = 140;
+  const innermost2R = 95;
   const innermost3R = 55;
   const centerRadius = 30;
 
