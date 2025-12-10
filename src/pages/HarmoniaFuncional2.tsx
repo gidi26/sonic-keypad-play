@@ -41,16 +41,16 @@ const HarmoniaFuncional2: React.FC = () => {
   const outerSegments = [
     { label: 'I' },
     { label: '#I' },
-    { label: 'II' },
+    { label: 'IIm' },
     { label: '#II' },
-    { label: 'III' },
+    { label: 'IIIm' },
     { label: 'IV' },
     { label: '#IV' },
-    { label: 'V' },
+    { label: 'V7' },
     { label: '#V' },
-    { label: 'VI' },
+    { label: 'VIm' },
     { label: '#VI' },
-    { label: 'VII' },
+    { label: 'VIIº' },
   ];
 
   const innerSegments = [
