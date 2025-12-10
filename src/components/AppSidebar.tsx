@@ -66,6 +66,22 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
+              {/* Orbit Menu */}
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  className={`w-full justify-between font-bold ${
+                    location.pathname === '/harmonia-funcional-2'
+                      ? 'bg-red-500 text-white hover:bg-red-600' 
+                      : 'bg-black text-white dark:bg-white dark:text-black hover:bg-red-500 hover:text-white dark:hover:bg-red-500'
+                  }`}
+                >
+                  <NavLink to="/harmonia-funcional-2">
+                    <span>{collapsed ? "ORB" : "ORBIT"}</span>
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
               <Collapsible open={mainMenuOpen} onOpenChange={setMainMenuOpen}>
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
@@ -149,22 +165,6 @@ export function AppSidebar() {
                 >
                   <NavLink to="/harmonia-funcional">
                     <span>{collapsed ? "HF" : "HARMONIA FUNCIONAL"}</span>
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-
-              {/* Orbit Menu */}
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  className={`w-full justify-between font-bold ${
-                    location.pathname === '/harmonia-funcional-2'
-                      ? 'bg-red-500 text-white hover:bg-red-600' 
-                      : 'bg-black text-white dark:bg-white dark:text-black hover:bg-red-500 hover:text-white dark:hover:bg-red-500'
-                  }`}
-                >
-                  <NavLink to="/harmonia-funcional-2">
-                    <span>{collapsed ? "ORB" : "ORBIT"}</span>
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
