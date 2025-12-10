@@ -153,7 +153,7 @@ export function AppSidebar() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
-              {/* Harmonia Funcional Menu 2 */}
+              {/* Orbit Menu */}
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
@@ -164,7 +164,7 @@ export function AppSidebar() {
                   }`}
                 >
                   <NavLink to="/harmonia-funcional-2">
-                    <span>{collapsed ? "HF2" : "HARMONIA FUNCIONAL 2"}</span>
+                    <span>{collapsed ? "ORB" : "ORBIT"}</span>
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
