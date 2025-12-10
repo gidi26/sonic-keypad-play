@@ -89,8 +89,8 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             const endAngle = (index + 1) * segmentAngle;
             const textPos = getTextPosition(index, 12, (noteRadius + degreesOuterR) / 2);
             
-            // Calculate if this note is in the tonic position (top of wheel)
-            const normalizedRotation = (((-noteRotation + 15) % 360) + 360) % 360;
+            // Calculate if this note is in the tonic position (aligned with grade I at top)
+            const normalizedRotation = (((-noteRotation) % 360) + 360) % 360;
             const tonicIndex = Math.round(normalizedRotation / 30) % 12;
             const isTonicPosition = index === tonicIndex;
 
