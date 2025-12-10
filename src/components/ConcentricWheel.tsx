@@ -150,25 +150,25 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             );
           })}
 
-          {/* Functions ring (outer) - shows non-S5 functions */}
+          {/* Functions ring (outer) - shows non-Sub5 functions */}
           {innerSegments.map((segment, index) => {
             const startAngle = index * segmentAngle;
             const endAngle = (index + 1) * segmentAngle;
             const isSelected = selectedInner === index;
-            const isS5 = segment.label.includes('S5');
+            const isSub5 = segment.label.includes('Sub5');
             const textPos = getTextPosition(index, 12, (functionsOuterR + functions2OuterR) / 2);
 
             return (
               <g key={`inner-${index}`}>
                 <path
                   d={createArcPath(startAngle, endAngle, functions2OuterR, functionsOuterR)}
-                  fill={isS5 ? 'transparent' : isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
+                  fill={isSub5 ? 'transparent' : isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
                   stroke="hsl(var(--border))"
                   strokeWidth="2"
-                  className={isS5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
-                  onClick={() => !isS5 && setSelectedInner(selectedInner === index ? null : index)}
+                  className={isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
+                  onClick={() => !isSub5 && setSelectedInner(selectedInner === index ? null : index)}
                 />
-                {!isS5 && (
+                {!isSub5 && (
                   <text
                     x={textPos.x}
                     y={textPos.y}
@@ -187,25 +187,25 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             );
           })}
 
-          {/* Functions ring (inner) - shows only S5 */}
+          {/* Functions ring (inner) - shows only Sub5 */}
           {innerSegments.map((segment, index) => {
             const startAngle = index * segmentAngle;
             const endAngle = (index + 1) * segmentAngle;
             const isSelected = selectedInner === index;
-            const isS5 = segment.label.includes('S5');
+            const isSub5 = segment.label.includes('Sub5');
             const textPos = getTextPosition(index, 12, (functions2OuterR + innermostR) / 2);
 
             return (
               <g key={`innermost-${index}`}>
                 <path
                   d={createArcPath(startAngle, endAngle, innermostR, functions2OuterR)}
-                  fill={!isS5 ? 'transparent' : isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
+                  fill={!isSub5 ? 'transparent' : isSelected ? '#2b6d4c' : 'hsl(var(--accent))'}
                   stroke="hsl(var(--border))"
                   strokeWidth="2"
-                  className={!isS5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
-                  onClick={() => isS5 && setSelectedInner(selectedInner === index ? null : index)}
+                  className={!isSub5 ? '' : 'cursor-pointer transition-all duration-200 hover:brightness-110'}
+                  onClick={() => isSub5 && setSelectedInner(selectedInner === index ? null : index)}
                 />
-                {isS5 && (
+                {isSub5 && (
                   <text
                     x={textPos.x}
                     y={textPos.y}
@@ -290,7 +290,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             <span className="text-muted-foreground">Tônica</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>S5 I</span>
+            <span className="font-semibold" style={{ color: '#56da97' }}>Sub5 I</span>
             <span className="text-muted-foreground">-</span>
           </div>
           <div className="flex items-center gap-2">
@@ -298,7 +298,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             <span className="text-muted-foreground">Supertônica</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>S5 II</span>
+            <span className="font-semibold" style={{ color: '#56da97' }}>Sub5 II</span>
             <span className="text-muted-foreground">-</span>
           </div>
           <div className="flex items-center gap-2">
@@ -310,7 +310,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             <span className="text-muted-foreground">Subdominante</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>S5 IV</span>
+            <span className="font-semibold" style={{ color: '#56da97' }}>Sub5 IV</span>
             <span className="text-muted-foreground">-</span>
           </div>
           <div className="flex items-center gap-2">
@@ -318,7 +318,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             <span className="text-muted-foreground">Dominante</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>S5 V</span>
+            <span className="font-semibold" style={{ color: '#56da97' }}>Sub5 V</span>
             <span className="text-muted-foreground">-</span>
           </div>
           <div className="flex items-center gap-2">
@@ -326,7 +326,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             <span className="text-muted-foreground">Superdominante</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-semibold" style={{ color: '#56da97' }}>S5 VI</span>
+            <span className="font-semibold" style={{ color: '#56da97' }}>Sub5 VI</span>
             <span className="text-muted-foreground">-</span>
           </div>
           <div className="flex items-center gap-2">
