@@ -352,27 +352,6 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           </g>
         </g>
 
-        {/* Center circle */}
-        <circle
-          cx={center}
-          cy={center}
-          r={centerRadius}
-          fill="hsl(var(--background))"
-          stroke="#210a12"
-          strokeWidth="6"
-          className="drop-shadow-lg"
-        />
-        <text
-          x={center}
-          y={center}
-          fill="hsl(var(--foreground))"
-          fontSize="18"
-          fontWeight="400"
-          textAnchor="middle"
-          dominantBaseline="middle"
-        >
-          {centerLabel}
-        </text>
       </svg>
 
       {/* Layer toggle buttons */}
