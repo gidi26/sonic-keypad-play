@@ -312,13 +312,13 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               const isSelected = selectedAR2 === index;
               const textPos = getTextPosition(index, 12, (innermost2R + innermost3R) / 2);
               
-              // Elements 3, 4, 10 (indices 2, 3, 9) have content
+              // Elements 3, 5, 10 (indices 2, 4, 9) have content
               const relativaLabelMap: { [key: number]: string } = {
                 2: 'R IV',
-                3: 'R V',
+                4: 'R V',
                 9: 'R I'
               };
-              const hasContent = [2, 3, 9].includes(index);
+              const hasContent = [2, 4, 9].includes(index);
               const displayLabel = relativaLabelMap[index] || '';
 
               return (
