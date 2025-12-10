@@ -16,6 +16,7 @@ import { movement15Data } from "./movement15Texts";
 import { movement16Data } from "./movement16Texts";
 import { movement17Data } from "./movement17Texts";
 import { movement18Data } from "./movement18Texts";
+import { movement19Data } from "./movement19Texts";
 
 const tonalityKeyMap: { [key: number]: string } = {
   1: "C",
@@ -274,6 +275,19 @@ export const getContainerTexts = (
     const tonalityKey = tonalityKeyMap[tonalityId] || "C";
     const mov18Texts = movement18Data.getTexts(tonalityKey);
     const containerData = mov18Texts[language]?.containers?.[containerIndex - 1];
+    if (containerData) {
+      return {
+        label: containerData.redTitle,
+        description: containerData.grayText,
+      };
+    }
+  }
+  
+  // Movement 19
+  if (movementId === 19) {
+    const tonalityKey = tonalityKeyMap[tonalityId] || "C";
+    const mov19Texts = movement19Data.getTexts(tonalityKey, language);
+    const containerData = mov19Texts[containerIndex - 1];
     if (containerData) {
       return {
         label: containerData.redTitle,
