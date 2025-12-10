@@ -68,7 +68,12 @@ const HarmoniaFuncional2: React.FC = () => {
 
   return (
     <SidebarProvider defaultOpen={false}>
-      <div className="min-h-screen flex w-full bg-background">
+      <div 
+        className="min-h-screen flex w-full"
+        style={{
+          background: `radial-gradient(ellipse at center, #991928 0%, #271314 100%)`
+        }}
+      >
         <AppSidebar />
         
         <div className="flex-1 flex flex-col">
