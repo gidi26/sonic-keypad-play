@@ -152,6 +152,22 @@ export function AppSidebar() {
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+
+              {/* Harmonia Funcional Menu 2 */}
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  className={`w-full justify-between font-bold ${
+                    location.pathname === '/harmonia-funcional-2'
+                      ? 'bg-red-500 text-white hover:bg-red-600' 
+                      : 'bg-black text-white dark:bg-white dark:text-black hover:bg-red-500 hover:text-white dark:hover:bg-red-500'
+                  }`}
+                >
+                  <NavLink to="/harmonia-funcional-2">
+                    <span>{collapsed ? "HF2" : "HARMONIA FUNCIONAL 2"}</span>
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
