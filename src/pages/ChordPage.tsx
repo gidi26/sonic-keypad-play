@@ -39,8 +39,6 @@ const chordTypes = [
   { id: 8, name: "#5(#9)" },
   { id: 9, name: "7(9,11,13)" },
   { id: 10, name: "5+(7,b9,13)" },
-  { id: 11, name: "m7(b5)" },
-  { id: 12, name: "dim7" },
 ];
 
 const fallbackByVariant: Record<Variant, string> = {
