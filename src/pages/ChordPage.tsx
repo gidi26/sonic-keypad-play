@@ -97,6 +97,26 @@ function ChordImageWithSound({
   }, []);
 
   const playSound = () => {
+    // If clicking the same audio that's playing, stop it
+    if (isPlaying && audioRef.current) {
+      // Fade out current audio
+      const currentAudio = audioRef.current;
+      const fadeInterval = setInterval(() => {
+        if (currentAudio.volume > 0.15) {
+          currentAudio.volume = Math.max(0, currentAudio.volume - 0.15);
+        } else {
+          currentAudio.pause();
+          currentAudio.volume = 1;
+          clearInterval(fadeInterval);
+        }
+      }, 20);
+      setIsPlaying(false);
+      if (globalAudioRef === audioRef.current) {
+        globalAudioRef = null;
+      }
+      return;
+    }
+
     // Stop previous global audio with small delay for smooth transition
     if (globalAudioRef && globalAudioRef !== audioRef.current) {
       const prevAudio = globalAudioRef;
