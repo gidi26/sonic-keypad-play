@@ -4,59 +4,105 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Sun, Moon } from "lucide-react";
 
+import chordVoicingA from "@/assets/chord-voicing-a.jpg";
+import chordVoicingB from "@/assets/chord-voicing-b.jpg";
+import chordVoicingC from "@/assets/chord-voicing-c.jpg";
+
+type Variant = "a" | "b" | "c";
+
+const CHORD_IMAGE_BASE_URL = "https://app-fusion.gidiferreira.com/wp-content/uploads/2025/01";
+
 const tonalities = [
-  { id: 'C', name: 'C', prefix: 'c' },
-  { id: 'C#', name: 'C#', prefix: 'csus' },
-  { id: 'D', name: 'D', prefix: 'd' },
-  { id: 'D#', name: 'D#', prefix: 'dsus' },
-  { id: 'E', name: 'E', prefix: 'e' },
-  { id: 'F', name: 'F', prefix: 'f' },
-  { id: 'F#', name: 'F#', prefix: 'fsus' },
-  { id: 'G', name: 'G', prefix: 'g' },
-  { id: 'G#', name: 'G#', prefix: 'gsus' },
-  { id: 'A', name: 'A', prefix: 'a' },
-  { id: 'A#', name: 'A#', prefix: 'asus' },
-  { id: 'B', name: 'B', prefix: 'b' },
+  { id: "C", name: "C", prefix: "c" },
+  { id: "C#", name: "C#", prefix: "c-" },
+  { id: "D", name: "D", prefix: "d" },
+  { id: "D#", name: "D#", prefix: "d-" },
+  { id: "E", name: "E", prefix: "e" },
+  { id: "F", name: "F", prefix: "f" },
+  { id: "F#", name: "F#", prefix: "f-" },
+  { id: "G", name: "G", prefix: "g" },
+  { id: "G#", name: "G#", prefix: "g-" },
+  { id: "A", name: "A", prefix: "a" },
+  { id: "A#", name: "A#", prefix: "a-" },
+  { id: "B", name: "B", prefix: "b" },
 ];
 
 const chordTypes = [
-  { id: 1, name: 'm9(11)' },
-  { id: 2, name: 'm9' },
-  { id: 3, name: 'm7+(9)' },
-  { id: 4, name: 'M9(13)' },
-  { id: 5, name: 'M9(v1)' },
-  { id: 6, name: 'M9(v2)' },
-  { id: 7, name: '7(9,11)' },
-  { id: 8, name: '#5(#9)' },
-  { id: 9, name: '7(9,11,13)' },
-  { id: 10, name: '5+(7,b9,13)' },
+  { id: 1, name: "m9(11)" },
+  { id: 2, name: "m9" },
+  { id: 3, name: "m7+(9)" },
+  { id: 4, name: "M9(13)" },
+  { id: 5, name: "M9(v1)" },
+  { id: 6, name: "M9(v2)" },
+  { id: 7, name: "7(9,11)" },
+  { id: 8, name: "#5(#9)" },
+  { id: 9, name: "7(9,11,13)" },
+  { id: 10, name: "5+(7,b9,13)" },
 ];
+
+const fallbackByVariant: Record<Variant, string> = {
+  a: chordVoicingA,
+  b: chordVoicingB,
+  c: chordVoicingC,
+};
+
+function ChordImage({
+  src,
+  fallbackSrc,
+  alt,
+}: {
+  src: string;
+  fallbackSrc: string;
+  alt: string;
+}) {
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    setFailed(false);
+  }, [src]);
+
+  return (
+    <img
+      src={failed ? fallbackSrc : src}
+      alt={alt}
+      className="w-full h-auto"
+      loading="lazy"
+      decoding="async"
+      referrerPolicy="no-referrer"
+      onError={() => setFailed(true)}
+    />
+  );
+}
 
 const ChordPage = () => {
   const { language, setLanguage } = useLanguage();
   const [isDark, setIsDark] = useState(() => {
-    const stored = localStorage.getItem('theme');
-    return stored === 'dark';
+    const stored = localStorage.getItem("theme");
+    return stored === "dark";
   });
-  
-  const [selectedTonality, setSelectedTonality] = useState('C');
+
+  const [selectedTonality, setSelectedTonality] = useState("C");
   const [selectedChord, setSelectedChord] = useState(1);
 
   useEffect(() => {
     if (isDark) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   }, [isDark]);
 
-  const getImageUrl = (chordId: number, variant: 'a' | 'b' | 'c') => {
-    const tonality = tonalities.find(t => t.id === selectedTonality);
-    const prefix = tonality?.prefix || 'c';
-    // Images pattern: {prefix}{chordId}{variant}.jpg - e.g., c1a.jpg, d5b.jpg, csus3c.jpg
-    return `https://app-fusion.gidiferreira.com/wp-content/uploads/2025/01/${prefix}${chordId}${variant}.jpg`;
+  useEffect(() => {
+    document.title = "Neo Soul Jazz Chords | CHORD";
+  }, []);
+
+  const getImageUrl = (chordId: number, variant: Variant) => {
+    const tonality = tonalities.find((t) => t.id === selectedTonality);
+    const prefix = tonality?.prefix || "c";
+    // Pattern: {prefix}{chordId}{variant}.jpg -> c1a.jpg, c-1a.jpg, a-3c.jpg
+    return `${CHORD_IMAGE_BASE_URL}/${prefix}${chordId}${variant}.jpg`;
   };
 
   return (
@@ -147,16 +193,12 @@ const ChordPage = () => {
 
               {/* Chord Images */}
               <div className="space-y-4">
-                {(['a', 'b', 'c'] as const).map((variant) => (
+                {(["a", "b", "c"] as const).map((variant) => (
                   <div key={variant} className="rounded-xl overflow-hidden">
-                    <img
+                    <ChordImage
                       src={getImageUrl(selectedChord, variant)}
-                      alt={`${selectedTonality} ${chordTypes.find(c => c.id === selectedChord)?.name} - Voicing ${variant.toUpperCase()}`}
-                      className="w-full h-auto"
-                      onError={(e) => {
-                        // Fallback if image doesn't load
-                        (e.target as HTMLImageElement).style.display = 'none';
-                      }}
+                      fallbackSrc={fallbackByVariant[variant]}
+                      alt={`${selectedTonality} ${chordTypes.find((c) => c.id === selectedChord)?.name} - Voicing ${variant.toUpperCase()}`}
                     />
                   </div>
                 ))}
