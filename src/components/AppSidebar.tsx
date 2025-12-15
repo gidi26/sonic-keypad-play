@@ -65,8 +65,8 @@ export function AppSidebar() {
       <SidebarContent className="mt-[50px]">
         <SidebarGroup>
           {/* TOP TECLADISTA Logo */}
-          <div className="px-3 pb-4 text-left">
-            <span className="font-anton text-2xl tracking-wider font-medium">
+          <div className="px-3 pb-4 text-left flex items-center min-h-[60px]">
+            <span className="font-anton text-3xl tracking-wider font-medium">
               {collapsed ? (
                 <>
                   <span className="text-black dark:text-white">T</span>
