@@ -2,8 +2,9 @@ import { useState, useEffect, useRef, ReactNode, MutableRefObject } from "react"
 import { PianoKeyboard, TimbreType } from "@/components/PianoKeyboard";
 import { cn } from "@/lib/utils";
 import { Moon, Sun, Play, User } from "lucide-react";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+import { SidebarToggle } from "@/components/SidebarToggle";
 import { getAudioUrl, getFullAudioUrl, getContainerCount, getImageUrl } from "@/utils/audioMapping";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { getContainerTexts } from "@/data/movement1Texts";
@@ -255,7 +256,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                 </div>
 
                 {/* Sidebar Toggle */}
-                <SidebarTrigger className="absolute left-4 top-1/2 -translate-y-1/2 scale-150" />
+                <SidebarToggle className="absolute left-4 top-1/2 -translate-y-1/2 scale-150" />
 
                 <div className="h-px w-24 bg-border" />
                 <div className="text-center">
