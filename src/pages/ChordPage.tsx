@@ -298,7 +298,7 @@ const ChordPage = () => {
                 <button
                   key={tonality.id}
                   onClick={() => setSelectedTonality(tonality.id)}
-                  className={`px-4 py-2 rounded-md border-2 font-bold text-sm transition-all ${
+                  className={`px-4 py-2 rounded-md border-2 font-medium text-sm transition-all ${
                     selectedTonality === tonality.id
                       ? 'border-red-600 bg-red-600 text-white'
                       : 'border-black bg-black text-white hover:border-red-500 hover:bg-red-500'
@@ -311,13 +311,12 @@ const ChordPage = () => {
 
             {/* Chord Display Card */}
             <div className={`backdrop-blur-sm rounded-2xl p-6 max-w-2xl w-full border ${isDark ? 'bg-black/40 border-white/10' : 'bg-white/80 border-gray-300'}`}>
-              {/* Chord Type Selection */}
               <div className="flex flex-wrap justify-center gap-2 mb-6">
                 {chordTypes.map((chord) => (
                   <button
                     key={chord.id}
                     onClick={() => setSelectedChord(chord.id)}
-                    className={`px-4 py-2 rounded-md border-2 text-sm font-bold transition-all ${
+                    className={`px-4 py-2 rounded-md border-2 text-sm font-medium transition-all ${
                       selectedChord === chord.id
                         ? 'border-red-600 bg-red-600 text-white'
                         : 'border-black bg-black text-white hover:border-red-500 hover:bg-red-500'
