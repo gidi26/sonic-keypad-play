@@ -72,15 +72,21 @@ function ChordImageWithSound({
     setFailed(false);
   }, [src]);
 
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
   const playSound = () => {
-    // Stop any previously playing audio
+    // Stop previous audio with delay for smooth transition
     onPlay();
     
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
-
+    // Start new audio immediately for overlap effect
     const audio = new Audio(audioUrl);
     audioRef.current = audio;
     setIsPlaying(true);
@@ -94,6 +100,30 @@ function ChordImageWithSound({
       setIsPlaying(false);
     };
   };
+
+  // Expose stop method
+  useEffect(() => {
+    const handleStop = () => {
+      if (audioRef.current) {
+        // Fade out effect
+        const fadeOut = setInterval(() => {
+          if (audioRef.current && audioRef.current.volume > 0.1) {
+            audioRef.current.volume -= 0.1;
+          } else {
+            if (audioRef.current) {
+              audioRef.current.pause();
+              audioRef.current.volume = 1;
+            }
+            clearInterval(fadeOut);
+            setIsPlaying(false);
+          }
+        }, 50);
+      }
+    };
+
+    window.addEventListener('stopChordAudio', handleStop);
+    return () => window.removeEventListener('stopChordAudio', handleStop);
+  }, []);
 
   return (
     <button
@@ -161,10 +191,8 @@ const ChordPage = () => {
   };
 
   const stopCurrentAudio = () => {
-    if (currentAudioRef.current) {
-      currentAudioRef.current.pause();
-      currentAudioRef.current.currentTime = 0;
-    }
+    // Dispatch event to stop all playing audios with fade effect
+    window.dispatchEvent(new CustomEvent('stopChordAudio'));
   };
 
   return (
