@@ -56,6 +56,9 @@ interface ChordImageWithSoundProps {
   isDark: boolean;
 }
 
+// Global audio reference for centralized control
+let globalAudioRef: HTMLAudioElement | null = null;
+
 function ChordImageWithSound({
   src,
   fallbackSrc,
@@ -72,9 +75,20 @@ function ChordImageWithSound({
     setFailed(false);
   }, [src]);
 
-  // Cleanup on unmount
+  // Stop this audio when global stop is triggered
   useEffect(() => {
+    const handleGlobalStop = () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        setIsPlaying(false);
+      }
+    };
+
+    window.addEventListener('stopAllChordAudio', handleGlobalStop);
     return () => {
+      window.removeEventListener('stopAllChordAudio', handleGlobalStop);
+      // Cleanup audio on unmount
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
@@ -83,12 +97,28 @@ function ChordImageWithSound({
   }, []);
 
   const playSound = () => {
-    // Stop previous audio with delay for smooth transition
+    // Stop previous global audio with small delay for smooth transition
+    if (globalAudioRef && globalAudioRef !== audioRef.current) {
+      const prevAudio = globalAudioRef;
+      // Fade out previous audio over 100ms
+      const fadeInterval = setInterval(() => {
+        if (prevAudio.volume > 0.15) {
+          prevAudio.volume = Math.max(0, prevAudio.volume - 0.15);
+        } else {
+          prevAudio.pause();
+          prevAudio.volume = 1;
+          clearInterval(fadeInterval);
+        }
+      }, 20);
+    }
+    
+    // Dispatch stop event for other components
     onPlay();
     
-    // Start new audio immediately for overlap effect
+    // Create and play new audio
     const audio = new Audio(audioUrl);
     audioRef.current = audio;
+    globalAudioRef = audio;
     setIsPlaying(true);
 
     audio.play().catch((error) => {
@@ -98,32 +128,11 @@ function ChordImageWithSound({
 
     audio.onended = () => {
       setIsPlaying(false);
-    };
-  };
-
-  // Expose stop method
-  useEffect(() => {
-    const handleStop = () => {
-      if (audioRef.current) {
-        // Fade out effect
-        const fadeOut = setInterval(() => {
-          if (audioRef.current && audioRef.current.volume > 0.1) {
-            audioRef.current.volume -= 0.1;
-          } else {
-            if (audioRef.current) {
-              audioRef.current.pause();
-              audioRef.current.volume = 1;
-            }
-            clearInterval(fadeOut);
-            setIsPlaying(false);
-          }
-        }, 50);
+      if (globalAudioRef === audio) {
+        globalAudioRef = null;
       }
     };
-
-    window.addEventListener('stopChordAudio', handleStop);
-    return () => window.removeEventListener('stopChordAudio', handleStop);
-  }, []);
+  };
 
   return (
     <button
@@ -159,6 +168,17 @@ const ChordPage = () => {
 
   const [selectedTonality, setSelectedTonality] = useState("C");
   const [selectedChord, setSelectedChord] = useState(1);
+
+  // Stop audio when changing tonality or chord
+  useEffect(() => {
+    // Stop all audio when selection changes
+    if (globalAudioRef) {
+      globalAudioRef.pause();
+      globalAudioRef.currentTime = 0;
+      globalAudioRef = null;
+    }
+    window.dispatchEvent(new CustomEvent('stopAllChordAudio'));
+  }, [selectedTonality, selectedChord]);
 
   useEffect(() => {
     if (isDark) {
