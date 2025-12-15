@@ -15,8 +15,8 @@ export function SidebarToggle({ className }: SidebarToggleProps) {
     <button
       onClick={toggleSidebar}
       className={cn(
-        "p-2 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors z-50",
-        isOpen && "fixed left-[var(--sidebar-width)] top-4",
+        "p-2 z-50 transition-colors",
+        isOpen && "fixed left-[var(--sidebar-width)] top-2",
         className
       )}
       style={isOpen ? { '--sidebar-width': '256px' } as React.CSSProperties : undefined}
