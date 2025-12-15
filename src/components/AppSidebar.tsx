@@ -64,11 +64,20 @@ export function AppSidebar() {
     <Sidebar collapsible="icon" className={`${collapsed ? "w-20" : "w-80"} !bg-[#c6c3c3] dark:!bg-[hsl(0_0%_20%)] text-sm`}>
       <SidebarContent className="mt-[50px]">
         <SidebarGroup>
-          {/* TOP TEC Logo */}
+          {/* TOP TECLADISTA Logo */}
           <div className="px-3 pb-4 text-center">
             <span className="font-anton text-2xl tracking-wider">
-              <span className="text-black dark:text-white">TOP</span>
-              <span className="text-primary"> TEC</span>
+              {collapsed ? (
+                <>
+                  <span className="text-black dark:text-white">T</span>
+                  <span className="text-primary">T</span>
+                </>
+              ) : (
+                <>
+                  <span className="text-black dark:text-white">TOP</span>
+                  <span className="text-primary"> TECLADISTA</span>
+                </>
+              )}
             </span>
           </div>
           <SidebarGroupContent>
