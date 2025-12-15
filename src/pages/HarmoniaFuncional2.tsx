@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Moon, Sun, User } from 'lucide-react';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
+import { SidebarToggle } from '@/components/SidebarToggle';
 import ConcentricWheel from '@/components/ConcentricWheel';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -203,7 +204,7 @@ const HarmoniaFuncional2: React.FC = () => {
                 </div>
 
                 {/* Sidebar Toggle */}
-                <SidebarTrigger className="absolute left-4 top-1/2 -translate-y-1/2 scale-150" />
+                <SidebarToggle className="absolute left-4 top-1/2 -translate-y-1/2 scale-150" />
 
               </div>
             </div>

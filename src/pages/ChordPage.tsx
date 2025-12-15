@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+import { SidebarToggle } from "@/components/SidebarToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Sun, Moon, Volume2 } from "lucide-react";
 
@@ -243,7 +244,7 @@ const ChordPage = () => {
           {/* Header */}
           <header className={`flex items-center justify-between p-4 border-b ${isDark ? 'border-white/10' : 'border-gray-300'}`}>
             <div className="flex items-center gap-4">
-              <SidebarTrigger className={`${isDark ? 'text-white hover:bg-white/10' : 'text-gray-800 hover:bg-gray-300'} p-2 rounded`} />
+              <SidebarToggle className={`${isDark ? 'text-white hover:bg-white/10' : 'text-gray-800 hover:bg-gray-300'} p-2 rounded`} />
             </div>
             
             {/* Theme and Language Controls */}
