@@ -107,25 +107,25 @@ const ChordPage = () => {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-gradient-to-b from-[#1a1a1a] to-[#0d0d0d]">
+      <div className={`min-h-screen flex w-full ${isDark ? 'bg-gradient-to-b from-[#1a1a1a] to-[#0d0d0d]' : 'bg-gradient-to-b from-gray-100 to-gray-200'}`}>
         <AppSidebar />
         <main className="flex-1 flex flex-col">
           {/* Header */}
-          <header className="flex items-center justify-between p-4 border-b border-white/10">
+          <header className={`flex items-center justify-between p-4 border-b ${isDark ? 'border-white/10' : 'border-gray-300'}`}>
             <div className="flex items-center gap-4">
-              <SidebarTrigger className="text-white hover:bg-white/10 p-2 rounded" />
+              <SidebarTrigger className={`${isDark ? 'text-white hover:bg-white/10' : 'text-gray-800 hover:bg-gray-300'} p-2 rounded`} />
             </div>
             
             {/* Theme and Language Controls */}
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setIsDark(!isDark)}
-                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                className={`p-2 rounded-full transition-colors ${isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-gray-300 hover:bg-gray-400'}`}
               >
                 {isDark ? (
                   <Sun className="w-5 h-5 text-yellow-400" />
                 ) : (
-                  <Moon className="w-5 h-5 text-white" />
+                  <Moon className="w-5 h-5 text-gray-700" />
                 )}
               </button>
               
@@ -137,7 +137,9 @@ const ChordPage = () => {
                     className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
                       language === lang
                         ? 'bg-red-500 text-white'
-                        : 'bg-white/10 text-white hover:bg-white/20'
+                        : isDark 
+                          ? 'bg-white/10 text-white hover:bg-white/20'
+                          : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
                     }`}
                   >
                     {lang.toUpperCase()}
@@ -152,7 +154,7 @@ const ChordPage = () => {
             {/* Title */}
             <h1 className="text-3xl md:text-4xl font-bold mb-8">
               <span className="text-red-500 italic font-serif">NEO SOUL JAZZ</span>
-              <span className="text-white ml-2 font-light tracking-wider">CHORDS</span>
+              <span className={`ml-2 font-light tracking-wider ${isDark ? 'text-white' : 'text-gray-800'}`}>CHORDS</span>
             </h1>
 
             {/* Tonality Selection */}
@@ -163,8 +165,10 @@ const ChordPage = () => {
                   onClick={() => setSelectedTonality(tonality.id)}
                   className={`w-12 h-12 rounded-full border-2 font-bold text-sm transition-all ${
                     selectedTonality === tonality.id
-                      ? 'border-teal-400 bg-transparent text-teal-400 shadow-[0_0_15px_rgba(45,212,191,0.5)]'
-                      : 'border-gray-600 bg-transparent text-gray-400 hover:border-gray-400 hover:text-white'
+                      ? 'border-red-600 bg-red-600/20 text-red-500 shadow-[0_0_15px_rgba(185,28,28,0.5)]'
+                      : isDark
+                        ? 'border-gray-600 bg-transparent text-gray-400 hover:border-gray-400 hover:text-white'
+                        : 'border-gray-400 bg-transparent text-gray-500 hover:border-gray-600 hover:text-gray-800'
                   }`}
                 >
                   {tonality.name}
@@ -173,7 +177,7 @@ const ChordPage = () => {
             </div>
 
             {/* Chord Display Card */}
-            <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-6 max-w-2xl w-full border border-white/10">
+            <div className={`backdrop-blur-sm rounded-2xl p-6 max-w-2xl w-full border ${isDark ? 'bg-black/40 border-white/10' : 'bg-white/80 border-gray-300'}`}>
               {/* Chord Type Selection */}
               <div className="flex flex-wrap justify-center gap-2 mb-6">
                 {chordTypes.map((chord) => (
@@ -182,8 +186,10 @@ const ChordPage = () => {
                     onClick={() => setSelectedChord(chord.id)}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       selectedChord === chord.id
-                        ? 'bg-teal-500/20 border border-teal-400 text-teal-400'
-                        : 'bg-gray-800/50 border border-gray-700 text-gray-400 hover:border-gray-500 hover:text-white'
+                        ? 'bg-red-600/20 border border-red-600 text-red-500'
+                        : isDark
+                          ? 'bg-gray-800/50 border border-gray-700 text-gray-400 hover:border-gray-500 hover:text-white'
+                          : 'bg-gray-200 border border-gray-300 text-gray-500 hover:border-gray-500 hover:text-gray-800'
                     }`}
                   >
                     {chord.name}
@@ -193,7 +199,7 @@ const ChordPage = () => {
 
               {/* Current Chord Display */}
               <div className="mb-4 text-center">
-                <span className="text-2xl font-bold text-white">
+                <span className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-800'}`}>
                   {selectedTonality}{chordTypes.find(c => c.id === selectedChord)?.name}
                 </span>
               </div>
