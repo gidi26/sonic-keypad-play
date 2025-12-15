@@ -256,7 +256,7 @@ const PageLayout = ({ movementId, tonalityId }: PageLayoutProps) => {
                 </div>
 
                 {/* Sidebar Toggle */}
-                <SidebarToggle className="absolute left-4 top-1/2 -translate-y-1/2 scale-150" />
+                <SidebarToggle className="absolute left-4 top-4 scale-150" />
 
                 <div className="h-px w-24 bg-border" />
                 <div className="text-center">
