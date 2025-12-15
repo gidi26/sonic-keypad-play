@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Volume2 } from "lucide-react";
 
 import chordVoicingA from "@/assets/chord-voicing-a.jpg";
 import chordVoicingB from "@/assets/chord-voicing-b.jpg";
@@ -11,6 +11,7 @@ import chordVoicingC from "@/assets/chord-voicing-c.jpg";
 type Variant = "a" | "b" | "c";
 
 const CHORD_IMAGE_BASE_URL = "https://app-fusion.gidiferreira.com/wp-content/uploads/2025/01";
+const CHORD_AUDIO_BASE_URL = "https://app-fusion.gidiferreira.com/wp-content/uploads/2025/01";
 
 const tonalities = [
   { id: "C", name: "C", prefix: "c" },
@@ -46,31 +47,76 @@ const fallbackByVariant: Record<Variant, string> = {
   c: chordVoicingC,
 };
 
-function ChordImage({
-  src,
-  fallbackSrc,
-  alt,
-}: {
+interface ChordImageWithSoundProps {
   src: string;
   fallbackSrc: string;
   alt: string;
-}) {
+  audioUrl: string;
+  onPlay: () => void;
+  isDark: boolean;
+}
+
+function ChordImageWithSound({
+  src,
+  fallbackSrc,
+  alt,
+  audioUrl,
+  onPlay,
+  isDark,
+}: ChordImageWithSoundProps) {
   const [failed, setFailed] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     setFailed(false);
   }, [src]);
 
+  const playSound = () => {
+    // Stop any previously playing audio
+    onPlay();
+    
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+
+    const audio = new Audio(audioUrl);
+    audioRef.current = audio;
+    setIsPlaying(true);
+
+    audio.play().catch((error) => {
+      console.error("Error playing audio:", error);
+      setIsPlaying(false);
+    });
+
+    audio.onended = () => {
+      setIsPlaying(false);
+    };
+  };
+
   return (
-    <img
-      src={failed ? fallbackSrc : src}
-      alt={alt}
-      className="w-full h-auto"
-      loading="lazy"
-      decoding="async"
-      referrerPolicy="no-referrer"
-      onError={() => setFailed(true)}
-    />
+    <button
+      onClick={playSound}
+      className={`relative w-full rounded-xl overflow-hidden transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] focus:outline-none ${
+        isPlaying ? "ring-2 ring-red-500 ring-offset-2" : ""
+      } ${isDark ? "ring-offset-[#1a1a1a]" : "ring-offset-gray-100"}`}
+    >
+      <img
+        src={failed ? fallbackSrc : src}
+        alt={alt}
+        className="w-full h-auto"
+        loading="lazy"
+        decoding="async"
+        referrerPolicy="no-referrer"
+        onError={() => setFailed(true)}
+      />
+      {isPlaying && (
+        <div className="absolute inset-0 bg-red-500/10 animate-pulse flex items-center justify-center">
+          <Volume2 className="w-8 h-8 text-red-500 animate-bounce" />
+        </div>
+      )}
+    </button>
   );
 }
 
@@ -98,11 +144,27 @@ const ChordPage = () => {
     document.title = "Neo Soul Jazz Chords | CHORD";
   }, []);
 
+  const currentAudioRef = useRef<HTMLAudioElement | null>(null);
+
   const getImageUrl = (chordId: number, variant: Variant) => {
     const tonality = tonalities.find((t) => t.id === selectedTonality);
     const prefix = tonality?.prefix || "c";
     // Pattern: {prefix}{chordId}{variant}.jpg -> c1a.jpg, c-1a.jpg, a-3c.jpg
     return `${CHORD_IMAGE_BASE_URL}/${prefix}${chordId}${variant}.jpg`;
+  };
+
+  const getAudioUrl = (chordId: number, variant: Variant) => {
+    const tonality = tonalities.find((t) => t.id === selectedTonality);
+    const prefix = tonality?.prefix || "c";
+    // Pattern: {prefix}{chordId}{variant}.mp3 -> c1a.mp3, c-1a.mp3, a-3c.mp3
+    return `${CHORD_AUDIO_BASE_URL}/${prefix}${chordId}${variant}.mp3`;
+  };
+
+  const stopCurrentAudio = () => {
+    if (currentAudioRef.current) {
+      currentAudioRef.current.pause();
+      currentAudioRef.current.currentTime = 0;
+    }
   };
 
   return (
@@ -204,16 +266,18 @@ const ChordPage = () => {
                 </span>
               </div>
 
-              {/* Chord Images */}
+              {/* Chord Images with Sound */}
               <div className="space-y-4 max-w-sm mx-auto">
                 {(["a", "b", "c"] as const).map((variant) => (
-                  <div key={variant} className="rounded-xl overflow-hidden">
-                    <ChordImage
-                      src={getImageUrl(selectedChord, variant)}
-                      fallbackSrc={fallbackByVariant[variant]}
-                      alt={`${selectedTonality} ${chordTypes.find((c) => c.id === selectedChord)?.name} - Voicing ${variant.toUpperCase()}`}
-                    />
-                  </div>
+                  <ChordImageWithSound
+                    key={variant}
+                    src={getImageUrl(selectedChord, variant)}
+                    fallbackSrc={fallbackByVariant[variant]}
+                    alt={`${selectedTonality} ${chordTypes.find((c) => c.id === selectedChord)?.name} - Voicing ${variant.toUpperCase()}`}
+                    audioUrl={getAudioUrl(selectedChord, variant)}
+                    onPlay={stopCurrentAudio}
+                    isDark={isDark}
+                  />
                 ))}
               </div>
             </div>
