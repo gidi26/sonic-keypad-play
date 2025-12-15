@@ -289,17 +289,15 @@ const ChordPage = () => {
             </h1>
 
             {/* Tonality Selection */}
-            <div className="flex flex-wrap justify-center gap-3 mb-6 max-w-3xl">
+            <div className="flex flex-wrap justify-center gap-2 mb-6 max-w-3xl">
               {tonalities.map((tonality) => (
                 <button
                   key={tonality.id}
                   onClick={() => setSelectedTonality(tonality.id)}
-                  className={`w-12 h-12 rounded-full border-2 font-bold text-sm transition-all ${
+                  className={`px-4 py-2 rounded-md border-2 font-bold text-sm transition-all ${
                     selectedTonality === tonality.id
-                      ? 'border-red-600 bg-red-600/20 text-red-500 shadow-[0_0_15px_rgba(185,28,28,0.5)]'
-                      : isDark
-                        ? 'border-gray-600 bg-transparent text-gray-400 hover:border-gray-400 hover:text-white'
-                        : 'border-gray-400 bg-transparent text-gray-500 hover:border-gray-600 hover:text-gray-800'
+                      ? 'border-red-600 bg-red-600 text-white'
+                      : 'border-black bg-black text-white hover:border-red-500 hover:bg-red-500'
                   }`}
                 >
                   {tonality.name}
@@ -315,12 +313,10 @@ const ChordPage = () => {
                   <button
                     key={chord.id}
                     onClick={() => setSelectedChord(chord.id)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    className={`px-4 py-2 rounded-md border-2 text-sm font-bold transition-all ${
                       selectedChord === chord.id
-                        ? 'bg-red-600/20 border border-red-600 text-red-500'
-                        : isDark
-                          ? 'bg-gray-800/50 border border-gray-700 text-gray-400 hover:border-gray-500 hover:text-white'
-                          : 'bg-gray-200 border border-gray-300 text-gray-500 hover:border-gray-500 hover:text-gray-800'
+                        ? 'border-red-600 bg-red-600 text-white'
+                        : 'border-black bg-black text-white hover:border-red-500 hover:bg-red-500'
                     }`}
                   >
                     {chord.name}
