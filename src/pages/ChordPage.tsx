@@ -11,7 +11,7 @@ import chordVoicingC from "@/assets/chord-voicing-c.jpg";
 type Variant = "a" | "b" | "c";
 
 const CHORD_IMAGE_BASE_URL = "https://app-fusion.gidiferreira.com/wp-content/uploads/2025/01";
-const CHORD_AUDIO_BASE_URL = "https://app-fusion.gidiferreira.com/wp-content/uploads/2025/01";
+const CHORD_AUDIO_BASE_URL = "http://gidiferreira.com/nsjc";
 
 const tonalities = [
   { id: "C", name: "C", prefix: "c" },
@@ -39,6 +39,8 @@ const chordTypes = [
   { id: 8, name: "#5(#9)" },
   { id: 9, name: "7(9,11,13)" },
   { id: 10, name: "5+(7,b9,13)" },
+  { id: 11, name: "m7(b5)" },
+  { id: 12, name: "dim7" },
 ];
 
 const fallbackByVariant: Record<Variant, string> = {
@@ -156,8 +158,8 @@ const ChordPage = () => {
   const getAudioUrl = (chordId: number, variant: Variant) => {
     const tonality = tonalities.find((t) => t.id === selectedTonality);
     const prefix = tonality?.prefix || "c";
-    // Pattern: {prefix}{chordId}{variant}.mp3 -> c1a.mp3, c-1a.mp3, a-3c.mp3
-    return `${CHORD_AUDIO_BASE_URL}/${prefix}${chordId}${variant}.mp3`;
+    // Pattern: {prefix}rv{chordId}{variant}.mp3 -> crv1a.mp3, c-rv1a.mp3, arv3c.mp3
+    return `${CHORD_AUDIO_BASE_URL}/${prefix}rv${chordId}${variant}.mp3`;
   };
 
   const stopCurrentAudio = () => {
