@@ -1,0 +1,183 @@
+import { useState, useEffect } from "react";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/AppSidebar";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Sun, Moon } from "lucide-react";
+
+const tonalities = [
+  { id: 'C', name: 'C', folder: 'do' },
+  { id: 'C#', name: 'C#', folder: 'dosus' },
+  { id: 'D', name: 'D', folder: 're' },
+  { id: 'D#', name: 'D#', folder: 'resus' },
+  { id: 'E', name: 'E', folder: 'mi' },
+  { id: 'F', name: 'F', folder: 'fa' },
+  { id: 'F#', name: 'F#', folder: 'fasus' },
+  { id: 'G', name: 'G', folder: 'sol' },
+  { id: 'G#', name: 'G#', folder: 'solsus' },
+  { id: 'A', name: 'A', folder: 'la' },
+  { id: 'A#', name: 'A#', folder: 'lasus' },
+  { id: 'B', name: 'B', folder: 'si' },
+];
+
+const chordTypes = [
+  { id: 1, name: 'm9(11)' },
+  { id: 2, name: 'm9' },
+  { id: 3, name: 'm7+(9)' },
+  { id: 4, name: 'M9(13)' },
+  { id: 5, name: 'M9(v1)' },
+  { id: 6, name: 'M9(v2)' },
+  { id: 7, name: '7(9,11)' },
+  { id: 8, name: '#5(#9)' },
+  { id: 9, name: '7(9,11,13)' },
+  { id: 10, name: '5+(7,b9,13)' },
+];
+
+const ChordPage = () => {
+  const { language, setLanguage } = useLanguage();
+  const [isDark, setIsDark] = useState(() => {
+    const stored = localStorage.getItem('theme');
+    return stored === 'dark';
+  });
+  
+  const [selectedTonality, setSelectedTonality] = useState('C');
+  const [selectedChord, setSelectedChord] = useState(1);
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDark]);
+
+  const getImageUrl = (chordId: number, variant: 'a' | 'b' | 'c') => {
+    const tonality = tonalities.find(t => t.id === selectedTonality);
+    const prefix = tonality?.folder || 'do';
+    // Images are at: https://app-fusion.gidiferreira.com/wp-content/uploads/2025/01/
+    // Pattern: {prefix}{chordId}{variant}.jpg - e.g., do1a.jpg, dosus5b.jpg
+    // For C (do): c1a.jpg, c1b.jpg, c1c.jpg, etc.
+    // Actually looking at the original, they use 'c' prefix for all in 'C' tonality
+    // Let me use the correct pattern based on the folder structure
+    return `https://app-fusion.gidiferreira.com/wp-content/uploads/2025/01/${prefix}${chordId}${variant}.jpg`;
+  };
+
+  return (
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full bg-gradient-to-b from-[#1a1a1a] to-[#0d0d0d]">
+        <AppSidebar />
+        <main className="flex-1 flex flex-col">
+          {/* Header */}
+          <header className="flex items-center justify-between p-4 border-b border-white/10">
+            <div className="flex items-center gap-4">
+              <SidebarTrigger className="text-white hover:bg-white/10 p-2 rounded" />
+            </div>
+            
+            {/* Theme and Language Controls */}
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setIsDark(!isDark)}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              >
+                {isDark ? (
+                  <Sun className="w-5 h-5 text-yellow-400" />
+                ) : (
+                  <Moon className="w-5 h-5 text-white" />
+                )}
+              </button>
+              
+              <div className="flex gap-2">
+                {['pt', 'en', 'es'].map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => setLanguage(lang as 'pt' | 'en' | 'es')}
+                    className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+                      language === lang
+                        ? 'bg-red-500 text-white'
+                        : 'bg-white/10 text-white hover:bg-white/20'
+                    }`}
+                  >
+                    {lang.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </header>
+
+          {/* Main Content */}
+          <div className="flex-1 flex flex-col items-center p-6 overflow-auto">
+            {/* Title */}
+            <h1 className="text-3xl md:text-4xl font-bold mb-8">
+              <span className="text-red-500 italic font-serif">NEO SOUL JAZZ</span>
+              <span className="text-white ml-2 font-light tracking-wider">CHORDS</span>
+            </h1>
+
+            {/* Tonality Selection */}
+            <div className="flex flex-wrap justify-center gap-3 mb-6 max-w-3xl">
+              {tonalities.map((tonality) => (
+                <button
+                  key={tonality.id}
+                  onClick={() => setSelectedTonality(tonality.id)}
+                  className={`w-12 h-12 rounded-full border-2 font-bold text-sm transition-all ${
+                    selectedTonality === tonality.id
+                      ? 'border-teal-400 bg-transparent text-teal-400 shadow-[0_0_15px_rgba(45,212,191,0.5)]'
+                      : 'border-gray-600 bg-transparent text-gray-400 hover:border-gray-400 hover:text-white'
+                  }`}
+                >
+                  {tonality.name}
+                </button>
+              ))}
+            </div>
+
+            {/* Chord Display Card */}
+            <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-6 max-w-2xl w-full border border-white/10">
+              {/* Chord Type Selection */}
+              <div className="flex flex-wrap justify-center gap-2 mb-6">
+                {chordTypes.map((chord) => (
+                  <button
+                    key={chord.id}
+                    onClick={() => setSelectedChord(chord.id)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                      selectedChord === chord.id
+                        ? 'bg-teal-500/20 border border-teal-400 text-teal-400'
+                        : 'bg-gray-800/50 border border-gray-700 text-gray-400 hover:border-gray-500 hover:text-white'
+                    }`}
+                  >
+                    {chord.name}
+                  </button>
+                ))}
+              </div>
+
+              {/* Chord Images */}
+              <div className="space-y-4">
+                {(['a', 'b', 'c'] as const).map((variant) => (
+                  <div key={variant} className="rounded-xl overflow-hidden">
+                    <img
+                      src={getImageUrl(selectedChord, variant)}
+                      alt={`${selectedTonality} ${chordTypes.find(c => c.id === selectedChord)?.name} - Voicing ${variant.toUpperCase()}`}
+                      className="w-full h-auto"
+                      onError={(e) => {
+                        // Fallback if image doesn't load
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Current Chord Display */}
+            <div className="mt-6 text-center">
+              <span className="text-2xl font-bold text-white">
+                {selectedTonality}{chordTypes.find(c => c.id === selectedChord)?.name}
+              </span>
+            </div>
+          </div>
+        </main>
+      </div>
+    </SidebarProvider>
+  );
+};
+
+export default ChordPage;

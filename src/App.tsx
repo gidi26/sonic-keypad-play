@@ -7,6 +7,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import MovementPage from "./pages/MovementPage";
 import HarmoniaFuncional from "./pages/HarmoniaFuncional";
 import HarmoniaFuncional2 from "./pages/HarmoniaFuncional2";
+import ChordPage from "./pages/ChordPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
             <Route path="/movimento/:movementId/tonalidade/:tonalityId" element={<MovementPage />} />
             <Route path="/harmonia-funcional" element={<HarmoniaFuncional />} />
             <Route path="/harmonia-funcional-2" element={<HarmoniaFuncional2 />} />
+            <Route path="/chord" element={<ChordPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
