@@ -5,18 +5,18 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Sun, Moon } from "lucide-react";
 
 const tonalities = [
-  { id: 'C', name: 'C', folder: 'do' },
-  { id: 'C#', name: 'C#', folder: 'dosus' },
-  { id: 'D', name: 'D', folder: 're' },
-  { id: 'D#', name: 'D#', folder: 'resus' },
-  { id: 'E', name: 'E', folder: 'mi' },
-  { id: 'F', name: 'F', folder: 'fa' },
-  { id: 'F#', name: 'F#', folder: 'fasus' },
-  { id: 'G', name: 'G', folder: 'sol' },
-  { id: 'G#', name: 'G#', folder: 'solsus' },
-  { id: 'A', name: 'A', folder: 'la' },
-  { id: 'A#', name: 'A#', folder: 'lasus' },
-  { id: 'B', name: 'B', folder: 'si' },
+  { id: 'C', name: 'C', prefix: 'c' },
+  { id: 'C#', name: 'C#', prefix: 'csus' },
+  { id: 'D', name: 'D', prefix: 'd' },
+  { id: 'D#', name: 'D#', prefix: 'dsus' },
+  { id: 'E', name: 'E', prefix: 'e' },
+  { id: 'F', name: 'F', prefix: 'f' },
+  { id: 'F#', name: 'F#', prefix: 'fsus' },
+  { id: 'G', name: 'G', prefix: 'g' },
+  { id: 'G#', name: 'G#', prefix: 'gsus' },
+  { id: 'A', name: 'A', prefix: 'a' },
+  { id: 'A#', name: 'A#', prefix: 'asus' },
+  { id: 'B', name: 'B', prefix: 'b' },
 ];
 
 const chordTypes = [
@@ -54,12 +54,8 @@ const ChordPage = () => {
 
   const getImageUrl = (chordId: number, variant: 'a' | 'b' | 'c') => {
     const tonality = tonalities.find(t => t.id === selectedTonality);
-    const prefix = tonality?.folder || 'do';
-    // Images are at: https://app-fusion.gidiferreira.com/wp-content/uploads/2025/01/
-    // Pattern: {prefix}{chordId}{variant}.jpg - e.g., do1a.jpg, dosus5b.jpg
-    // For C (do): c1a.jpg, c1b.jpg, c1c.jpg, etc.
-    // Actually looking at the original, they use 'c' prefix for all in 'C' tonality
-    // Let me use the correct pattern based on the folder structure
+    const prefix = tonality?.prefix || 'c';
+    // Images pattern: {prefix}{chordId}{variant}.jpg - e.g., c1a.jpg, d5b.jpg, csus3c.jpg
     return `https://app-fusion.gidiferreira.com/wp-content/uploads/2025/01/${prefix}${chordId}${variant}.jpg`;
   };
 
