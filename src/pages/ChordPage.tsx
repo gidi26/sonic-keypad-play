@@ -191,6 +191,13 @@ const ChordPage = () => {
                 ))}
               </div>
 
+              {/* Current Chord Display */}
+              <div className="mb-4 text-center">
+                <span className="text-2xl font-bold text-white">
+                  {selectedTonality}{chordTypes.find(c => c.id === selectedChord)?.name}
+                </span>
+              </div>
+
               {/* Chord Images */}
               <div className="space-y-4 max-w-sm mx-auto">
                 {(["a", "b", "c"] as const).map((variant) => (
@@ -203,13 +210,6 @@ const ChordPage = () => {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Current Chord Display */}
-            <div className="mt-6 text-center">
-              <span className="text-2xl font-bold text-white">
-                {selectedTonality}{chordTypes.find(c => c.id === selectedChord)?.name}
-              </span>
             </div>
           </div>
         </main>
