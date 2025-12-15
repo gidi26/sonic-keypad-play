@@ -283,10 +283,14 @@ const ChordPage = () => {
           {/* Main Content */}
           <div className="flex-1 flex flex-col items-center p-6 overflow-auto">
             {/* Title */}
-            <h1 className="text-3xl md:text-4xl font-bold mb-8">
-              <span className="text-red-500 italic font-serif">NEO SOUL JAZZ</span>
-              <span className={`ml-2 font-light tracking-wider ${isDark ? 'text-white' : 'text-gray-800'}`}>CHORDS</span>
-            </h1>
+            <div className="text-center mb-8">
+              <h1 className={`text-4xl md:text-7xl font-black tracking-tight font-poppins ${isDark ? 'text-white' : 'text-foreground'}`}>
+                CHORD
+              </h1>
+              <p className="text-2xl md:text-4xl font-medium text-primary mt-2 font-anton tracking-widest">
+                NEO SOUL JAZZ
+              </p>
+            </div>
 
             {/* Tonality Selection */}
             <div className="flex flex-wrap justify-center gap-2 mb-6 max-w-3xl">
