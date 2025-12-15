@@ -192,7 +192,7 @@ const ChordPage = () => {
               </div>
 
               {/* Chord Images */}
-              <div className="space-y-4">
+              <div className="space-y-4 max-w-sm mx-auto">
                 {(["a", "b", "c"] as const).map((variant) => (
                   <div key={variant} className="rounded-xl overflow-hidden">
                     <ChordImage
