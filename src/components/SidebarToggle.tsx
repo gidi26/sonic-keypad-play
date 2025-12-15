@@ -1,4 +1,4 @@
-import { BookOpen, X } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useSidebar } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 
@@ -21,9 +21,9 @@ export function SidebarToggle({ className }: SidebarToggleProps) {
       aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
     >
       {isOpen ? (
-        <X className="w-6 h-6" />
+        <ChevronLeft className="w-6 h-6" />
       ) : (
-        <BookOpen className="w-6 h-6" />
+        <ChevronRight className="w-6 h-6" />
       )}
     </button>
   );
