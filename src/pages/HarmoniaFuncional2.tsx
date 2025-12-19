@@ -50,7 +50,7 @@ const HarmoniaFuncional2: React.FC = () => {
     { label: 'V7' },
     { label: '#V' },
     { label: 'VIm' },
-    { label: '#VI' },
+    { label: 'bVII' },
     { label: 'VIIº' },
   ];
 
