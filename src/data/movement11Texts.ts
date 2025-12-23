@@ -35,12 +35,12 @@ const getChord = (tonalityId: number): string => {
 
 const createPtTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Função 0", description: "Nota usada como Cromático Decrescente" },
-    { label: "Função 0", description: "Nota usada como Cromático Decrescente" },
-    { label: "Função 0", description: "Harmonia em sexta para aproximação do dominante" },
+    { label: "Técnica", description: "Nota usada como Cromático Decrescente" },
+    { label: "Técnica", description: "Nota usada como Cromático Decrescente" },
+    { label: "Técnica", description: "Harmonia em sexta para aproximação do dominante" },
     { label: "Função 5", description: "Harmonia em sexta com função dominante" },
-    { label: "Função 0", description: "Nota de apoio para a Tônica" },
-    { label: "Função 0", description: "Nota de apoio para a Tônica" },
+    { label: "Técnica", description: "Nota de apoio para a Tônica" },
+    { label: "Técnica", description: "Nota de apoio para a Tônica" },
     { label: "Função 1", description: `${getChord(tonalityId)} Acorde relativo menor` },
     { label: "Função 1", description: `${getChord(tonalityId)} Acorde relativo menor` },
   ],
@@ -48,12 +48,12 @@ const createPtTexts = (tonalityId: number): TonalityTexts => ({
 
 const createEnTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Function 0", description: "Note used as a descending chromatic chord" },
-    { label: "Function 0", description: "Note used as a descending chromatic chord" },
-    { label: "Function 0", description: "Sixth harmony for approaching the dominant" },
+    { label: "Technique", description: "Note used as a descending chromatic chord" },
+    { label: "Technique", description: "Note used as a descending chromatic chord" },
+    { label: "Technique", description: "Sixth harmony for approaching the dominant" },
     { label: "Function 5", description: "Sixth harmony with dominant function" },
-    { label: "Function 0", description: "Supporting note for the tonic" },
-    { label: "Function 0", description: "Supporting note for the tonic" },
+    { label: "Technique", description: "Supporting note for the tonic" },
+    { label: "Technique", description: "Supporting note for the tonic" },
     { label: "Function 1", description: `${getChord(tonalityId)} Relative minor chord` },
     { label: "Function 1", description: `${getChord(tonalityId)} Relative minor chord` },
   ],
@@ -61,12 +61,12 @@ const createEnTexts = (tonalityId: number): TonalityTexts => ({
 
 const createEsTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Función 0", description: "Nota usada como Cromático Decrescente" },
-    { label: "Función 0", description: "Nota usada como Cromático Decrescente" },
-    { label: "Función 0", description: "Sexta armonía para acercarse a la dominante" },
+    { label: "Técnica", description: "Nota usada como Cromático Decrescente" },
+    { label: "Técnica", description: "Nota usada como Cromático Decrescente" },
+    { label: "Técnica", description: "Sexta armonía para acercarse a la dominante" },
     { label: "Función 5", description: "Harmonia em sexta com Función dominante" },
-    { label: "Función 0", description: "Nota de apoyo para la tónica" },
-    { label: "Función 0", description: "Nota de apoyo para la tónica" },
+    { label: "Técnica", description: "Nota de apoyo para la tónica" },
+    { label: "Técnica", description: "Nota de apoyo para la tónica" },
     { label: "Función 1", description: `${getChord(tonalityId)} Acorde relativo menor` },
     { label: "Función 1", description: `${getChord(tonalityId)} Acorde relativo menor` },
   ],

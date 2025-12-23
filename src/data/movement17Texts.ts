@@ -36,11 +36,11 @@ const createPtTexts = (tonalityId: number): TonalityTexts => {
   const chords = tonalityChords[tonalityId];
   return {
     containers: [
-      { label: "Função 0", description: "Nota de apoio para o acorde dominante" },
-      { label: "Função 0", description: "Nota de apoio para o acorde dominante" },
+      { label: "Técnica", description: "Nota de apoio para o acorde dominante" },
+      { label: "Técnica", description: "Nota de apoio para o acorde dominante" },
       { label: "Função 5", description: `${chords.dominant} Acorde Dominante` },
-      { label: "Função 0", description: `${chords.passing1} Acorde de passagem para o acorde relativo` },
-      { label: "Função 0", description: `${chords.passing2} Acorde de passagem para o acorde relativo` },
+      { label: "Técnica", description: `${chords.passing1} Acorde de passagem para o acorde relativo` },
+      { label: "Técnica", description: `${chords.passing2} Acorde de passagem para o acorde relativo` },
       { label: "Função 1", description: `${chords.relative} Acorde relativo` },
     ],
   };
@@ -51,11 +51,11 @@ const createEnTexts = (tonalityId: number): TonalityTexts => {
   const chords = tonalityChords[tonalityId];
   return {
     containers: [
-      { label: "Function 0", description: "Supporting note for the dominant chord" },
-      { label: "Function 0", description: "Supporting note for the dominant chord" },
+      { label: "Technique", description: "Supporting note for the dominant chord" },
+      { label: "Technique", description: "Supporting note for the dominant chord" },
       { label: "Function 5", description: `${chords.dominant} Dominant chord` },
-      { label: "Function 0", description: `${chords.passing1} Passing chord to the relative chord` },
-      { label: "Function 0", description: `${chords.passing2} Passing chord to the relative chord` },
+      { label: "Technique", description: `${chords.passing1} Passing chord to the relative chord` },
+      { label: "Technique", description: `${chords.passing2} Passing chord to the relative chord` },
       { label: "Function 1", description: `${chords.relative} Relative chord` },
     ],
   };
@@ -66,11 +66,11 @@ const createEsTexts = (tonalityId: number): TonalityTexts => {
   const chords = tonalityChords[tonalityId];
   return {
     containers: [
-      { label: "Función 0", description: "Nota de apoyo para el acorde de dominante" },
-      { label: "Función 0", description: "Nota de apoyo para el acorde de dominante" },
+      { label: "Técnica", description: "Nota de apoyo para el acorde de dominante" },
+      { label: "Técnica", description: "Nota de apoyo para el acorde de dominante" },
       { label: "Función 5", description: `${chords.dominant} Acorde de dominante` },
-      { label: "Función 0", description: `${chords.passing1} Pasando el acorde al Acorde relativo` },
-      { label: "Función 0", description: `${chords.passing2} Pasando el acorde al Acorde relativo` },
+      { label: "Técnica", description: `${chords.passing1} Pasando el acorde al Acorde relativo` },
+      { label: "Técnica", description: `${chords.passing2} Pasando el acorde al Acorde relativo` },
       { label: "Función 1", description: `${chords.relative} Acorde relativo` },
     ],
   };

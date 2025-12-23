@@ -41,12 +41,12 @@ const createPtTexts = (tonalityId: number): TonalityTexts => {
   const chords = getChords(tonalityId);
   return {
     containers: [
-      { label: 'Função 0', description: 'Nota de aproximação do acorde subdominante' },
-      { label: 'Função 0', description: 'Nota de aproximação do acorde subdominante' },
+      { label: 'Técnica', description: 'Nota de aproximação do acorde subdominante' },
+      { label: 'Técnica', description: 'Nota de aproximação do acorde subdominante' },
       { label: 'Função 2', description: `${chords.subdominant} Acorde subdominante` },
-      { label: 'Função 0', description: `${chords.approach} Acorde de aproximação para Dominante` },
+      { label: 'Técnica', description: `${chords.approach} Acorde de aproximação para Dominante` },
       { label: 'Função 5', description: `${chords.dominant} Acorde Dominante Trítono` },
-      { label: 'Função 0', description: 'Nota de apoio para o relativo menor' },
+      { label: 'Técnica', description: 'Nota de apoio para o relativo menor' },
       { label: 'Função 1', description: `${chords.relative} Acorde Relativo Menor` },
     ],
   };
@@ -57,12 +57,12 @@ const createEnTexts = (tonalityId: number): TonalityTexts => {
   const chords = getChords(tonalityId);
   return {
     containers: [
-      { label: 'Function 0', description: 'Approach note to the subdominant chord' },
-      { label: 'Function 0', description: 'Approach note to the subdominant chord' },
+      { label: 'Technique', description: 'Approach note to the subdominant chord' },
+      { label: 'Technique', description: 'Approach note to the subdominant chord' },
       { label: 'Function 2', description: `${chords.subdominant} Subdominant chord` },
-      { label: 'Function 0', description: `${chords.approach} Approach chord for the dominant` },
+      { label: 'Technique', description: `${chords.approach} Approach chord for the dominant` },
       { label: 'Function 5', description: `${chords.dominant} Dominant Tritone chord` },
-      { label: 'Function 0', description: 'Support note for the relative minor' },
+      { label: 'Technique', description: 'Support note for the relative minor' },
       { label: 'Function 1', description: `${chords.relative} Relative minor chord` },
     ],
   };
@@ -73,12 +73,12 @@ const createEsTexts = (tonalityId: number): TonalityTexts => {
   const chords = getChords(tonalityId);
   return {
     containers: [
-      { label: 'Función 0', description: 'Nota de aproximación del acorde subdominante' },
-      { label: 'Función 0', description: 'Nota de aproximación del acorde subdominante' },
+      { label: 'Técnica', description: 'Nota de aproximación del acorde subdominante' },
+      { label: 'Técnica', description: 'Nota de aproximación del acorde subdominante' },
       { label: 'Función 2', description: `${chords.subdominant} Acorde subdominante` },
-      { label: 'Función 0', description: `${chords.approach} Acorde de aproximación para la dominante` },
+      { label: 'Técnica', description: `${chords.approach} Acorde de aproximación para la dominante` },
       { label: 'Función 5', description: `${chords.dominant} Acorde Dominante Trítono` },
-      { label: 'Función 0', description: 'Nota de apoyo para la relativa menor' },
+      { label: 'Técnica', description: 'Nota de apoyo para la relativa menor' },
       { label: 'Función 1', description: `${chords.relative} Acorde de relativa menor` },
     ],
   };

@@ -39,9 +39,9 @@ const createPtTexts = (tonalityId: number): TonalityTexts => {
   const chords = getChords(tonalityId);
   return {
     containers: [
-      { label: 'Função 0', description: `${chords.approachSub} Acorde usado como aproximação do Subdominante` },
+      { label: 'Técnica', description: `${chords.approachSub} Acorde usado como aproximação do Subdominante` },
       { label: 'Função 2', description: `${chords.subdominant} Acorde Subdominante` },
-      { label: 'Função 0', description: `${chords.approachDom} Acorde usado como aproximação do Dominante` },
+      { label: 'Técnica', description: `${chords.approachDom} Acorde usado como aproximação do Dominante` },
       { label: 'Função 5', description: `${chords.dominant} Acorde Dominante` },
       { label: 'Função 1', description: `${chords.relativeMinor} Acorde relativo menor` },
     ],
@@ -53,9 +53,9 @@ const createEnTexts = (tonalityId: number): TonalityTexts => {
   const chords = getChords(tonalityId);
   return {
     containers: [
-      { label: 'Function 0', description: `${chords.approachSub} Chord used as an approximation of the Subdominant` },
+      { label: 'Technique', description: `${chords.approachSub} Chord used as an approximation of the Subdominant` },
       { label: 'Function 2', description: `${chords.subdominant} Subdominant Chord` },
-      { label: 'Function 0', description: `${chords.approachDom} Chord used as an approximation of the Dominant` },
+      { label: 'Technique', description: `${chords.approachDom} Chord used as an approximation of the Dominant` },
       { label: 'Function 5', description: `${chords.dominant} Dominant Chord` },
       { label: 'Function 1', description: `${chords.relativeMinor} Relative minor chord` },
     ],
@@ -67,9 +67,9 @@ const createEsTexts = (tonalityId: number): TonalityTexts => {
   const chords = getChords(tonalityId);
   return {
     containers: [
-      { label: 'Función 0', description: `${chords.approachSub} Acorde utilizado como aproximación de la subdominante` },
+      { label: 'Técnica', description: `${chords.approachSub} Acorde utilizado como aproximación de la subdominante` },
       { label: 'Función 2', description: `${chords.subdominant} Acorde de subdominante` },
-      { label: 'Función 0', description: `${chords.approachDom} Acorde utilizado como aproximación de la dominante` },
+      { label: 'Técnica', description: `${chords.approachDom} Acorde utilizado como aproximación de la dominante` },
       { label: 'Función 5', description: `${chords.dominant} Acorde de dominante` },
       { label: 'Función 1', description: `${chords.relativeMinor} Acorde relativo menor` },
     ],

@@ -49,13 +49,13 @@ const tonicChords: { [key: number]: string } = {
 // Portuguese texts
 const createPtTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Função 0", description: "Harmonia em sexta para aproximação do dominante" },
-    { label: "Função 0", description: "Harmonia em sexta para aproximação do dominante" },
-    { label: "Função 0", description: "Harmonia em sexta para aproximação do dominante" },
-    { label: "Função 0", description: "Harmonia em sexta para aproximação do dominante" },
-    { label: "Função 0", description: "Harmonia em sexta para aproximação do dominante" },
+    { label: "Técnica", description: "Harmonia em sexta para aproximação do dominante" },
+    { label: "Técnica", description: "Harmonia em sexta para aproximação do dominante" },
+    { label: "Técnica", description: "Harmonia em sexta para aproximação do dominante" },
+    { label: "Técnica", description: "Harmonia em sexta para aproximação do dominante" },
+    { label: "Técnica", description: "Harmonia em sexta para aproximação do dominante" },
     { label: "Função 5", description: `${dominantChords[tonalityId]} Acorde dominante` },
-    { label: "Função 0", description: "Nota de apoio para a Tônica" },
+    { label: "Técnica", description: "Nota de apoio para a Tônica" },
     { label: "Função 1", description: "Nota de apoio para a Tônica" },
     { label: "Função 1", description: `${tonicChords[tonalityId]} Tônica Maior` },
   ],
@@ -64,13 +64,13 @@ const createPtTexts = (tonalityId: number): TonalityTexts => ({
 // English texts
 const createEnTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Function 0", description: "Harmony in sixth for approaching the dominant" },
-    { label: "Function 0", description: "Harmony in sixth for approaching the dominant" },
-    { label: "Function 0", description: "Harmony in sixth for approaching the dominant" },
-    { label: "Function 0", description: "Harmony in sixth for approaching the dominant" },
-    { label: "Function 0", description: "Harmony in sixth for approaching the dominant" },
+    { label: "Technique", description: "Harmony in sixth for approaching the dominant" },
+    { label: "Technique", description: "Harmony in sixth for approaching the dominant" },
+    { label: "Technique", description: "Harmony in sixth for approaching the dominant" },
+    { label: "Technique", description: "Harmony in sixth for approaching the dominant" },
+    { label: "Technique", description: "Harmony in sixth for approaching the dominant" },
     { label: "Function 5", description: `${dominantChords[tonalityId]} Dominant chord` },
-    { label: "Function 0", description: "Supporting note for the tonic" },
+    { label: "Technique", description: "Supporting note for the tonic" },
     { label: "Function 1", description: "Supporting note for the tonic" },
     { label: "Function 1", description: `${tonicChords[tonalityId]} Major tonic` },
   ],
@@ -79,13 +79,13 @@ const createEnTexts = (tonalityId: number): TonalityTexts => ({
 // Spanish texts
 const createEsTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Función 0", description: "Armonía en sexta para acercarse a la dominante" },
-    { label: "Función 0", description: "Armonía en sexta para acercarse a la dominante" },
-    { label: "Función 0", description: "Armonía en sexta para acercarse a la dominante" },
-    { label: "Función 0", description: "Armonía en sexta para acercarse a la dominante" },
-    { label: "Función 0", description: "Armonía en sexta para acercarse a la dominante" },
+    { label: "Técnica", description: "Armonía en sexta para acercarse a la dominante" },
+    { label: "Técnica", description: "Armonía en sexta para acercarse a la dominante" },
+    { label: "Técnica", description: "Armonía en sexta para acercarse a la dominante" },
+    { label: "Técnica", description: "Armonía en sexta para acercarse a la dominante" },
+    { label: "Técnica", description: "Armonía en sexta para acercarse a la dominante" },
     { label: "Función 5", description: `${dominantChords[tonalityId]} Acorde de dominante` },
-    { label: "Función 0", description: "Nota de apoyo para la tónica" },
+    { label: "Técnica", description: "Nota de apoyo para la tónica" },
     { label: "Función 1", description: "Nota de apoyo para la tónica" },
     { label: "Función 1", description: `${tonicChords[tonalityId]} Tónica mayor` },
   ],
