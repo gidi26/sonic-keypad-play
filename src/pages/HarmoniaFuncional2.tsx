@@ -56,16 +56,16 @@ const HarmoniaFuncional2: React.FC = () => {
 
   const innerSegments = [
     { label: 'T' },
-    { label: 'Sub5 I' },
+    { label: 'Sub5 V' },
     { label: 'ST' },
-    { label: 'Sub5 II' },
+    { label: 'Sub5 VI' },
     { label: 'MD' },
     { label: 'SD' },
-    { label: 'Sub5 IV' },
+    { label: 'Sub5 I' },
     { label: 'D' },
-    { label: 'Sub5 V' },
+    { label: 'Sub5 II' },
     { label: 'SPD' },
-    { label: 'Sub5 VI' },
+    { label: 'Sub5 III' },
     { label: 'S' },
   ];
 
