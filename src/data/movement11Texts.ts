@@ -42,7 +42,7 @@ const createPtTexts = (tonalityId: number): TonalityTexts => ({
     { label: "Função 0", description: "Nota de apoio para a Tônica" },
     { label: "Função 0", description: "Nota de apoio para a Tônica" },
     { label: "Função 1", description: `${getChord(tonalityId)} Acorde relativo menor` },
-    { label: "Função 5", description: `${getChord(tonalityId)} Acorde relativo menor` },
+    { label: "Função 1", description: `${getChord(tonalityId)} Acorde relativo menor` },
   ],
 });
 
@@ -55,7 +55,7 @@ const createEnTexts = (tonalityId: number): TonalityTexts => ({
     { label: "Function 0", description: "Supporting note for the tonic" },
     { label: "Function 0", description: "Supporting note for the tonic" },
     { label: "Function 1", description: `${getChord(tonalityId)} Relative minor chord` },
-    { label: "Function 5", description: `${getChord(tonalityId)} Relative minor chord` },
+    { label: "Function 1", description: `${getChord(tonalityId)} Relative minor chord` },
   ],
 });
 
@@ -68,7 +68,7 @@ const createEsTexts = (tonalityId: number): TonalityTexts => ({
     { label: "Función 0", description: "Nota de apoyo para la tónica" },
     { label: "Función 0", description: "Nota de apoyo para la tónica" },
     { label: "Función 1", description: `${getChord(tonalityId)} Acorde relativo menor` },
-    { label: "Función 5", description: `${getChord(tonalityId)} Acorde relativo menor` },
+    { label: "Función 1", description: `${getChord(tonalityId)} Acorde relativo menor` },
   ],
 });
 
