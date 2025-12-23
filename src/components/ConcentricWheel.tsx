@@ -166,10 +166,6 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             const startAngle = index * segmentAngle + gapAngle / 2;
             const endAngle = (index + 1) * segmentAngle - gapAngle / 2;
             const textPos = getTextPosition(index, 12, (dominantRadius + dominantInnerRadius) / 2);
-            
-            const normalizedRotation = (((-dominantRotation) % 360) + 360) % 360;
-            const tonicIndex = Math.round(normalizedRotation / 30) % 12;
-            const isTonicPosition = index === tonicIndex;
 
             const isSelected = selectedDominant === index;
 
@@ -177,7 +173,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               <g key={`dominant-${index}`}>
                 <path
                   d={createArcPath(startAngle, endAngle, dominantInnerRadius, dominantRadius)}
-                  fill={isSelected ? '#ee1d3a' : isTonicPosition ? '#ee1d3a' : '#4a1520'}
+                  fill={isSelected ? '#ee1d3a' : '#4a1520'}
                   stroke="#771621"
                   strokeWidth={4}
                   strokeOpacity={0}
@@ -187,7 +183,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                 <text
                   x={textPos.x}
                   y={textPos.y}
-                  fill={isSelected || isTonicPosition ? '#ffffff' : 'hsl(var(--primary-foreground))'}
+                  fill={isSelected ? '#ffffff' : 'hsl(var(--primary-foreground))'}
                   fontSize="14"
                   fontWeight="400"
                   textAnchor="middle"
