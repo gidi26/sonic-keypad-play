@@ -19,8 +19,8 @@ export const movement12Data: Movement12Data = {
   pt: {
     1: {
       containers: [
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
         { label: "Função 2", description: "G7(9)(11) Acorde dominante" },
         { label: "Função 2", description: "Em Voice Leading" },
         { label: "Função 2", description: "Dm Voice Leading" },
@@ -29,8 +29,8 @@ export const movement12Data: Movement12Data = {
     },
     2: {
       containers: [
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
         { label: "Função 2", description: "G#7(9)(11) Acorde dominante" },
         { label: "Função 2", description: "Fm Voice Leading" },
         { label: "Função 2", description: "D#m Voice Leading" },
@@ -39,8 +39,8 @@ export const movement12Data: Movement12Data = {
     },
     3: {
       containers: [
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
         { label: "Função 2", description: "A7(9)(11) Acorde dominante" },
         { label: "Função 2", description: "F#m Voice Leading" },
         { label: "Função 2", description: "Em Voice Leading" },
@@ -49,8 +49,8 @@ export const movement12Data: Movement12Data = {
     },
     4: {
       containers: [
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
         { label: "Função 2", description: "A#7(9)(11) Acorde dominante" },
         { label: "Função 2", description: "Gm Voice Leading" },
         { label: "Função 2", description: "Fm Voice Leading" },
@@ -59,8 +59,8 @@ export const movement12Data: Movement12Data = {
     },
     5: {
       containers: [
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
         { label: "Função 2", description: "B7(9)(11) Acorde dominante" },
         { label: "Função 2", description: "G#m Voice Leading" },
         { label: "Função 2", description: "F#m Voice Leading" },
@@ -69,8 +69,8 @@ export const movement12Data: Movement12Data = {
     },
     6: {
       containers: [
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
         { label: "Função 2", description: "C7(9)(11) Acorde dominante" },
         { label: "Função 2", description: "Am Voice Leading" },
         { label: "Função 2", description: "Gm Voice Leading" },
@@ -79,8 +79,8 @@ export const movement12Data: Movement12Data = {
     },
     7: {
       containers: [
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
         { label: "Função 2", description: "C#7(9)(11) Acorde dominante" },
         { label: "Função 2", description: "A#m Voice Leading" },
         { label: "Função 2", description: "G#m Voice Leading" },
@@ -89,8 +89,8 @@ export const movement12Data: Movement12Data = {
     },
     8: {
       containers: [
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
         { label: "Função 2", description: "D7(9)(11) Acorde dominante" },
         { label: "Função 2", description: "Bm Voice Leading" },
         { label: "Função 2", description: "Am Voice Leading" },
@@ -99,8 +99,8 @@ export const movement12Data: Movement12Data = {
     },
     9: {
       containers: [
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
         { label: "Função 2", description: "D#7(9)(11) Acorde dominante" },
         { label: "Função 2", description: "Cm Voice Leading" },
         { label: "Função 2", description: "A#m Voice Leading" },
@@ -109,8 +109,8 @@ export const movement12Data: Movement12Data = {
     },
     10: {
       containers: [
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
         { label: "Função 2", description: "E7(9)(11) Acorde dominante" },
         { label: "Função 2", description: "C#m Voice Leading" },
         { label: "Função 2", description: "Bm Voice Leading" },
@@ -119,8 +119,8 @@ export const movement12Data: Movement12Data = {
     },
     11: {
       containers: [
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
         { label: "Função 2", description: "F7(9)(11) Acorde dominante" },
         { label: "Função 2", description: "Dm Voice Leading" },
         { label: "Função 2", description: "Cm Voice Leading" },
@@ -129,8 +129,8 @@ export const movement12Data: Movement12Data = {
     },
     12: {
       containers: [
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
-        { label: "Função 0", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
+        { label: "Técnica", description: "Nota de apoio para Dominante" },
         { label: "Função 2", description: "F#7(9)(11) Acorde dominante" },
         { label: "Função 2", description: "D#m Voice Leading" },
         { label: "Função 2", description: "C#m Voice Leading" },
@@ -141,8 +141,8 @@ export const movement12Data: Movement12Data = {
   en: {
     1: {
       containers: [
-        { label: "Function 0", description: "Supporting note for Dominant" },
-        { label: "Function 0", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
         { label: "Function 2", description: "G7(9)(11) Dominant chord" },
         { label: "Function 2", description: "Em Voice Leading" },
         { label: "Function 2", description: "Dm Voice Leading" },
@@ -151,8 +151,8 @@ export const movement12Data: Movement12Data = {
     },
     2: {
       containers: [
-        { label: "Function 0", description: "Supporting note for Dominant" },
-        { label: "Function 0", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
         { label: "Function 2", description: "G#7(9)(11) Dominant chord" },
         { label: "Function 2", description: "Fm Voice Leading" },
         { label: "Function 2", description: "D#m Voice Leading" },
@@ -161,8 +161,8 @@ export const movement12Data: Movement12Data = {
     },
     3: {
       containers: [
-        { label: "Function 0", description: "Supporting note for Dominant" },
-        { label: "Function 0", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
         { label: "Function 2", description: "A7(9)(11) Dominant chord" },
         { label: "Function 2", description: "F#m Voice Leading" },
         { label: "Function 2", description: "Em Voice Leading" },
@@ -171,8 +171,8 @@ export const movement12Data: Movement12Data = {
     },
     4: {
       containers: [
-        { label: "Function 0", description: "Supporting note for Dominant" },
-        { label: "Function 0", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
         { label: "Function 2", description: "A#7(9)(11) Dominant chord" },
         { label: "Function 2", description: "Gm Voice Leading" },
         { label: "Function 2", description: "Fm Voice Leading" },
@@ -181,8 +181,8 @@ export const movement12Data: Movement12Data = {
     },
     5: {
       containers: [
-        { label: "Function 0", description: "Supporting note for Dominant" },
-        { label: "Function 0", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
         { label: "Function 2", description: "B7(9)(11) Dominant chord" },
         { label: "Function 2", description: "G#m Voice Leading" },
         { label: "Function 2", description: "F#m Voice Leading" },
@@ -191,8 +191,8 @@ export const movement12Data: Movement12Data = {
     },
     6: {
       containers: [
-        { label: "Function 0", description: "Supporting note for Dominant" },
-        { label: "Function 0", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
         { label: "Function 2", description: "C7(9)(11) Dominant chord" },
         { label: "Function 2", description: "Am Voice Leading" },
         { label: "Function 2", description: "Gm Voice Leading" },
@@ -201,8 +201,8 @@ export const movement12Data: Movement12Data = {
     },
     7: {
       containers: [
-        { label: "Function 0", description: "Supporting note for Dominant" },
-        { label: "Function 0", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
         { label: "Function 2", description: "C#7(9)(11) Dominant chord" },
         { label: "Function 2", description: "A#m Voice Leading" },
         { label: "Function 2", description: "G#m Voice Leading" },
@@ -211,8 +211,8 @@ export const movement12Data: Movement12Data = {
     },
     8: {
       containers: [
-        { label: "Function 0", description: "Supporting note for Dominant" },
-        { label: "Function 0", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
         { label: "Function 2", description: "D7(9)(11) Dominant chord" },
         { label: "Function 2", description: "Bm Voice Leading" },
         { label: "Function 2", description: "Am Voice Leading" },
@@ -221,8 +221,8 @@ export const movement12Data: Movement12Data = {
     },
     9: {
       containers: [
-        { label: "Function 0", description: "Supporting note for Dominant" },
-        { label: "Function 0", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
         { label: "Function 2", description: "D#7(9)(11) Dominant chord" },
         { label: "Function 2", description: "Cm Voice Leading" },
         { label: "Function 2", description: "A#m Voice Leading" },
@@ -231,8 +231,8 @@ export const movement12Data: Movement12Data = {
     },
     10: {
       containers: [
-        { label: "Function 0", description: "Supporting note for Dominant" },
-        { label: "Function 0", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
         { label: "Function 2", description: "E7(9)(11) Dominant chord" },
         { label: "Function 2", description: "C#m Voice Leading" },
         { label: "Function 2", description: "Bm Voice Leading" },
@@ -241,8 +241,8 @@ export const movement12Data: Movement12Data = {
     },
     11: {
       containers: [
-        { label: "Function 0", description: "Supporting note for Dominant" },
-        { label: "Function 0", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
         { label: "Function 2", description: "F7(9)(11) Dominant chord" },
         { label: "Function 2", description: "Dm Voice Leading" },
         { label: "Function 2", description: "Cm Voice Leading" },
@@ -251,8 +251,8 @@ export const movement12Data: Movement12Data = {
     },
     12: {
       containers: [
-        { label: "Function 0", description: "Supporting note for Dominant" },
-        { label: "Function 0", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
+        { label: "Technique", description: "Supporting note for Dominant" },
         { label: "Function 2", description: "F#7(9)(11) Dominant chord" },
         { label: "Function 2", description: "D#m Voice Leading" },
         { label: "Function 2", description: "C#m Voice Leading" },
@@ -263,8 +263,8 @@ export const movement12Data: Movement12Data = {
   es: {
     1: {
       containers: [
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
         { label: "Función 2", description: "G7(9)(11) Acorde de dominante" },
         { label: "Función 2", description: "Em Voice Leading" },
         { label: "Función 2", description: "Dm Voice Leading" },
@@ -273,8 +273,8 @@ export const movement12Data: Movement12Data = {
     },
     2: {
       containers: [
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
         { label: "Función 2", description: "G#7(9)(11) Acorde de dominante" },
         { label: "Función 2", description: "Fm Voice Leading" },
         { label: "Función 2", description: "D#m Voice Leading" },
@@ -283,8 +283,8 @@ export const movement12Data: Movement12Data = {
     },
     3: {
       containers: [
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
         { label: "Función 2", description: "A7(9)(11) Acorde de dominante" },
         { label: "Función 2", description: "F#m Voice Leading" },
         { label: "Función 2", description: "Em Voice Leading" },
@@ -293,8 +293,8 @@ export const movement12Data: Movement12Data = {
     },
     4: {
       containers: [
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
         { label: "Función 2", description: "A#7(9)(11) Acorde de dominante" },
         { label: "Función 2", description: "Gm Voice Leading" },
         { label: "Función 2", description: "Fm Voice Leading" },
@@ -303,8 +303,8 @@ export const movement12Data: Movement12Data = {
     },
     5: {
       containers: [
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
         { label: "Función 2", description: "B7(9)(11) Acorde de dominante" },
         { label: "Función 2", description: "G#m Voice Leading" },
         { label: "Función 2", description: "F#m Voice Leading" },
@@ -313,8 +313,8 @@ export const movement12Data: Movement12Data = {
     },
     6: {
       containers: [
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
         { label: "Función 2", description: "C7(9)(11) Acorde de dominante" },
         { label: "Función 2", description: "Am Voice Leading" },
         { label: "Función 2", description: "Gm Voice Leading" },
@@ -323,8 +323,8 @@ export const movement12Data: Movement12Data = {
     },
     7: {
       containers: [
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
         { label: "Función 2", description: "C#7(9)(11) Acorde de dominante" },
         { label: "Función 2", description: "A#m Voice Leading" },
         { label: "Función 2", description: "G#m Voice Leading" },
@@ -333,8 +333,8 @@ export const movement12Data: Movement12Data = {
     },
     8: {
       containers: [
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
         { label: "Función 2", description: "D7(9)(11) Acorde de dominante" },
         { label: "Función 2", description: "Bm Voice Leading" },
         { label: "Función 2", description: "Am Voice Leading" },
@@ -343,8 +343,8 @@ export const movement12Data: Movement12Data = {
     },
     9: {
       containers: [
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
         { label: "Función 2", description: "D#7(9)(11) Acorde de dominante" },
         { label: "Función 2", description: "Cm Voice Leading" },
         { label: "Función 2", description: "A#m Voice Leading" },
@@ -353,8 +353,8 @@ export const movement12Data: Movement12Data = {
     },
     10: {
       containers: [
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
         { label: "Función 2", description: "E7(9)(11) Acorde de dominante" },
         { label: "Función 2", description: "C#m Voice Leading" },
         { label: "Función 2", description: "Bm Voice Leading" },
@@ -363,8 +363,8 @@ export const movement12Data: Movement12Data = {
     },
     11: {
       containers: [
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
         { label: "Función 2", description: "F7(9)(11) Acorde de dominante" },
         { label: "Función 2", description: "Dm Voice Leading" },
         { label: "Función 2", description: "Cm Voice Leading" },
@@ -373,8 +373,8 @@ export const movement12Data: Movement12Data = {
     },
     12: {
       containers: [
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
-        { label: "Función 0", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
+        { label: "Técnica", description: "Nota de apoyo para la dominante" },
         { label: "Función 2", description: "F#7(9)(11) Acorde de dominante" },
         { label: "Función 2", description: "D#m Voice Leading" },
         { label: "Función 2", description: "C#m Voice Leading" },
