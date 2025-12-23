@@ -18,6 +18,7 @@ const translations = {
     functions: 'Funções',
     degrees: 'Graus',
     turnTonality: 'Girar tonalidade',
+    dominantLayer: 'Dominante',
   },
   en: {
     legendTitle: 'Legend - Harmonic Functions',
@@ -34,6 +35,7 @@ const translations = {
     functions: 'Functions',
     degrees: 'Degrees',
     turnTonality: 'Turn Tonality',
+    dominantLayer: 'Dominant',
   },
   es: {
     legendTitle: 'Leyenda - Funciones Armónicas',
@@ -50,6 +52,7 @@ const translations = {
     functions: 'Funciones',
     degrees: 'Grados',
     turnTonality: 'Girar Tonalidad',
+    dominantLayer: 'Dominante',
   },
 };
 
@@ -79,6 +82,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const [selectedAR, setSelectedAR] = useState<number | null>(null);
   const [selectedAR2, setSelectedAR2] = useState<number | null>(null);
   const [noteRotation, setNoteRotation] = useState(0);
+  const [dominantRotation, setDominantRotation] = useState(0);
   const [activeLayer, setActiveLayer] = useState<'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus' | null>(null);
 
   const toggleLayer = (layer: 'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
@@ -92,17 +96,19 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
     return activeLayer === layer ? 1 : 0.15;
   };
 
-  const size = 650;
+  const size = 700;
   const center = size / 2;
-  const noteRadius = 315;
-  const noteInnerRadius = 279; // Gap between tonality and degrees layer
-  const degreesOuterR = 275;
-  const functionsOuterR = 230;
-  const functions2OuterR = 185;
-  const innermostR = 140;
-  const innermost2R = 95;
-  const innermost3R = 55;
-  const centerRadius = 30;
+  const dominantRadius = 345; // New outermost layer
+  const dominantInnerRadius = 309;
+  const noteRadius = 305;
+  const noteInnerRadius = 269; // Gap between tonality and degrees layer
+  const degreesOuterR = 265;
+  const functionsOuterR = 220;
+  const functions2OuterR = 175;
+  const innermostR = 130;
+  const innermost2R = 85;
+  const innermost3R = 45;
+  const centerRadius = 25;
 
   const createArcPath = (
     startAngle: number,
@@ -143,12 +149,56 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
     setNoteRotation(prev => prev + (direction === 'left' ? 30 : -30));
   };
 
+  const rotateDominant = (direction: 'left' | 'right') => {
+    setDominantRotation(prev => prev + (direction === 'left' ? 30 : -30));
+  };
+
   return (
     <div className="flex flex-col items-center justify-center p-2 md:p-4 w-full max-w-full overflow-hidden">
       <svg
         viewBox={`0 0 ${size} ${size}`}
-        className="drop-shadow-2xl w-full max-w-[650px] h-auto"
+        className="drop-shadow-2xl w-full max-w-[700px] h-auto"
       >
+        {/* Dominant ring (rotatable - outermost) */}
+        <g style={{ transform: `rotate(${dominantRotation - 15}deg)`, transformOrigin: 'center', transition: 'transform 0.3s ease-out' }}>
+          {noteSegments.map((segment, index) => {
+            const gapAngle = 1.5;
+            const startAngle = index * segmentAngle + gapAngle / 2;
+            const endAngle = (index + 1) * segmentAngle - gapAngle / 2;
+            const textPos = getTextPosition(index, 12, (dominantRadius + dominantInnerRadius) / 2);
+            
+            const normalizedRotation = (((-dominantRotation) % 360) + 360) % 360;
+            const tonicIndex = Math.round(normalizedRotation / 30) % 12;
+            const isTonicPosition = index === tonicIndex;
+
+            return (
+              <g key={`dominant-${index}`}>
+                <path
+                  d={createArcPath(startAngle, endAngle, dominantInnerRadius, dominantRadius)}
+                  fill={isTonicPosition ? '#ee1d3a' : '#4a1520'}
+                  stroke="#771621"
+                  strokeWidth={4}
+                  strokeOpacity={0}
+                  className="cursor-grab active:cursor-grabbing"
+                />
+                <text
+                  x={textPos.x}
+                  y={textPos.y}
+                  fill={isTonicPosition ? '#ffffff' : 'hsl(var(--primary-foreground))'}
+                  fontSize="14"
+                  fontWeight="400"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
+                  className="pointer-events-none select-none"
+                >
+                  {segment.label}
+                </text>
+              </g>
+            );
+          })}
+        </g>
+
         {/* Notes ring (rotatable) */}
         <g style={{ transform: `rotate(${noteRotation - 15}deg)`, transformOrigin: 'center', transition: 'transform 0.3s ease-out' }}>
           {noteSegments.map((segment, index) => {
@@ -484,6 +534,25 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           onClick={() => rotateNotes('right')}
           className="p-3 rounded-full bg-[#230912] text-white hover:bg-[#230912]/90 transition-all active:scale-95"
           aria-label="Girar para direita"
+        >
+          <ChevronRight size={24} />
+        </button>
+      </div>
+
+      {/* Dominant rotation controls */}
+      <div className="flex items-center gap-4 mt-3">
+        <button
+          onClick={() => rotateDominant('left')}
+          className="p-3 rounded-full bg-[#4a1520] text-white hover:bg-[#4a1520]/90 transition-all active:scale-95"
+          aria-label="Girar dominante para esquerda"
+        >
+          <ChevronLeft size={24} />
+        </button>
+        <span className="text-sm font-medium text-white">{t.dominantLayer}</span>
+        <button
+          onClick={() => rotateDominant('right')}
+          className="p-3 rounded-full bg-[#4a1520] text-white hover:bg-[#4a1520]/90 transition-all active:scale-95"
+          aria-label="Girar dominante para direita"
         >
           <ChevronRight size={24} />
         </button>
