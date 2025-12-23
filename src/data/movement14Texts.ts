@@ -127,7 +127,7 @@ const getTonicChord = (tonalityId: number): string => {
 // Portuguese texts
 const createPtTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Função 0", description: `${getContextChord(tonalityId)} Acorde de contexto` },
+    { label: "Técnica", description: `${getContextChord(tonalityId)} Acorde de contexto` },
     { label: "Função 5", description: `${getDominantAlt(tonalityId)} Acorde Dominante do movimento 1` },
     { label: "Função 1", description: `${getRelativeMinor(tonalityId)} Relativa menor do Movimento 1` },
     { label: "Função 2", description: `${getSubdominant(tonalityId)} Subdominante Movimento 2` },
@@ -139,7 +139,7 @@ const createPtTexts = (tonalityId: number): TonalityTexts => ({
 // English texts
 const createEnTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Function 0", description: `${getContextChord(tonalityId)} Context Chord` },
+    { label: "Technique", description: `${getContextChord(tonalityId)} Context Chord` },
     { label: "Function 5", description: `${getDominantAlt(tonalityId)} Dominant Chord of Movement 1` },
     { label: "Function 1", description: `${getRelativeMinor(tonalityId)} Relative Minor Chord of Movement 1` },
     { label: "Function 2", description: `${getSubdominant(tonalityId)} Subdominant of Movement 2` },
@@ -151,7 +151,7 @@ const createEnTexts = (tonalityId: number): TonalityTexts => ({
 // Spanish texts
 const createEsTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Función 0", description: `${getContextChord(tonalityId)} Acorde de contexto` },
+    { label: "Técnica", description: `${getContextChord(tonalityId)} Acorde de contexto` },
     { label: "Función 5", description: `${getDominantAlt(tonalityId)} Acorde de Dominante del Movimiento 1` },
     { label: "Función 1", description: `${getRelativeMinor(tonalityId)} Acorde Menor Relativo del Movimiento 1` },
     { label: "Función 2", description: `${getSubdominant(tonalityId)} Subdominante del Movimiento 2` },

@@ -36,9 +36,9 @@ const createPtTexts = (tonalityId: number): TonalityTexts => {
   const chords = tonalityChords[tonalityId];
   return {
     containers: [
-      { label: "Função 0", description: `${chords.main} Acorde de aproximação para o dominante` },
+      { label: "Técnica", description: `${chords.main} Acorde de aproximação para o dominante` },
       { label: "Função 5", description: `${chords.alt} alt Acorde Alterado` },
-      { label: "Função 0", description: `${chords.approach} Acorde de aproximação para Relativa menor` },
+      { label: "Técnica", description: `${chords.approach} Acorde de aproximação para Relativa menor` },
       { label: "Função 5", description: `${chords.dom} Acorde estrutura superior do dominante` },
       { label: "Função 1", description: `${chords.relMinor}7(9)(11) Acorde Relativo Menor` },
     ],
@@ -50,9 +50,9 @@ const createEnTexts = (tonalityId: number): TonalityTexts => {
   const chords = tonalityChords[tonalityId];
   return {
     containers: [
-      { label: "Function 0", description: `${chords.main} Approach chord to dominant` },
+      { label: "Technique", description: `${chords.main} Approach chord to dominant` },
       { label: "Function 5", description: `${chords.alt} alt Altered Chord` },
-      { label: "Function 0", description: `${chords.approach} Approach chord to relative minor` },
+      { label: "Technique", description: `${chords.approach} Approach chord to relative minor` },
       { label: "Function 5", description: `${chords.dom} Upper structure chord of dominant` },
       { label: "Function 1", description: `${chords.relMinor}7(9)(11) Relative Minor Chord` },
     ],
@@ -64,9 +64,9 @@ const createEsTexts = (tonalityId: number): TonalityTexts => {
   const chords = tonalityChords[tonalityId];
   return {
     containers: [
-      { label: "Función 0", description: `${chords.main} Acorde de aproximación a la dominante` },
+      { label: "Técnica", description: `${chords.main} Acorde de aproximación a la dominante` },
       { label: "Función 5", description: `${chords.alt} alt Acorde Alterado` },
-      { label: "Función 0", description: `${chords.approach} Acorde de aproximación a la relativa menor` },
+      { label: "Técnica", description: `${chords.approach} Acorde de aproximación a la relativa menor` },
       { label: "Función 5", description: `${chords.dom} Acorde de estructura superior de la dominante` },
       { label: "Función 1", description: `${chords.relMinor}7(9)(11) Acorde relativa menor` },
     ],

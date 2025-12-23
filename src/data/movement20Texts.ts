@@ -57,9 +57,9 @@ const generatePortugueseTexts = (): Movement20LanguageTexts => {
   tonalities.forEach(tonality => {
     result[tonality] = {
       containers: [
-        { function: "Função 0", description: "Cromático Descendente para o Dominante" },
-        { function: "Função 0", description: "Cromático Descendente para o Dominante" },
-        { function: "Função 0", description: "Cromático Descendente para o Dominante" },
+        { function: "Técnica", description: "Cromático Descendente para o Dominante" },
+        { function: "Técnica", description: "Cromático Descendente para o Dominante" },
+        { function: "Técnica", description: "Cromático Descendente para o Dominante" },
         { function: "Função 5", description: `${dominantChords[tonality]} Acorde Dominante` },
         { function: "Função 1", description: `${tonicChords[tonality]} Tônica` }
       ]
@@ -75,9 +75,9 @@ const generateSpanishTexts = (): Movement20LanguageTexts => {
   tonalities.forEach(tonality => {
     result[tonality] = {
       containers: [
-        { function: "Función 0", description: "Acorde Cromático Descendente a Dominante" },
-        { function: "Función 0", description: "Acorde Cromático Descendente a Dominante" },
-        { function: "Función 0", description: "Acorde Cromático Descendente a Dominante" },
+        { function: "Técnica", description: "Acorde Cromático Descendente a Dominante" },
+        { function: "Técnica", description: "Acorde Cromático Descendente a Dominante" },
+        { function: "Técnica", description: "Acorde Cromático Descendente a Dominante" },
         { function: "Función 5", description: `${dominantChords[tonality]} Acorde Dominante` },
         { function: "Función 1", description: `${tonicChords[tonality]} Tónica` }
       ]
@@ -93,9 +93,9 @@ const generateEnglishTexts = (): Movement20LanguageTexts => {
   tonalities.forEach(tonality => {
     result[tonality] = {
       containers: [
-        { function: "Function 0", description: "Chromatic Descending Chord to Dominant" },
-        { function: "Function 0", description: "Chromatic Descending Chord to Dominant" },
-        { function: "Function 0", description: "Chromatic Descending Chord to Dominant" },
+        { function: "Technique", description: "Chromatic Descending Chord to Dominant" },
+        { function: "Technique", description: "Chromatic Descending Chord to Dominant" },
+        { function: "Technique", description: "Chromatic Descending Chord to Dominant" },
         { function: "Function 5", description: `${dominantChords[tonality]} Dominant Chord` },
         { function: "Function 1", description: `${tonicChords[tonality]} Tonic` }
       ]

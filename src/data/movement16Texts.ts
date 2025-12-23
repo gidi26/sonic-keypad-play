@@ -42,16 +42,16 @@ const createPtTexts = (tonalityId: number): TonalityTexts => {
   const chords = tonalityChords[tonalityId];
   return {
     containers: [
-      { label: "Função 0", description: "Nota de aproximação para o Acorde subdominante" },
-      { label: "Função 0", description: "Nota de aproximação para o Acorde subdominante" },
+      { label: "Técnica", description: "Nota de aproximação para o Acorde subdominante" },
+      { label: "Técnica", description: "Nota de aproximação para o Acorde subdominante" },
       { label: "Função 2", description: `${chords.subdominantNegative} Acorde subdominante (Harmonia Negativa)` },
-      { label: "Função 0", description: "Nota de aproximação para o Acorde subdominante" },
+      { label: "Técnica", description: "Nota de aproximação para o Acorde subdominante" },
       { label: "Função 2", description: `${chords.subdominantSub5} Acorde subdominante (Sub5)` },
-      { label: "Função 0", description: "Nota de aproximação para o Acorde dominante" },
+      { label: "Técnica", description: "Nota de aproximação para o Acorde dominante" },
       { label: "Função 5", description: `${chords.dominant1} Acorde dominante` },
-      { label: "Função 0", description: "Nota de aproximação para o Acorde dominante" },
+      { label: "Técnica", description: "Nota de aproximação para o Acorde dominante" },
       { label: "Função 5", description: `${chords.dominant2} Acorde dominante` },
-      { label: "Função 0", description: "Nota de aproximação para a Tônica" },
+      { label: "Técnica", description: "Nota de aproximação para a Tônica" },
       { label: "Função 1", description: `${chords.tonic} Tônica` },
     ],
   };
@@ -62,16 +62,16 @@ const createEnTexts = (tonalityId: number): TonalityTexts => {
   const chords = tonalityChords[tonalityId];
   return {
     containers: [
-      { label: "Function 0", description: "Approach note for the subdominant chord" },
-      { label: "Function 0", description: "Approach note for the subdominant chord" },
+      { label: "Technique", description: "Approach note for the subdominant chord" },
+      { label: "Technique", description: "Approach note for the subdominant chord" },
       { label: "Function 2", description: `${chords.subdominantNegative} Subdominant chord (Negative Harmony)` },
-      { label: "Function 0", description: "Approach note for the subdominant chord" },
+      { label: "Technique", description: "Approach note for the subdominant chord" },
       { label: "Function 2", description: `${chords.subdominantSub5} Subdominant chord (Sub5)` },
-      { label: "Function 0", description: "Approach note for the dominant chord" },
+      { label: "Technique", description: "Approach note for the dominant chord" },
       { label: "Function 5", description: `${chords.dominant1} Dominant chord` },
-      { label: "Function 0", description: "Approach note for the dominant chord" },
+      { label: "Technique", description: "Approach note for the dominant chord" },
       { label: "Function 5", description: `${chords.dominant2} Dominant chord` },
-      { label: "Function 0", description: "Approach note for the tonic" },
+      { label: "Technique", description: "Approach note for the tonic" },
       { label: "Function 1", description: `${chords.tonic} Tonic` },
     ],
   };
@@ -82,16 +82,16 @@ const createEsTexts = (tonalityId: number): TonalityTexts => {
   const chords = tonalityChords[tonalityId];
   return {
     containers: [
-      { label: "Función 0", description: "Nota de aproximación para el acorde de subdominante" },
-      { label: "Función 0", description: "Nota de aproximación para el acorde de subdominante" },
+      { label: "Técnica", description: "Nota de aproximación para el acorde de subdominante" },
+      { label: "Técnica", description: "Nota de aproximación para el acorde de subdominante" },
       { label: "Función 2", description: `${chords.subdominantNegative} Acorde de subdominante (Armonía Negativa)` },
-      { label: "Función 0", description: "Nota de aproximación para el acorde de subdominante" },
+      { label: "Técnica", description: "Nota de aproximación para el acorde de subdominante" },
       { label: "Función 2", description: `${chords.subdominantSub5} Acorde de subdominante (Sub5)` },
-      { label: "Función 0", description: "Nota de aproximación para el acorde de dominante" },
+      { label: "Técnica", description: "Nota de aproximación para el acorde de dominante" },
       { label: "Función 5", description: `${chords.dominant1} Acorde de dominante` },
-      { label: "Función 0", description: "Nota de aproximación para el acorde de dominante" },
+      { label: "Técnica", description: "Nota de aproximación para el acorde de dominante" },
       { label: "Función 5", description: `${chords.dominant2} Acorde de dominante` },
-      { label: "Función 0", description: "Nota de aproximación para la tónica" },
+      { label: "Técnica", description: "Nota de aproximación para la tónica" },
       { label: "Función 1", description: `${chords.tonic} Tónica` },
     ],
   };

@@ -70,8 +70,8 @@ const getChord = (tonalityId: number): string => {
 // Portuguese texts
 const createPtTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Função 0", description: "Nota usada como Cromático Ascendente" },
-    { label: "Função 0", description: "Nota usada como Cromático Ascendente" },
+    { label: "Técnica", description: "Nota usada como Cromático Ascendente" },
+    { label: "Técnica", description: "Nota usada como Cromático Ascendente" },
     { label: "Função 2", description: "Harmonia com intervalo de 6º" },
     { label: "Função 5", description: "Harmonia com intervalo de 6º" },
     { label: "Função 1", description: `${getChord(tonalityId)} Acorde relativo menor` },
@@ -81,8 +81,8 @@ const createPtTexts = (tonalityId: number): TonalityTexts => ({
 // English texts
 const createEnTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Function 0", description: "Note used as Ascending Chromatic" },
-    { label: "Function 0", description: "Note used as Ascending Chromatic" },
+    { label: "Technique", description: "Note used as Ascending Chromatic" },
+    { label: "Technique", description: "Note used as Ascending Chromatic" },
     { label: "Function 2", description: "Harmony with a 6th interval" },
     { label: "Function 5", description: "Harmony with a 6th interval" },
     { label: "Function 1", description: `${getChord(tonalityId)} Relative minor chord` },
@@ -92,8 +92,8 @@ const createEnTexts = (tonalityId: number): TonalityTexts => ({
 // Spanish texts
 const createEsTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Función 0", description: "Nota utilizada como cromática ascendente" },
-    { label: "Función 0", description: "Nota utilizada como cromática ascendente" },
+    { label: "Técnica", description: "Nota utilizada como cromática ascendente" },
+    { label: "Técnica", description: "Nota utilizada como cromática ascendente" },
     { label: "Función 2", description: "Armonía con intervalo de sexta" },
     { label: "Función 5", description: "Armonía con intervalo de sexta" },
     { label: "Función 1", description: `${getChord(tonalityId)} Acorde relativo menor` },

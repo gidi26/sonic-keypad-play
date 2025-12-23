@@ -75,8 +75,8 @@ const getMinorChord = (tonalityId: number): string => {
 // Portuguese texts
 const createPtTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Função 0", description: "Acorde usado como Cromático Ascendente" },
-    { label: "Função 0", description: "Acorde usado como Cromático Ascendente" },
+    { label: "Técnica", description: "Acorde usado como Cromático Ascendente" },
+    { label: "Técnica", description: "Acorde usado como Cromático Ascendente" },
     { label: "Função 5", description: `${getDominantChord(tonalityId)} Acorde dominante do relativo menor` },
     { label: "Função 5", description: `${getMajorKey(tonalityId)} Estrutura superior do acorde dominante` },
     { label: "Função 1", description: `${getMinorChord(tonalityId)} Acorde relativo menor` },
@@ -86,8 +86,8 @@ const createPtTexts = (tonalityId: number): TonalityTexts => ({
 // English texts
 const createEnTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Function 0", description: "Chord used as an Ascending Chromatic" },
-    { label: "Function 0", description: "Chord used as an Ascending Chromatic" },
+    { label: "Technique", description: "Chord used as an Ascending Chromatic" },
+    { label: "Technique", description: "Chord used as an Ascending Chromatic" },
     { label: "Function 5", description: `${getDominantChord(tonalityId)} Dominant chord of the relative minor` },
     { label: "Function 5", description: `${getMajorKey(tonalityId)} Upper structure of the dominant chord` },
     { label: "Function 1", description: `${getMinorChord(tonalityId)} Relative minor chord` },
@@ -97,8 +97,8 @@ const createEnTexts = (tonalityId: number): TonalityTexts => ({
 // Spanish texts
 const createEsTexts = (tonalityId: number): TonalityTexts => ({
   containers: [
-    { label: "Función 0", description: "Acorde utilizado como cromático ascendente" },
-    { label: "Función 0", description: "Acorde utilizado como cromático ascendente" },
+    { label: "Técnica", description: "Acorde utilizado como cromático ascendente" },
+    { label: "Técnica", description: "Acorde utilizado como cromático ascendente" },
     { label: "Función 5", description: `${getDominantChord(tonalityId)} Acorde de dominante de la relativa menor` },
     { label: "Función 5", description: `${getMajorKey(tonalityId)} Estructura superior del acorde de dominante` },
     { label: "Función 1", description: `${getMinorChord(tonalityId)} Acorde de relativa menor` },

@@ -42,11 +42,11 @@ const createPtTexts = (tonalityId: number): TonalityTexts => {
   const chords = chordMappings[tonalityId];
   return {
     containers: [
-      { label: "Função 0", description: `${chords.approachSubdom} Aproximação para o acorde Subdominante` },
+      { label: "Técnica", description: `${chords.approachSubdom} Aproximação para o acorde Subdominante` },
       { label: "Função 2", description: `${chords.subdomChord} Acorde Subdominante` },
-      { label: "Função 0", description: `${chords.approachDom} Aproximação para o acorde dominante` },
+      { label: "Técnica", description: `${chords.approachDom} Aproximação para o acorde dominante` },
       { label: "Função 5", description: `${chords.domChord} Acorde dominante` },
-      { label: "Função 0", description: "Notas de apoio a relativa menor" },
+      { label: "Técnica", description: "Notas de apoio a relativa menor" },
       { label: "Função 1", description: `${chords.relativeMinor} Relativa Menor` },
     ],
   };
@@ -57,11 +57,11 @@ const createEnTexts = (tonalityId: number): TonalityTexts => {
   const chords = chordMappings[tonalityId];
   return {
     containers: [
-      { label: "Function 0", description: `${chords.approachSubdom} Approximation to the Subdominant Chord` },
+      { label: "Technique", description: `${chords.approachSubdom} Approximation to the Subdominant Chord` },
       { label: "Function 2", description: `${chords.subdomChord} Subdominant Chord` },
-      { label: "Function 0", description: `${chords.approachDom} Approximation to the Dominant Chord` },
+      { label: "Technique", description: `${chords.approachDom} Approximation to the Dominant Chord` },
       { label: "Function 5", description: `${chords.domChord} Dominant Chord` },
-      { label: "Function 0", description: "Supporting Notes to the Relative Minor" },
+      { label: "Technique", description: "Supporting Notes to the Relative Minor" },
       { label: "Function 1", description: `${chords.relativeMinor} Relative Minor` },
     ],
   };
@@ -72,11 +72,11 @@ const createEsTexts = (tonalityId: number): TonalityTexts => {
   const chords = chordMappings[tonalityId];
   return {
     containers: [
-      { label: "Función 0", description: `${chords.approachSubdom} Aproximación al acorde de subdominante` },
+      { label: "Técnica", description: `${chords.approachSubdom} Aproximación al acorde de subdominante` },
       { label: "Función 2", description: `${chords.subdomChord} Acorde de subdominante` },
-      { label: "Función 0", description: `${chords.approachDom} Aproximación al acorde de dominante` },
+      { label: "Técnica", description: `${chords.approachDom} Aproximación al acorde de dominante` },
       { label: "Función 5", description: `${chords.domChord} Acorde de dominante` },
-      { label: "Función 0", description: "Notas de apoyo a la relativa menor" },
+      { label: "Técnica", description: "Notas de apoyo a la relativa menor" },
       { label: "Función 1", description: `${chords.relativeMinor} Relativa Menor` },
     ],
   };
