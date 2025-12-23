@@ -19,6 +19,10 @@ const functionEmojiMap: Record<string, string> = {
 // Helper to extract function number from label
 const getFunctionNumber = (label?: string): string | null => {
   if (!label) return null;
+  // Check for "Técnica" / "Technique" - treat as function 0 (gray emoji)
+  if (/^(Técnica|Technique)$/i.test(label.trim())) {
+    return '0';
+  }
   const match = label.match(/(?:Função|Function|Función)\s*(\d+)/i);
   return match ? match[1] : null;
 };
