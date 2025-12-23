@@ -173,7 +173,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               <g key={`dominant-${index}`}>
                 <path
                   d={createArcPath(startAngle, endAngle, dominantInnerRadius, dominantRadius)}
-                  fill={isSelected ? '#ee1d3a' : '#3a3a3a'}
+                  fill={isSelected ? '#ee1d3a' : '#1d1d1d'}
                   stroke="#771621"
                   strokeWidth={4}
                   strokeOpacity={0}
