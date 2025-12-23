@@ -82,7 +82,6 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const [selectedAR, setSelectedAR] = useState<number | null>(null);
   const [selectedAR2, setSelectedAR2] = useState<number | null>(null);
   const [noteRotation, setNoteRotation] = useState(0);
-  const [dominantRotation, setDominantRotation] = useState(-210); // Start with G at top (7 semitones from C = 7 * 30 = 210)
   const [activeLayer, setActiveLayer] = useState<'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus' | null>(null);
 
   const toggleLayer = (layer: 'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
@@ -149,9 +148,8 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
     setNoteRotation(prev => prev + (direction === 'left' ? 30 : -30));
   };
 
-  const rotateDominant = (direction: 'left' | 'right') => {
-    setDominantRotation(prev => prev + (direction === 'left' ? 30 : -30));
-  };
+  // Dominant rotation is synced with note rotation but offset by -210 (7 semitones for G)
+  const dominantRotation = noteRotation - 210;
 
   return (
     <div className="flex flex-col items-center justify-center p-2 md:p-4 w-full max-w-full overflow-hidden">
@@ -192,7 +190,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
                   transform={`rotate(${textPos.rotation}, ${textPos.x}, ${textPos.y})`}
                   className="pointer-events-none select-none"
                 >
-                  {segment.label}
+                  {segment.label}7
                 </text>
               </g>
             );
@@ -539,24 +537,6 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
         </button>
       </div>
 
-      {/* Dominant rotation controls */}
-      <div className="flex items-center gap-4 mt-3">
-        <button
-          onClick={() => rotateDominant('left')}
-          className="p-3 rounded-full bg-[#4a1520] text-white hover:bg-[#4a1520]/90 transition-all active:scale-95"
-          aria-label="Girar dominante para esquerda"
-        >
-          <ChevronLeft size={24} />
-        </button>
-        <span className="text-sm font-medium text-white">{t.dominantLayer}</span>
-        <button
-          onClick={() => rotateDominant('right')}
-          className="p-3 rounded-full bg-[#4a1520] text-white hover:bg-[#4a1520]/90 transition-all active:scale-95"
-          aria-label="Girar dominante para direita"
-        >
-          <ChevronRight size={24} />
-        </button>
-      </div>
 
 
       {/* Functions legend */}
