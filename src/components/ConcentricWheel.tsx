@@ -81,6 +81,8 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const [selectedSub5, setSelectedSub5] = useState<number | null>(null);
   const [selectedAR, setSelectedAR] = useState<number | null>(null);
   const [selectedAR2, setSelectedAR2] = useState<number | null>(null);
+  const [selectedNote, setSelectedNote] = useState<number | null>(null);
+  const [selectedDominant, setSelectedDominant] = useState<number | null>(null);
   const [noteRotation, setNoteRotation] = useState(0);
   const [activeLayer, setActiveLayer] = useState<'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus' | 'dominante' | null>(null);
 
@@ -169,20 +171,23 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             const tonicIndex = Math.round(normalizedRotation / 30) % 12;
             const isTonicPosition = index === tonicIndex;
 
+            const isSelected = selectedDominant === index;
+
             return (
               <g key={`dominant-${index}`}>
                 <path
                   d={createArcPath(startAngle, endAngle, dominantInnerRadius, dominantRadius)}
-                  fill={isTonicPosition ? '#ee1d3a' : '#4a1520'}
+                  fill={isSelected ? '#ee1d3a' : isTonicPosition ? '#ee1d3a' : '#4a1520'}
                   stroke="#771621"
                   strokeWidth={4}
                   strokeOpacity={0}
-                  className="cursor-grab active:cursor-grabbing"
+                  className="cursor-pointer transition-all duration-200 hover:brightness-110"
+                  onClick={() => setSelectedDominant(selectedDominant === index ? null : index)}
                 />
                 <text
                   x={textPos.x}
                   y={textPos.y}
-                  fill={isTonicPosition ? '#ffffff' : 'hsl(var(--primary-foreground))'}
+                  fill={isSelected || isTonicPosition ? '#ffffff' : 'hsl(var(--primary-foreground))'}
                   fontSize="14"
                   fontWeight="400"
                   textAnchor="middle"
@@ -210,20 +215,23 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
             const tonicIndex = Math.round(normalizedRotation / 30) % 12;
             const isTonicPosition = index === tonicIndex;
 
+            const isSelected = selectedNote === index;
+
             return (
               <g key={`note-${index}`}>
                 <path
                   d={createArcPath(startAngle, endAngle, noteInnerRadius, noteRadius)}
-                  fill={isTonicPosition ? '#ffffff' : '#230912'}
+                  fill={isSelected ? '#ee1d3a' : isTonicPosition ? '#ffffff' : '#230912'}
                   stroke="#771621"
                   strokeWidth={4}
                   strokeOpacity={0}
-                  className="cursor-grab active:cursor-grabbing"
+                  className="cursor-pointer transition-all duration-200 hover:brightness-110"
+                  onClick={() => setSelectedNote(selectedNote === index ? null : index)}
                 />
                 <text
                   x={textPos.x}
                   y={textPos.y}
-                  fill={isTonicPosition ? '#230912' : 'hsl(var(--primary-foreground))'}
+                  fill={isSelected ? '#ffffff' : isTonicPosition ? '#230912' : 'hsl(var(--primary-foreground))'}
                   fontSize="16"
                   fontWeight="400"
                   textAnchor="middle"
