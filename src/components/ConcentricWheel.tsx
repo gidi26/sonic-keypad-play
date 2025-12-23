@@ -507,16 +507,6 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           {t.functions}
         </button>
         <button
-          onClick={() => toggleLayer('dominante')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
-            activeLayer === 'dominante' 
-              ? 'bg-[#230912] text-white' 
-              : 'bg-muted text-muted-foreground hover:bg-muted/80'
-          }`}
-        >
-          {t.dominantLayer}
-        </button>
-        <button
           onClick={() => toggleLayer('graus')}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
             activeLayer === 'graus' 
@@ -525,6 +515,16 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           }`}
         >
           {t.degrees}
+        </button>
+        <button
+          onClick={() => toggleLayer('dominante')}
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+            activeLayer === 'dominante' 
+              ? 'bg-[#230912] text-white' 
+              : 'bg-muted text-muted-foreground hover:bg-muted/80'
+          }`}
+        >
+          {t.dominantLayer}
         </button>
       </div>
 
