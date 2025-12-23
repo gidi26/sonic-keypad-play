@@ -42,8 +42,8 @@ const createPtTexts = (tonalityId: number): TonalityTexts => {
       { label: "Função 2", description: `${chords.fourth}7+ Acorde Drop` },
       { label: "Função 5", description: `${chords.dim} Acorde com baixo invertido` },
       { label: "Função 1", description: "Harmonia com intervalo de sexta" },
-      { label: "Função 2", description: `${chords.main}7+(9) Inversão 1` },
-      { label: "Função 5", description: `${chords.main}7+(9) Inversão 2` },
+      { label: "Função 1", description: `${chords.main}7+(9) Inversão 1` },
+      { label: "Função 1", description: `${chords.main}7+(9) Inversão 2` },
     ],
   };
 };
@@ -59,8 +59,8 @@ const createEnTexts = (tonalityId: number): TonalityTexts => {
       { label: "Function 2", description: `${chords.fourth}7+ Acorde Drop` },
       { label: "Function 5", description: `${chords.dim} Chord with inverted bass` },
       { label: "Function 1", description: "Harmony with a sixth interval" },
-      { label: "Function 2", description: `${chords.main}7+(9) Inversion 1` },
-      { label: "Function 5", description: `${chords.main}7+(9) Inversion 2` },
+      { label: "Function 1", description: `${chords.main}7+(9) Inversion 1` },
+      { label: "Function 1", description: `${chords.main}7+(9) Inversion 2` },
     ],
   };
 };
@@ -76,8 +76,8 @@ const createEsTexts = (tonalityId: number): TonalityTexts => {
       { label: "Función 2", description: `${chords.fourth}7+ Acorde Drop` },
       { label: "Función 5", description: `${chords.dim} Acorde con bajo invertido` },
       { label: "Función 1", description: "Armonía con intervalo de sexta" },
-      { label: "Función 2", description: `${chords.main}7+(9) Inversión 1` },
-      { label: "Función 5", description: `${chords.main}7+(9) Inversión 2` },
+      { label: "Función 1", description: `${chords.main}7+(9) Inversión 1` },
+      { label: "Función 1", description: `${chords.main}7+(9) Inversión 2` },
     ],
   };
 };
