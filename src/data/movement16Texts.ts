@@ -52,7 +52,7 @@ const createPtTexts = (tonalityId: number): TonalityTexts => {
       { label: "Função 0", description: "Nota de aproximação para o Acorde dominante" },
       { label: "Função 5", description: `${chords.dominant2} Acorde dominante` },
       { label: "Função 0", description: "Nota de aproximação para a Tônica" },
-      { label: "Função 0", description: `${chords.tonic} Tônica` },
+      { label: "Função 1", description: `${chords.tonic} Tônica` },
     ],
   };
 };
@@ -72,7 +72,7 @@ const createEnTexts = (tonalityId: number): TonalityTexts => {
       { label: "Function 0", description: "Approach note for the dominant chord" },
       { label: "Function 5", description: `${chords.dominant2} Dominant chord` },
       { label: "Function 0", description: "Approach note for the tonic" },
-      { label: "Function 0", description: `${chords.tonic} Tonic` },
+      { label: "Function 1", description: `${chords.tonic} Tonic` },
     ],
   };
 };
@@ -92,7 +92,7 @@ const createEsTexts = (tonalityId: number): TonalityTexts => {
       { label: "Función 0", description: "Nota de aproximación para el acorde de dominante" },
       { label: "Función 5", description: `${chords.dominant2} Acorde de dominante` },
       { label: "Función 0", description: "Nota de aproximación para la tónica" },
-      { label: "Función 0", description: `${chords.tonic} Tónica` },
+      { label: "Función 1", description: `${chords.tonic} Tónica` },
     ],
   };
 };
