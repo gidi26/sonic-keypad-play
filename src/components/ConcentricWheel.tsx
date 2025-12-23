@@ -370,11 +370,11 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               
               // Map Sub5 labels to AR labels
               const arLabelMap: { [key: string]: string } = {
+                'Sub5 V': 'AR VI',
+                'Sub5 VI': 'AR VII',
                 'Sub5 I': 'AR II',
                 'Sub5 II': 'AR III',
-                'Sub5 IV': 'AR V',
-                'Sub5 V': 'AR VI',
-                'Sub5 VI': 'AR VII'
+                'Sub5 III': 'AR IV#'
               };
               const displayLabel = arLabelMap[segment.label] || segment.label;
 
