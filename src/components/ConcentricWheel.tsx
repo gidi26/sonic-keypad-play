@@ -84,13 +84,18 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const [selectedNote, setSelectedNote] = useState<number | null>(null);
   const [selectedDominant, setSelectedDominant] = useState<number | null>(null);
   const [noteRotation, setNoteRotation] = useState(0);
-  const [activeLayer, setActiveLayer] = useState<'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus' | 'dominante' | null>(null);
+  const [activeLayer, setActiveLayer] = useState<'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus' | null>(null);
+  const [isDominantVisible, setIsDominantVisible] = useState(true);
 
-  const toggleLayer = (layer: 'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus' | 'dominante') => {
+  const toggleLayer = (layer: 'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
     setActiveLayer(activeLayer === layer ? null : layer);
   };
 
-  const getLayerOpacity = (layer: 'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus' | 'dominante') => {
+  const toggleDominant = () => {
+    setIsDominantVisible(!isDominantVisible);
+  };
+
+  const getLayerOpacity = (layer: 'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
     if (activeLayer === null) return 1;
     // Graus layer always stays visible
     if (layer === 'graus') return 1;
@@ -160,7 +165,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
         className="drop-shadow-2xl w-full max-w-[700px] h-auto"
       >
         {/* Dominant ring (rotatable - outermost) */}
-        <g style={{ transform: `rotate(${dominantRotation - 15}deg)`, transformOrigin: 'center', transition: 'transform 0.3s ease-out', opacity: getLayerOpacity('dominante') }}>
+        <g style={{ transform: `rotate(${dominantRotation - 15}deg)`, transformOrigin: 'center', transition: 'transform 0.3s ease-out', opacity: isDominantVisible ? 1 : 0 }}>
           {noteSegments.map((segment, index) => {
             const gapAngle = 1.5;
             const startAngle = index * segmentAngle + gapAngle / 2;
@@ -521,9 +526,9 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
           {t.degrees}
         </button>
         <button
-          onClick={() => toggleLayer('dominante')}
+          onClick={() => toggleDominant()}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
-            activeLayer === 'dominante' 
+            isDominantVisible 
               ? 'bg-[#230912] text-white' 
               : 'bg-muted text-muted-foreground hover:bg-muted/80'
           }`}
