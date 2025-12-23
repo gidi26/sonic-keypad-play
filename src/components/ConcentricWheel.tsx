@@ -82,7 +82,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
   const [selectedAR, setSelectedAR] = useState<number | null>(null);
   const [selectedAR2, setSelectedAR2] = useState<number | null>(null);
   const [noteRotation, setNoteRotation] = useState(0);
-  const [dominantRotation, setDominantRotation] = useState(0);
+  const [dominantRotation, setDominantRotation] = useState(-210); // Start with G at top (7 semitones from C = 7 * 30 = 210)
   const [activeLayer, setActiveLayer] = useState<'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus' | null>(null);
 
   const toggleLayer = (layer: 'relativa' | 'antiRelativa' | 'sub5' | 'funcoes' | 'graus') => {
