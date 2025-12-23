@@ -40,7 +40,7 @@ const createPtTexts = (tonalityId: number): TonalityTexts => {
       { label: "Função 5", description: `${chords.alt} alt Acorde Alterado` },
       { label: "Função 0", description: `${chords.approach} Acorde de aproximação para Relativa menor` },
       { label: "Função 5", description: `${chords.dom} Acorde estrutura superior do dominante` },
-      { label: "Função 5", description: `${chords.relMinor}7(9)(11) Acorde Relativo Menor` },
+      { label: "Função 1", description: `${chords.relMinor}7(9)(11) Acorde Relativo Menor` },
     ],
   };
 };
@@ -54,7 +54,7 @@ const createEnTexts = (tonalityId: number): TonalityTexts => {
       { label: "Function 5", description: `${chords.alt} alt Altered Chord` },
       { label: "Function 0", description: `${chords.approach} Approach chord to relative minor` },
       { label: "Function 5", description: `${chords.dom} Upper structure chord of dominant` },
-      { label: "Function 5", description: `${chords.relMinor}7(9)(11) Relative Minor Chord` },
+      { label: "Function 1", description: `${chords.relMinor}7(9)(11) Relative Minor Chord` },
     ],
   };
 };
@@ -68,7 +68,7 @@ const createEsTexts = (tonalityId: number): TonalityTexts => {
       { label: "Función 5", description: `${chords.alt} alt Acorde Alterado` },
       { label: "Función 0", description: `${chords.approach} Acorde de aproximación a la relativa menor` },
       { label: "Función 5", description: `${chords.dom} Acorde de estructura superior de la dominante` },
-      { label: "Función 5", description: `${chords.relMinor}7(9)(11) Acorde relativa menor` },
+      { label: "Función 1", description: `${chords.relMinor}7(9)(11) Acorde relativa menor` },
     ],
   };
 };
