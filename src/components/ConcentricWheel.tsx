@@ -255,7 +255,7 @@ const ConcentricWheel: React.FC<ConcentricWheelProps> = ({
               const startAngle = index * segmentAngle;
               const endAngle = (index + 1) * segmentAngle;
               const isSelected = selectedOuter === index;
-              const isSharp = segment.label.includes('#');
+              const isSharp = segment.label.includes('#') || segment.label.includes('b');
               const textPos = getTextPosition(index, 12, (degreesOuterR + functionsOuterR) / 2);
 
               return (
