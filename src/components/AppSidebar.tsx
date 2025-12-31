@@ -98,22 +98,6 @@ export function AppSidebar() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
-              {/* Orbit Line Menu */}
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  className={`w-full justify-between font-bold text-sm ${
-                    location.pathname === '/orbit-line'
-                      ? 'bg-red-500 text-white hover:bg-red-600' 
-                      : 'bg-black text-white dark:bg-white dark:text-black hover:bg-red-500 hover:text-white dark:hover:bg-red-500'
-                  }`}
-                >
-                  <NavLink to="/orbit-line">
-                    <span>{collapsed ? "ORL" : "ORBIT LINE"}</span>
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-
               <Collapsible open={mainMenuOpen} onOpenChange={setMainMenuOpen}>
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
