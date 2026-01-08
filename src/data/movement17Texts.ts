@@ -36,8 +36,8 @@ const createPtTexts = (tonalityId: number): TonalityTexts => {
   const chords = tonalityChords[tonalityId];
   return {
     containers: [
-      { label: "Técnica", description: "Nota de apoio para o acorde dominante" },
-      { label: "Técnica", description: "Nota de apoio para o acorde dominante" },
+      { label: "Técnica", description: "Nota de aproximação para o acorde dominante" },
+      { label: "Técnica", description: "Nota de aproximação para o acorde dominante" },
       { label: "Função 5", description: `${chords.dominant} Acorde Dominante` },
       { label: "Técnica", description: `${chords.passing1} Acorde de passagem para o acorde relativo` },
       { label: "Técnica", description: `${chords.passing2} Acorde de passagem para o acorde relativo` },
@@ -51,8 +51,8 @@ const createEnTexts = (tonalityId: number): TonalityTexts => {
   const chords = tonalityChords[tonalityId];
   return {
     containers: [
-      { label: "Technique", description: "Supporting note for the dominant chord" },
-      { label: "Technique", description: "Supporting note for the dominant chord" },
+      { label: "Technique", description: "Approach note for the dominant chord" },
+      { label: "Technique", description: "Approach note for the dominant chord" },
       { label: "Function 5", description: `${chords.dominant} Dominant chord` },
       { label: "Technique", description: `${chords.passing1} Passing chord to the relative chord` },
       { label: "Technique", description: `${chords.passing2} Passing chord to the relative chord` },
@@ -66,8 +66,8 @@ const createEsTexts = (tonalityId: number): TonalityTexts => {
   const chords = tonalityChords[tonalityId];
   return {
     containers: [
-      { label: "Técnica", description: "Nota de apoyo para el acorde de dominante" },
-      { label: "Técnica", description: "Nota de apoyo para el acorde de dominante" },
+      { label: "Técnica", description: "Nota de aproximación para el acorde de dominante" },
+      { label: "Técnica", description: "Nota de aproximación para el acorde de dominante" },
       { label: "Función 5", description: `${chords.dominant} Acorde de dominante` },
       { label: "Técnica", description: `${chords.passing1} Pasando el acorde al Acorde relativo` },
       { label: "Técnica", description: `${chords.passing2} Pasando el acorde al Acorde relativo` },
