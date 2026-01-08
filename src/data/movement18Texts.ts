@@ -39,8 +39,8 @@ export const getMovement18Texts = (tonality: string): Movement18Texts => {
   return {
     pt: {
       containers: [
-        { redTitle: 'Técnica', grayText: 'Nota de apoio para o acorde dominante' },
-        { redTitle: 'Técnica', grayText: 'Nota de apoio para o acorde dominante' },
+        { redTitle: 'Técnica', grayText: 'Nota de aproximação para o acorde dominante' },
+        { redTitle: 'Técnica', grayText: 'Nota de aproximação para o acorde dominante' },
         { redTitle: 'Função 5', grayText: `${chords.dominant} Acorde Dominante` },
         { redTitle: 'Técnica', grayText: `${chords.passing1} Acorde de passagem para a Tônica` },
         { redTitle: 'Técnica', grayText: `${chords.passing2} Acorde de passagem para a Tônica` },
@@ -49,8 +49,8 @@ export const getMovement18Texts = (tonality: string): Movement18Texts => {
     },
     en: {
       containers: [
-        { redTitle: 'Technique', grayText: 'Supporting note for the dominant chord' },
-        { redTitle: 'Technique', grayText: 'Supporting note for the dominant chord' },
+        { redTitle: 'Technique', grayText: 'Approach note for the dominant chord' },
+        { redTitle: 'Technique', grayText: 'Approach note for the dominant chord' },
         { redTitle: 'Function 5', grayText: `${chords.dominant} Dominant Chord` },
         { redTitle: 'Technique', grayText: `${chords.passing1} Passing chord to the Tonic` },
         { redTitle: 'Technique', grayText: `${chords.passing2} Passing chord to the Tonic` },
@@ -59,8 +59,8 @@ export const getMovement18Texts = (tonality: string): Movement18Texts => {
     },
     es: {
       containers: [
-        { redTitle: 'Técnica', grayText: 'Nota de apoyo para el acorde de dominante' },
-        { redTitle: 'Técnica', grayText: 'Nota de apoyo para el acorde de dominante' },
+        { redTitle: 'Técnica', grayText: 'Nota de aproximación para el acorde de dominante' },
+        { redTitle: 'Técnica', grayText: 'Nota de aproximación para el acorde de dominante' },
         { redTitle: 'Función 5', grayText: `${chords.dominant} Acorde de dominante` },
         { redTitle: 'Técnica', grayText: `${chords.passing1} Pasando el acorde a la tónica` },
         { redTitle: 'Técnica', grayText: `${chords.passing2} Pasando el acorde a la tónica` },
